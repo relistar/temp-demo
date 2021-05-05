@@ -1,14 +1,16 @@
-import {DatePicker} from 'antd'
-import 'antd/dist/antd.css'
 import React from "react"
-import {ConfigProvider} from 'antd'
-import ruRu from 'antd/lib/locale/ru_RU'
-
+import {DatePicker} from 'antd'
+import {dateFormat} from "../components/constants"
+import MainLayout from "../components/MainLayout"
+import Title from "antd/lib/typography/Title"
 
 export default function Home() {
     return (
-        <ConfigProvider locale={ruRu}>
-            <DatePicker/>
-        </ConfigProvider>
+        <MainLayout>
+            <Title>
+                Home page
+            </Title>
+            <DatePicker format={dateFormat}/>
+        </MainLayout>
     )
 }

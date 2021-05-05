@@ -1,0 +1,6 @@
+export const dayFormat = 'DD'
+export const monthFormat = 'MM'
+export const yearFormat = 'YYYY'
+export const dayOfMonthFormat = 'DD.MM'
+export const monthOfYearFormat = 'MM.YYYY'
+export const dateFormat = 'DD.MM.YYYY'
