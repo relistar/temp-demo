@@ -16,7 +16,7 @@ export default function Articles({articles}) {
                     articles.map(
                         article => (
                             <Link href={`/articles/${encodeURIComponent(article.id)}`} key={article.id}>
-                                <Col span={6}>
+                                <Col md={6} sm={12} xs={24}>
                                     <Card
                                         hoverable
                                         cover={
