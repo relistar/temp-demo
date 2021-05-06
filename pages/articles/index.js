@@ -32,16 +32,12 @@ export default function Articles({articles}) {
                     )
                 }
             </Row>
-
-            <pre>{JSON.stringify(articles, '', 2)}</pre>
         </MainLayout>
     )
 }
 
 export async function getServerSideProps() {
     const res = await axios.get('https://jsonplaceholder.typicode.com/posts/')
-    console.log(res.data)
-
 
     return {
         props: {articles: res.data}
