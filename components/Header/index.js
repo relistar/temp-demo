@@ -18,6 +18,9 @@ export default function MyHeader() {
                 <Menu.Item key="3">
                     <Link href="/articles">Articles</Link>
                 </Menu.Item>
+                <Menu.Item key="4">
+                    <Link href="/login">Login</Link>
+                </Menu.Item>
             </Menu>
         </Header>
     )
