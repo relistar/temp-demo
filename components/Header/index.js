@@ -1,27 +1,28 @@
 import React from 'react'
-import styles from "../../styles/header.module.scss"
-import {Layout, Menu} from "antd"
-import Link from "next/link"
-
-const {Header} = Layout
 
 export default function MyHeader() {
     return (
-        <Header className={styles.header}>
-            <Menu theme="dark" mode="horizontal">
-                <Menu.Item key="1">
-                    <Link href="/">Home</Link>
-                </Menu.Item>
-                <Menu.Item key="2">
-                    <Link href="/about">About</Link>
-                </Menu.Item>
-                <Menu.Item key="3">
-                    <Link href="/articles">Articles</Link>
-                </Menu.Item>
-                <Menu.Item key="4">
-                    <Link href="/login">Login</Link>
-                </Menu.Item>
-            </Menu>
-        </Header>
+        <header className={'header'}>
+            <div className="container">
+                <div className="preheader">
+                    <div className="preheader__desc">Сборка и производство электрощитов</div>
+                    <div className="preheader__contacts">
+                        <a className="preheader__contact" href="tel:+79040770777">+7(904) 077-07-77</a>
+                        <a className="preheader__contact" href="tel:+79040770777">+7(904) 077-07-77</a>
+                    </div>
+                </div>
+                <div className="header__main">
+                    <div className="logo">ТЕМП</div>
+                    <div className="empty"/>
+                    <nav className="nav">
+                        <ul className="navigation">
+                            <li className="navigation__item"><a href="#">Конструктор</a></li>
+                            <li className="navigation__item"><a href="#">Ручной подбор</a></li>
+                            <li className="navigation__item navigation__item--active navigation__item--has-left-border"><a href="#">Карточка щита</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
     )
 }

@@ -1,15 +1,15 @@
 import 'antd/dist/antd.css'
 import React from "react"
 import {Layout} from 'antd'
-import styles from '/styles/header.module.scss'
 import Header from '/components/Header'
+import Footer from '/components/Footer'
 import Head from "next/head"
 
 const {Content} = Layout
 
 export default function MainLayout({children, title = 'Title'}) {
     return (
-        <Layout>
+        <div>
             <Head>
                 <title>{title}</title>
 
@@ -21,10 +21,11 @@ export default function MainLayout({children, title = 'Title'}) {
 
             </Head>
             <Header/>
-            <Content className={styles.main}>
+            <Content>
                 {children}
             </Content>
-        </Layout>
+            <Footer/>
+        </div>
 
     )
 }
