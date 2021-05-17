@@ -18,6 +18,8 @@ $border: 1px solid #FFFFFF;
 
 body {
   max-width: 1440px;
+  min-width: 1440px;
+  width: 1440px;
   margin: 0 auto;
   margin-top: 40px;
   box-sizing: border-box;
@@ -49,6 +51,8 @@ ul, li {
 
 .container {
   max-width: 1166px;
+  min-width: 1166px;
+  width: 1166px;
   margin: 0 auto;
 }
 
