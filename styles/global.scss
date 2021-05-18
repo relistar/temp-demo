@@ -6,6 +6,7 @@ $blue: #F0F5FF;
 $roboto: 'Roboto', sans-serif;
 $montserrat: 'Montserrat', sans-serif;
 $border: 1px solid #FFFFFF;
+$border-blue: 1px solid #DCE8FF;
 
 * {
   padding: 0;
@@ -18,10 +19,8 @@ $border: 1px solid #FFFFFF;
 
 body {
   max-width: 1440px;
-  min-width: 1440px;
-  width: 1440px;
+  min-width: 1166px;
   margin: 0 auto;
-  margin-top: 40px;
   box-sizing: border-box;
 }
 
@@ -339,15 +338,28 @@ ul, li {
   align-items: center;
   position: relative;
 
+  &--second {
+    height: 151px;
+  }
+
   h1 {
     position: absolute;
     top: 58px;
     left: 48px;
   }
+
+  h2 {
+    position: absolute;
+    top: 76px;
+    left: 50px;
+    font-size: 24px;
+    line-height: 32px;
+    color: rgba(0, 0, 0, 0.85);
+  }
 }
 
 .empty {
-  border-left: 1px solid #DCE8FF;
+  border-left: $border-blue;
   height: 100%;
   width: 25%;
 
@@ -364,11 +376,27 @@ ul, li {
   }
 
   &--fourth {
-    border-right: 1px solid #DCE8FF;
-    width: 246px;
+    border-right: $border-blue;
+    width: 247px;
   }
 
   &--circle-top {
 
   }
+
+  &--no-border {
+    border-left: none;
+  }
+
+  &--relative {
+    position: relative;
+  }
+
+  .ellipse--right-bottom {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
 }
+
+@import "card.scss";
