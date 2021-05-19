@@ -4,6 +4,7 @@ import Title from "antd/lib/typography/Title"
 import {Button, Checkbox, InputNumber} from 'antd'
 import Scrollbar from "react-scrollbars-custom"
 import {DeleteOutlined, FileTextOutlined} from '@ant-design/icons'
+import CustomScrollbars from "../components/lib/Scrollbars"
 
 export default function Home() {
     const specLines = [
@@ -25,6 +26,30 @@ export default function Home() {
         },
         {
             name: "УЗО",
+            qty: 1
+        },
+        {
+            name: "Автомат",
+            qty: 1
+        },
+        {
+            name: "Автомат",
+            qty: 1
+        },
+        {
+            name: "Автомат",
+            qty: 1
+        },
+        {
+            name: "Автомат",
+            qty: 1
+        },
+        {
+            name: "Автомат",
+            qty: 1
+        },
+        {
+            name: "Автомат",
             qty: 1
         },
         {
@@ -101,9 +126,9 @@ export default function Home() {
                                     </div>
                                 </div>
                                 <div className="card-info-details">
+                                        <CustomScrollbars style={{width: '100%', height: 282}} autoHeightMin={282}>
                                     <div className="card-info-details__head">Спецификация электрощита</div>
                                     <div className="card-info-details__lines">
-                                        <Scrollbar style={{width: '100%', height: 282}}>
 
                                             {specLines.map((line, index) => (
                                                 <div className="card-info-details-line">
@@ -122,8 +147,8 @@ export default function Home() {
                                                     </div>
                                                 </div>
                                             ))}
-                                        </Scrollbar>
                                     </div>
+                                        </CustomScrollbars>
                                     <div className="card-info-details-submitter">
                                         <div className="card-info-details-submitter__btn btn-wrap">
                                             <Button type="primary">
