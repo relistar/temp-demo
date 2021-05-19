@@ -6,7 +6,7 @@ const trackStyles = {
     width: '2px',
     right: '0px',
     bottom: '2px',
-    top: '-44px',
+    top: '0px',
     height: '329px',
     visibility: 'visible',
     backgroundColor: '#E5E5E5',

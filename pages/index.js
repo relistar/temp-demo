@@ -126,7 +126,7 @@ export default function Home() {
                                     </div>
                                 </div>
                                 <div className="card-info-details">
-                                        <CustomScrollbars style={{width: '100%', height: 282}} autoHeightMin={282}>
+                                        <CustomScrollbars style={{width: '100%', height: 332}} autoHeightMin={332}>
                                     <div className="card-info-details__head">Спецификация электрощита</div>
                                     <div className="card-info-details__lines">
 
