@@ -13,7 +13,7 @@ export default function MyHeader() {
                 </div>
                 <div className="header__main">
                     <div className="logo">ТЕМП</div>
-                    <div className="empty"/>
+                    <div className="empty empty--border-white"/>
                     <nav className="nav">
                         <ul className="navigation">
                             <li className="navigation__item"><a href="#">Конструктор</a></li>

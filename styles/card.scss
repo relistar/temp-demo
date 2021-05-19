@@ -5,7 +5,7 @@
 }
 
 .card-info {
-  width: 842px;
+  width: 845px;
 
   &__top {
     border: $border-blue;
@@ -15,10 +15,19 @@
 }
 
 .card-image {
-  width: 323px;
+  width: 322px;
+  height: 512px;
+  position: relative;
+  border: $border-blue;
+  border-right: none;
 
   img {
-    max-width: 100%;
+    position: absolute;
+    margin: auto;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
   }
 }
 
@@ -68,7 +77,7 @@
   border-right: $border-blue;
 
   &__head {
-    padding: 25px 52px 24px 32px;
+    padding: 25px 52px 22px 34px;
     font-weight: 300;
     font-size: 14px;
     line-height: 19px;
@@ -77,7 +86,7 @@
   }
 
   &__body {
-    padding: 44px 33px 60px;
+    padding: 45px 35px 59px;
     height: 278px;
     display: flex;
     flex-direction: column;
@@ -203,8 +212,6 @@
 }
 
 .btn-wrap {
-  margin-left: -2px;
-
   .anticon {
     height: 25px;
   }
@@ -273,8 +280,8 @@
 .table-head {
   display: flex;
   border: $border-blue;
-  height: 41px;
-  line-height: 41px;
+  height: 42px;
+  line-height: 38px;
 
   &__item {
     border-left: $border-blue;
@@ -284,8 +291,9 @@
     }
 
     &--first {
-      width: 323px;
-      padding-left: 83px;
+      width: 320px;
+      padding-left: 80px;
+      border-left: none;
     }
 
     &--second {
@@ -316,21 +324,87 @@
     align-items: center;
     border: $border-blue;
     margin-top: -1px;
-    height: 41px;
-    line-height: 41px;
+    height: 42px;
+    line-height: 38px;
   }
 
   &__col {
     border-left: $border-blue;
 
     &--first {
-      width: 323px;
-      padding-left: 83px;
+      width: 320px;
+      padding-left: 75px;
+      border-left: none;
     }
 
     &--second {
       width: 248px;
-      padding-left: 59px;
+      padding-left: 60px;
+    }
+
+    &--third {
+      width: 299px;
+      padding-left: 107px;
+    }
+
+    &--fourth {
+      width: 149px;
+    }
+
+    &--fifth {
+      width: 149px;
+    }
+  }
+
+  &__brand {
+
+  }
+}
+
+.table-lines-availability {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: relative;
+    display: block;
+    background-color: #DBDBDB;
+    height: 6px;
+    width: 6px;
+    left: -14px;
+    top: 22px;
+  }
+
+  &--true {
+
+    &::before {
+      background-color: #2F54EB;
+    }
+  }
+}
+
+.empty-table-lines {
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: $border-blue;
+    margin-top: -1px;
+    height: 84px;
+  }
+
+  &__col {
+    border-left: $border-blue;
+    height: 100%;
+
+    &--first {
+      width: 320px;
+      border-left: none;
+    }
+
+    &--second {
+      width: 248px;
     }
 
     &--third {

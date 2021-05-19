@@ -3,7 +3,7 @@ import MainLayout from "../components/MainLayout"
 import Title from "antd/lib/typography/Title"
 import {Button, Checkbox, InputNumber} from 'antd'
 import Scrollbar from "react-scrollbars-custom"
-import { DeleteOutlined, FileTextOutlined } from '@ant-design/icons'
+import {DeleteOutlined, FileTextOutlined} from '@ant-design/icons'
 
 export default function Home() {
     const specLines = [
@@ -54,7 +54,7 @@ export default function Home() {
                     </div>
                     <div className="card-main">
                         <div className="card-image">
-                            <img src="/img/card-image.png" alt=""/>
+                            <img src="/img/card-image.png" alt="" width={320} height={510}/>
                         </div>
                         <div className="card-info">
                             <div className="card-info__top">
@@ -103,19 +103,21 @@ export default function Home() {
                                 <div className="card-info-details">
                                     <div className="card-info-details__head">Спецификация электрощита</div>
                                     <div className="card-info-details__lines">
-                                        <Scrollbar style={{ width: '100%', height: 282 }}>
+                                        <Scrollbar style={{width: '100%', height: 282}}>
 
                                             {specLines.map((line, index) => (
                                                 <div className="card-info-details-line">
-                                                    <span className="card-info-details-line__name">{index + 1}. {line.name}</span>
+                                                    <span
+                                                        className="card-info-details-line__name">{index + 1}. {line.name}</span>
                                                     <div className="card-info-details-line__controls">
                                                         <div className="input-num">
                                                             <span className="input-num-btn">-</span>
-                                                            <InputNumber min={0} defaultValue={2}  onChange={() => {}}/>
+                                                            <InputNumber min={0} defaultValue={2} onChange={() => {
+                                                            }}/>
                                                             <span className="input-num-btn">+</span>
                                                         </div>
                                                         <div className="remove-button">
-                                                            <Button icon={<DeleteOutlined />}/>
+                                                            <Button icon={<DeleteOutlined/>}/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -144,8 +146,11 @@ export default function Home() {
                         <div className="empty empty--second"/>
                         <div className="empty empty--third empty--no-border"/>
                         <div className="empty empty--fourth empty--no-border empty--relative">
-                            <svg className="ellipse--right-bottom" width="167" height="75" viewBox="0 0 169 76" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.999998 76C0.999994 34.5787 38.3842 1.00001 84.5 1.00001C130.616 1 168 34.5786 168 76" stroke="#DCE8FF"/>
+                            <svg className="ellipse--right-bottom" width="167" height="75" viewBox="0 0 169 76"
+                                 fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.999998 76C0.999994 34.5787 38.3842 1.00001 84.5 1.00001C130.616 1 168 34.5786 168 76"
+                                    stroke="#DCE8FF"/>
                             </svg>
                         </div>
                     </div>
@@ -179,7 +184,32 @@ export default function Home() {
                                 </div>
                                 <div className="table-lines__col table-lines__col--fifth">
                                     <div className="btn-wrap btn-wrap--icon">
-                                        <Button icon={<FileTextOutlined />}>Заказать</Button>
+                                        <Button icon={<FileTextOutlined/>}>Заказать</Button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="table-lines__item">
+                                <div className="table-lines__col table-lines__col--first">
+                                    <span className="table-lines__brand">ABB</span>
+                                    &nbsp;
+                                    <span className="table-lines__serial">премиум</span>
+                                </div>
+                                <div className="table-lines__col table-lines__col--second">
+                                    <span className="table-lines__price">29'920 &#8381;</span>
+                                </div>
+                                <div className="table-lines__col table-lines__col--third">
+                                    <div className="table-lines-availability">
+                                        Под заказ
+                                    </div>
+                                </div>
+                                <div className="table-lines__col table-lines__col--fourth">
+                                    <div className="btn-wrap">
+                                        <Button>Скачать</Button>
+                                    </div>
+                                </div>
+                                <div className="table-lines__col table-lines__col--fifth">
+                                    <div className="btn-wrap">
+                                        <Button icon={<FileTextOutlined/>}>Заказать</Button>
                                     </div>
                                 </div>
                             </div>
@@ -204,7 +234,32 @@ export default function Home() {
                                 </div>
                                 <div className="table-lines__col table-lines__col--fifth">
                                     <div className="btn-wrap">
-                                        <Button icon={<FileTextOutlined />}>Заказать</Button>
+                                        <Button icon={<FileTextOutlined/>}>Заказать</Button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="table-lines__item">
+                                <div className="table-lines__col table-lines__col--first">
+                                    <span className="table-lines__brand">ABB</span>
+                                    &nbsp;
+                                    <span className="table-lines__serial">премиум</span>
+                                </div>
+                                <div className="table-lines__col table-lines__col--second">
+                                    <span className="table-lines__price">29'920 &#8381;</span>
+                                </div>
+                                <div className="table-lines__col table-lines__col--third">
+                                    <div className="table-lines-availability">
+                                        Под заказ
+                                    </div>
+                                </div>
+                                <div className="table-lines__col table-lines__col--fourth">
+                                    <div className="btn-wrap">
+                                        <Button>Скачать</Button>
+                                    </div>
+                                </div>
+                                <div className="table-lines__col table-lines__col--fifth">
+                                    <div className="btn-wrap">
+                                        <Button icon={<FileTextOutlined/>}>Заказать</Button>
                                     </div>
                                 </div>
                             </div>
@@ -229,59 +284,18 @@ export default function Home() {
                                 </div>
                                 <div className="table-lines__col table-lines__col--fifth">
                                     <div className="btn-wrap">
-                                        <Button icon={<FileTextOutlined />}>Заказать</Button>
+                                        <Button icon={<FileTextOutlined/>}>Заказать</Button>
                                     </div>
                                 </div>
                             </div>
-                            <div className="table-lines__item">
-                                <div className="table-lines__col table-lines__col--first">
-                                    <span className="table-lines__brand">ABB</span>
-                                    &nbsp;
-                                    <span className="table-lines__serial">премиум</span>
-                                </div>
-                                <div className="table-lines__col table-lines__col--second">
-                                    <span className="table-lines__price">29'920 &#8381;</span>
-                                </div>
-                                <div className="table-lines__col table-lines__col--third">
-                                    <div className="table-lines-availability table-lines-availability--true">
-                                        В наличии
-                                    </div>
-                                </div>
-                                <div className="table-lines__col table-lines__col--fourth">
-                                    <div className="btn-wrap">
-                                        <Button>Скачать</Button>
-                                    </div>
-                                </div>
-                                <div className="table-lines__col table-lines__col--fifth">
-                                    <div className="btn-wrap">
-                                        <Button icon={<FileTextOutlined />}>Заказать</Button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="table-lines__item">
-                                <div className="table-lines__col table-lines__col--first">
-                                    <span className="table-lines__brand">ABB</span>
-                                    &nbsp;
-                                    <span className="table-lines__serial">премиум</span>
-                                </div>
-                                <div className="table-lines__col table-lines__col--second">
-                                    <span className="table-lines__price">29'920 &#8381;</span>
-                                </div>
-                                <div className="table-lines__col table-lines__col--third">
-                                    <div className="table-lines-availability table-lines-availability--true">
-                                        В наличии
-                                    </div>
-                                </div>
-                                <div className="table-lines__col table-lines__col--fourth">
-                                    <div className="btn-wrap">
-                                        <Button>Скачать</Button>
-                                    </div>
-                                </div>
-                                <div className="table-lines__col table-lines__col--fifth">
-                                    <div className="btn-wrap">
-                                        <Button icon={<FileTextOutlined />}>Заказать</Button>
-                                    </div>
-                                </div>
+                        </div>
+                        <div className="empty-table-lines">
+                            <div className="empty-table-lines__item">
+                                <div className="empty-table-lines__col empty-table-lines__col--first">&nbsp;</div>
+                                <div className="empty-table-lines__col empty-table-lines__col--second">&nbsp;</div>
+                                <div className="empty-table-lines__col empty-table-lines__col--third">&nbsp;</div>
+                                <div className="empty-table-lines__col empty-table-lines__col--fourth">&nbsp;</div>
+                                <div className="empty-table-lines__col empty-table-lines__col--fifth">&nbsp;</div>
                             </div>
                         </div>
                     </div>

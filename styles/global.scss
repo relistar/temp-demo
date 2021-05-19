@@ -6,7 +6,7 @@ $blue: #F0F5FF;
 $roboto: 'Roboto', sans-serif;
 $montserrat: 'Montserrat', sans-serif;
 $border: 1px solid #FFFFFF;
-$border-blue: 1px solid #DCE8FF;
+$border-blue: 1px solid #DCE8FF; /*DCE8FF*/
 
 * {
   padding: 0;
@@ -151,8 +151,8 @@ ul, li {
               display: block;
               border-bottom: 2px solid #2F54EB;
               height: 2px;
-              left: -23%;
-              width: 150.44%;
+              left: -26%;
+              width: 150.7%;
               bottom: 0;
             }
 
@@ -228,6 +228,10 @@ ul, li {
     flex-wrap: nowrap;
     flex-direction: column;
     justify-content: space-between;
+
+    a:hover {
+      color: #FFFFFF;
+    }
 
     &--j-start {
       justify-content: start;
@@ -339,7 +343,7 @@ ul, li {
   position: relative;
 
   &--second {
-    height: 151px;
+    height: 148px;
   }
 
   h1 {
@@ -364,11 +368,11 @@ ul, li {
   width: 25%;
 
   &--first {
-    width: 323px;
+    width: 320px;
   }
 
   &--second {
-    width: 323px;
+    width: 322px;
   }
 
   &--third {
@@ -386,6 +390,10 @@ ul, li {
 
   &--no-border {
     border-left: none;
+  }
+
+  &--border-white {
+    border-left: $border;
   }
 
   &--relative {
