@@ -8,7 +8,7 @@ export default function MyFooter() {
                 <div className="footer">
                     <div className="footer__main">
                         <div className="footer__col">
-                            <div className="logo logo--footer">ТЕМП</div>
+                            <div className="logo logo--footer"><img src="/img/logo-white.png" alt="logo"/></div>
                             <div className="rights">
                                 Все права защищены
                             </div>

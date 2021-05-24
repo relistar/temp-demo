@@ -66,7 +66,7 @@ export default function Home() {
                         <Title>
                             Карточка электрощита
                         </Title>
-                        <div className="empty empty--first"/>
+                        <div className="empty empty--first bg-diag-line"/>
                         <div className="empty empty--second"/>
                         <div className="empty empty--third empty--circle-top">
                             <svg width="274" height="124" viewBox="0 0 275 124" fill="none"
@@ -79,11 +79,31 @@ export default function Home() {
                     </div>
                     <div className="card-main">
                         <div className="card-image">
-                            <img src="/img/card-image.png" alt="" width={320} height={510}/>
+                            <img src="/img/card-image.png"/>
                         </div>
                         <div className="card-info">
                             <div className="card-info__top">
                                 <div className="card-answers">
+                                    <div className="card-answer">
+                                    <span className="card-answer__text">Площадь</span>
+                                    <span className="card-answer__value">240</span>
+                                </div>
+                                    <div className="card-answer">
+                                        <span className="card-answer__text">Кол-во комнат</span>
+                                        <span className="card-answer__value">2</span>
+                                    </div>
+                                    <div className="card-answer">
+                                        <span className="card-answer__text">Кол-во санузлов</span>
+                                        <span className="card-answer__value">2</span>
+                                    </div>
+                                    <div className="card-answer">
+                                        <span className="card-answer__text">Генератор</span>
+                                        <span className="card-answer__value">Да</span>
+                                    </div>
+                                    <div className="card-answer">
+                                        <span className="card-answer__text">Молнизащита</span>
+                                        <span className="card-answer__value">Нет</span>
+                                    </div>
                                     <div className="card-answer">
                                         <span className="card-answer__text">Площадь</span>
                                         <span className="card-answer__value">240</span>
@@ -123,10 +143,15 @@ export default function Home() {
                                         <Checkbox>Собрать на гребенке</Checkbox>
                                         <Checkbox>Стеклянная дверца</Checkbox>
                                         <Checkbox>Стеклянная дверца</Checkbox>
+                                        <Checkbox>Стеклянная дверца</Checkbox>
+                                        <Checkbox>Стеклянная дверца</Checkbox>
+                                        <Checkbox>Стеклянная дверца</Checkbox>
+                                        <Checkbox>Стеклянная дверца</Checkbox>
+                                        <Checkbox>Стеклянная дверца</Checkbox>
                                     </div>
                                 </div>
                                 <div className="card-info-details">
-                                        <CustomScrollbars style={{width: '100%', height: 332}} autoHeightMin={332}>
+                                        <CustomScrollbars style={{width: '100%', height: 331}} autoHeightMin={331}>
                                     <div className="card-info-details__head">Спецификация электрощита</div>
                                     <div className="card-info-details__lines">
 
@@ -167,7 +192,7 @@ export default function Home() {
                         <Title level={2}>
                             Варианты электрощитов, подходящие под Ваши параметры
                         </Title>
-                        <div className="empty empty--first"/>
+                        <div className="empty empty--first bg-diag-line--reverse"/>
                         <div className="empty empty--second"/>
                         <div className="empty empty--third empty--no-border"/>
                         <div className="empty empty--fourth empty--no-border empty--relative">

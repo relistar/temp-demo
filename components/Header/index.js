@@ -12,7 +12,7 @@ export default function MyHeader() {
                     </div>
                 </div>
                 <div className="header__main">
-                    <div className="logo">ТЕМП</div>
+                    <div className="logo"><img src="/img/logo.png"/></div>
                     <div className="empty empty--border-white"/>
                     <nav className="nav">
                         <ul className="navigation">
