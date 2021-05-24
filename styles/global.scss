@@ -1,12 +1,10 @@
 @import "../public/fonts/roboto/roboto.css";
-@import "../public/fonts/montserrat/montserrat.css";
 @import "antd.rewrite.scss";
 
 $blue: #F0F5FF;
 $roboto: 'Roboto', sans-serif;
-$montserrat: 'Montserrat', sans-serif;
 $border: 1px solid #FFFFFF;
-$border-blue: 1px solid #DCE8FF; /*DCE8FF*/
+$border-blue: 1px solid #DCE8FF;
 
 * {
   padding: 0;
