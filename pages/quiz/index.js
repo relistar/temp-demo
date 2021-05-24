@@ -1,14 +1,9 @@
 import React from "react"
 import MainLayout from "/components/MainLayout"
-import Title from "antd/lib/typography/Title"
-import {Button, Checkbox, Input, InputNumber} from 'antd'
-import {ArrowLeftOutlined, ArrowRightOutlined, DeleteOutlined, FileTextOutlined} from '@ant-design/icons'
-import CustomScrollbars from "/components/lib/Scrollbars"
-import Link from "next/link"
-import {HandClickIcon} from "../../components/lib/icon"
+import {Button, Input} from 'antd'
+import {ArrowLeftOutlined, ArrowRightOutlined} from '@ant-design/icons'
 
 export default function Home() {
-
 
     return (
         <MainLayout>

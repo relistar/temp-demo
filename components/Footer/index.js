@@ -21,10 +21,21 @@ export default function MyFooter() {
                         <div className="footer__col">
                             <nav className="nav">
                                 <ul className="footer-navigation">
-                                    <li className="footer-navigation__item"><a href="#">Конструктор</a></li>
-                                    <li className="footer-navigation__item"><a href="#">Ручной подбор</a></li>
-                                    <li className="footer-navigation__item"><Link href="/card"><a href="#">Карточка
-                                        щита</a></Link></li>
+                                    <li className="footer-navigation__item">
+                                        <Link href="/quiz">
+                                            <a href="#">Конструктор</a>
+                                        </Link>
+                                    </li>
+                                    <li className="footer-navigation__item">
+                                        <Link href="/quiz2">
+                                            <a href="#">Ручной подбор</a>
+                                        </Link>
+                                    </li>
+                                    <li className="footer-navigation__item">
+                                        <Link href="/card">
+                                            <a href="#">Карточка щита</a>
+                                        </Link>
+                                    </li>
                                 </ul>
                             </nav>
                         </div>

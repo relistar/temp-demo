@@ -21,7 +21,11 @@ export default function MyHeader() {
                     <div className="empty empty--border-white"/>
                     <nav className="nav">
                         <ul className="navigation">
-                            <li className="navigation__item"><a href="#">Конструктор</a></li>
+                            <li className="navigation__item">
+                                <Link href="/quiz">
+                                    <a href="#">Конструктор</a>
+                                </Link>
+                            </li>
                             <li className="navigation__item"><a href="#">Ручной подбор</a></li>
                             <li className="navigation__item navigation__item--active navigation__item--has-left-border">
                                 <Link href="/card"><a href="#">Карточка щита</a></Link>
