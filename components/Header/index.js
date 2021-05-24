@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from "next/link"
 
 export default function MyHeader() {
     return (
@@ -12,13 +13,19 @@ export default function MyHeader() {
                     </div>
                 </div>
                 <div className="header__main">
-                    <div className="logo"><img src="/img/logo.png"/></div>
+                    <div className="logo">
+                        <Link href="/">
+                            <img src="/img/logo.png"/>
+                        </Link>
+                    </div>
                     <div className="empty empty--border-white"/>
                     <nav className="nav">
                         <ul className="navigation">
                             <li className="navigation__item"><a href="#">Конструктор</a></li>
                             <li className="navigation__item"><a href="#">Ручной подбор</a></li>
-                            <li className="navigation__item navigation__item--active navigation__item--has-left-border"><a href="#">Карточка щита</a></li>
+                            <li className="navigation__item navigation__item--active navigation__item--has-left-border">
+                                <Link href="/card"><a href="#">Карточка щита</a></Link>
+                            </li>
                         </ul>
                     </nav>
                 </div>

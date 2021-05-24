@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from "next/link"
 
 export default function MyFooter() {
     return (
@@ -8,7 +9,11 @@ export default function MyFooter() {
                 <div className="footer">
                     <div className="footer__main">
                         <div className="footer__col">
-                            <div className="logo logo--footer"><img src="/img/logo-white.png" alt="logo"/></div>
+                            <div className="logo logo--footer">
+                                <Link href="/">
+                                    <img src="/img/logo-white.png" alt="logo"/>
+                                </Link>
+                            </div>
                             <div className="rights">
                                 Все права защищены
                             </div>
@@ -18,7 +23,8 @@ export default function MyFooter() {
                                 <ul className="footer-navigation">
                                     <li className="footer-navigation__item"><a href="#">Конструктор</a></li>
                                     <li className="footer-navigation__item"><a href="#">Ручной подбор</a></li>
-                                    <li className="footer-navigation__item"><a href="#">Карточка щита</a></li>
+                                    <li className="footer-navigation__item"><Link href="/card"><a href="#">Карточка
+                                        щита</a></Link></li>
                                 </ul>
                             </nav>
                         </div>

@@ -1,0 +1,201 @@
+.quiz-page-header {
+  position: absolute;
+  display: flex;
+  top: 48px;
+  left: 48px;
+  height: 67px;
+
+
+  h1 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+
+    color: rgba(0, 0, 0, 0.4);
+    top: -9px;
+    left: 0px;
+  }
+}
+
+.quiz-question {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 38px;
+  line-height: 45px;
+  color: rgba(0, 0, 0, 0.85);
+  top: 48px;
+  left: 0;
+  position: relative;
+}
+
+.quest__empty {
+  height: 95px;
+  border-bottom: $border-blue;
+
+  &::before {
+    position: absolute;
+    content: '';
+    display: block;
+    border-right: $border-blue;
+    width: 322px;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+
+.quiz-answers {
+  width: 100%;
+  padding: 31px 50px 21px;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: '';
+    display: block;
+    border-right: $border-blue;
+    width: 322px;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+
+.quiz {
+  border: $border-blue;
+}
+
+.quest {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  position: relative;
+  border-top: $border-blue;
+
+  &__first {
+    border-right: $border-blue;
+    width: 646px;
+  }
+
+  &__second {
+    width: 522px;
+    padding: 32px 51px 157px;
+  }
+}
+
+.quest-options {
+
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-content: center;
+  position: relative;
+  height: 95px;
+  border-bottom: $border-blue;
+
+  &::before {
+    position: absolute;
+    content: '';
+    display: block;
+    border-right: $border-blue;
+    width: 322px;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .ant-input {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 16px;
+    color: #070707;
+    text-align: left;
+    width: 307px;
+    height: 55px;
+    margin-left: 48px;
+    border: 1px solid #2F54EB;
+    box-sizing: border-box;
+    border-radius: 1px;
+
+    &:focus::placeholder {
+      color: transparent;
+    }
+  }
+}
+
+.ant-input:placeholder-shown {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  color: rgba(0, 0, 0, 0.2);
+  height: 55px;
+  text-align: left;
+  margin-top: -3px;
+}
+
+.quest-btn {
+  position: absolute;
+
+  button {
+    border: none;
+    width: 219px;
+    height: 55px;
+    background: #2F54EB;
+    border-radius: 0;
+    position: relative;
+
+
+    span {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 19px;
+      color: #FFFFFF;
+      right: 13px;
+      position: relative;
+    }
+
+    span.anticon {
+      position: absolute;
+      top: 20px;
+      right: 47px;
+    }
+
+    path {
+      color: #FFFFFF;
+      width: 13px;
+      height: 12px;
+    }
+  }
+
+  &--back {
+    left: -1px;
+    bottom: 0;
+
+    .quest-btn button span.anticon {
+      right: 148px;
+    }
+
+    .ant-btn > .anticon + span, .ant-btn > span + .anticon {
+      margin-left: 51px;
+    }
+  }
+
+  &--forward {
+    right: -1px;
+    bottom: 0;
+  }
+}
+
+.quest-desc {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 29px;
+
+  color: rgba(0, 0, 0, 0.85);
+}

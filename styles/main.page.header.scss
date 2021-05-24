@@ -1,0 +1,25 @@
+.main-page-header {
+  position: absolute;
+  display: flex;
+  top: 48px;
+  left: 48px;
+  height: 67px;
+
+  &__logo {
+    margin-right: 60px;
+    img {
+      width: 181px;
+      height: 65px;
+    }
+  }
+
+  &__text {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 29px;
+    color: rgba(0, 0, 0, 0.85);
+
+    margin: 5px 0;
+  }
+}

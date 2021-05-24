@@ -1,0 +1,116 @@
+.constructor-cards {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  border: $border-blue;
+}
+
+.constructor-card {
+  width: 50%;
+  padding: 97px 60px;
+  position: relative;
+
+  &--first {
+    border-right: $border-blue;
+    padding: 97px 48px;
+
+    .constructor-card {
+
+      &__icon {
+        svg {
+          width: 29px;
+          height: 29px;
+          margin-left: -3px;
+        }
+      }
+
+      &__name {
+        margin-top: -2px;
+      }
+
+    }
+  }
+
+  &__icon {
+    margin-bottom: 15px;
+    margin-left: 2px;
+
+    .anticon {
+      height: 25px;
+    }
+
+    span {
+      color: #2F54EB;
+
+      svg {
+        color: #2F54EB;
+        width: 26px;
+        height: 26px;
+        fill: #2F54EB;
+
+        path {
+          color: #2F54EB;
+        }
+      }
+    }
+  }
+
+  &__name {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 38px;
+    line-height: 45px;
+    color: #2F54EB;
+    margin-bottom: 21px;
+  }
+
+  &__desc {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 29px;
+
+    color: rgba(0, 0, 0, 0.85);
+    margin-bottom: 28px;
+  }
+
+  &__btn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    button {
+      border: none;
+      width: 250px;
+      height: 55px;
+      background: #2F54EB;
+      border-radius: 0;
+      margin-right: -1px;
+      position: relative;
+
+      span {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 19px;
+        color: #FFFFFF;
+        right: 13px;
+        position: relative;
+      }
+
+      span.anticon {
+        position: absolute;
+        top: 20px;
+        right: 47px;
+      }
+
+      path {
+        color: #FFFFFF;
+        width: 13px;
+        height: 12px;
+      }
+    }
+  }
+
+
+}
