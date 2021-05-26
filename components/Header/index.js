@@ -26,7 +26,11 @@ export default function MyHeader() {
                                     <a href="#">Конструктор</a>
                                 </Link>
                             </li>
-                            <li className="navigation__item"><a href="#">Ручной подбор</a></li>
+                            <li className="navigation__item">
+                                <Link href="/manual">
+                                    <a href="#">Ручной подбор</a>
+                                </Link>
+                            </li>
                             <li className="navigation__item navigation__item--active navigation__item--has-left-border">
                                 <Link href="/card"><a href="#">Карточка щита</a></Link>
                             </li>

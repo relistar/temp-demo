@@ -361,6 +361,10 @@ ul, li {
     height: 72px;
   }
 
+  &--under-big {
+    height: 87px;
+  }
+
   &--quiz {
     height: auto;
     min-height: 87px;
@@ -368,6 +372,10 @@ ul, li {
 
   &--second {
     height: 148px;
+  }
+
+  &--border-top {
+    border-top: $border-blue;
   }
 
   h1 {
@@ -416,12 +424,20 @@ ul, li {
     width: 247px;
   }
 
+  &--border-right {
+    border-right: $border-blue;
+  }
+
   &--circle-top {
 
   }
 
   &--no-border {
     border-left: none;
+  }
+
+  &--no-border-right {
+    border-right: none;
   }
 
   &--border-white {
@@ -443,3 +459,4 @@ ul, li {
 @import "main.page.header.scss";
 @import "constructor.cards.scss";
 @import "quiz.page.header.scss";
+@import "manual.scss";
