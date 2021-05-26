@@ -129,7 +129,7 @@
   width: 494px;
   position: relative;
   height: fit-content;
-  padding-bottom: 55px;
+  padding-bottom: 57px;
 
   .card-info-details {
     width: 494px;
@@ -177,10 +177,11 @@
 }
 
 .char-form-lines {
-  padding: 38px 0 0 28px;
+  padding: 38px 0 2px 28px;
 
   &__item {
-    margin-bottom: 32px;
+    margin-bottom: 29px;
+    height: 55px;
   }
 
   &__name {
@@ -209,6 +210,15 @@
   text-align: center;
   padding: 0 7px;
   margin-right: 19px;
+
+  &:hover {
+    border-bottom: 2px solid #2F54EB;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 178.69%;
+    background-color: #f0f5ff;
+    cursor: pointer;
+  }
 
   &--selected {
     border-bottom: 2px solid #2F54EB;
