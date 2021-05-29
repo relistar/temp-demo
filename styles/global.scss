@@ -94,6 +94,20 @@ ul, li {
       height: 12px;
     }
   }
+
+
+  &--back-icon {
+    button {
+      span {
+        margin-left: 12px !important;
+      }
+
+      .anticon {
+        right: 32px;
+        margin-left: 0;
+      }
+    }
+  }
 }
 
 .container {
@@ -448,7 +462,7 @@ ul, li {
   &--sub {
     height: 87px;
     border-top: $border-blue;
-    position: initial!important;
+    position: initial !important;
 
   }
 
@@ -462,7 +476,7 @@ ul, li {
 
   &--quiz {
     height: auto;
-    min-height: 87px;
+    height: 87px;
   }
 
   &--second {
@@ -556,6 +570,7 @@ ul, li {
 .bg-diag-line {
   background: linear-gradient(to top right, transparent calc(50% - 1px), #DCE8FF, transparent calc(50% + 1px));
   z-index: -1;
+
   &--reverse {
     background: linear-gradient(to top left, transparent calc(50% - 1px), #DCE8FF, transparent calc(50% + 1px));
   }
@@ -577,6 +592,7 @@ ul, li {
   height: 100%;
   width: 25%;
   z-index: -1;
+  position: relative;
 
   &--first {
     width: 321px;

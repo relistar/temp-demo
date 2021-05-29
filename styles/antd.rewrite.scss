@@ -100,3 +100,9 @@ h1.ant-typography, .ant-typography h1 {
 .ant-drawer-body {
   padding: 15px 26px;
 }
+
+.ant-btn-primary:hover, .ant-btn-primary:focus {
+  color: #fff;
+  background: #488FF7;
+  border-color: #488FF7;
+}

@@ -51,7 +51,7 @@ export default function Home() {
                             <div className="constructor-card__desc">Ответьте на ряд вопросов и мы поможем Вам sвыбрать
                                 готовое решение
                             </div>
-                            <Link href="/card">
+                            <Link href="/quiz">
                                 <div className="button constructor-card__btn">
                                     <Button type="primary">Собрать щит<ArrowRightOutlined/></Button>
                                 </div>
@@ -63,9 +63,11 @@ export default function Home() {
                             <div className="constructor-card__desc">Уже знаете что собирать? Тогда выберите <br/>товары
                                 из готовой спецификации и мы <br/>рассчитаем продукцию
                             </div>
-                            <div className="button constructor-card__btn">
-                                <Button type="primary">Собрать щит<ArrowRightOutlined/></Button>
-                            </div>
+                            <Link href="/manual">
+                                <div className="button constructor-card__btn">
+                                    <Button type="primary">Собрать щит<ArrowRightOutlined/></Button>
+                                </div>
+                            </Link>
                         </div>
                     </div>
                     <div className="page-header page-header--under d-lg-none">

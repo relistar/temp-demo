@@ -41,6 +41,10 @@
 
     &--sub {
     }
+
+    &--under {
+      height: 95px;
+    }
   }
 
   .header {
@@ -206,6 +210,113 @@
       }
     }
   }
+
+  .quiz-page-header {
+    top: 0;
+    left: 0;
+    height: 92px;
+    width: 100%;
+
+    h1 {
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 16px;
+      top: 14px;
+      left: 23px;
+
+      color: rgba(0, 0, 0, 0.4);
+    }
+
+    .quiz-question {
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 28px;
+      top: 45px;
+      left: 23px;
+      color: rgba(0, 0, 0, 0.85);
+    }
+  }
+  .quiz-page-status {
+    right: 23px;
+    bottom: 18px;
+  }
+
+  .quest-checkbox {
+    width: 50%;
+    padding: 0 22px;
+
+    &--first {
+
+    }
+
+    &--second {
+      padding: 0 13px;
+    }
+  }
+
+  .quest-options {
+    width: 100%;
+    height: 117px;
+    border-top: none;
+    justify-content: space-between;
+
+    &::before {
+      display: none;
+    }
+
+    .ant-checkbox-wrapper {
+      margin-top: -8px;
+
+      .ant-checkbox {
+
+        margin: 2px 0 0 -1px;
+
+        .ant-checkbox-input {
+          width: 22px;
+          height: 22px;
+        }
+
+        .ant-checkbox-inner {
+          width: 22px;
+          height: 22px;
+
+          &::after {
+            height: 14px;
+            width: 8px;
+          }
+        }
+
+        &::after {
+          height: 22px;
+          width: 22px;
+        }
+      }
+
+      span {
+        font-weight: normal;
+        font-size: 20px;
+        color: #2F54EB;
+      }
+    }
+  }
+
+  .quiz {
+    border-top: none;
+  }
+
+  .quest {
+    flex-wrap: wrap;
+
+    &__first {
+      width: 100%;
+      border-right: none;
+    }
+
+    &__second {
+      width: 100%;
+      padding: 17px 67px 132px 18px;
+    }
+  }
 }
 
 /*md*/
@@ -247,7 +358,6 @@
         border-bottom: 1px solid #DCE8FF;
         bottom: 0;
         right: -20px;
-
       }
     }
 
@@ -333,6 +443,20 @@
 
   .page-header {
 
+    &--quiz {
+      height: 111px;
+
+      .empty {
+
+        &--fourth {
+
+          &::after {
+            bottom: -1px;
+          }
+        }
+      }
+    }
+
     &--under {
       height: 59px;
     }
@@ -346,6 +470,7 @@
 
       .logo {
         justify-content: flex-start;
+
         &--footer {
           width: 66px;
           margin: 0 0 6px 0;
@@ -381,11 +506,125 @@
       }
     }
   }
+
+  .quiz-page-header {
+    height: 111px;
+
+    h1 {
+      top: 17px;
+      left: 19px;
+    }
+
+    .quiz-question {
+      top: 43px;
+      left: 19px;
+    }
+  }
+
+  .quiz-page-status {
+    left: 19px;
+    bottom: 8px;
+  }
+
+  .quest {
+    &__second {
+      padding: 17px 0 87px 13px;
+    }
+  }
+
+  .quest-options {
+    &::after {
+      position: absolute;
+      content: "";
+      width: 20px;
+      border-bottom: 1px solid #DCE8FF;
+      bottom: -1px;
+      right: -20px;
+    }
+  }
+
+  .quest-buttons {
+    position: relative!important;
+    &::after {
+      position: absolute;
+      content: "";
+      width: 20px;
+      border-bottom: 1px solid #DCE8FF;
+      bottom: -1px;
+      right: -20px;
+    }
+  }
 }
 
 /*sm*/
 @media screen and (max-width: 576px) {
   @include showHide(sm);
+
+  .quest-options {
+    flex-wrap: wrap;
+    height: 119px;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    .quest-checkbox {
+      width: 100%;
+      padding: 0 0 0 18px;
+
+      &--first {
+      }
+
+      &--second {
+      }
+    }
+  }
+
+  .quest-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    position: inherit;
+    height: auto;
+    padding-bottom: 63px;
+
+    .quest-btn {
+      position: relative;
+      width: calc(100% - 14px);
+      align-self: flex-end;
+
+      &--back {
+        right: 0;
+        margin-right: -1px;
+
+        button {
+          background: #FFFFFF;
+          border: 2px solid #2F54EB;
+
+          span {
+            color: #2F54EB;
+          }
+
+          .anticon {
+            color: #2F54EB;
+
+            svg {
+              color: #2F54EB;
+
+              path {
+                color: #2F54EB;
+              }
+            }
+          }
+
+        }
+      }
+
+      &--forward {
+        left: 0;
+        margin-bottom: 20px;
+
+      }
+    }
+  }
 }
 
 /*xs*/
