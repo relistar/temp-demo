@@ -56,6 +56,46 @@ ul, li {
   list-style: none;
 }
 
+.button {
+  button {
+    border: none;
+    background: #2F54EB;
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+
+    span {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 19px;
+      color: #FFFFFF;
+    }
+
+    .anticon {
+      color: #FFFFFF;
+      position: relative;
+      margin-left: 25px;
+
+      svg {
+        position: absolute;
+        top: -15px;
+        color: #FFFFFF;
+
+        path {
+          color: #FFFFFF;
+        }
+      }
+    }
+
+    path {
+      color: #FFFFFF;
+      width: 13px;
+      height: 12px;
+    }
+  }
+}
+
 .container {
   max-width: 1166px;
   margin: 0 auto;

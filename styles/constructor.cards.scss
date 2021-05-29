@@ -78,38 +78,9 @@
     position: absolute;
     right: 0;
     bottom: 0;
+    width: 250px;
+    height: 55px;
 
-    button {
-      border: none;
-      width: 250px;
-      height: 55px;
-      background: #2F54EB;
-      border-radius: 0;
-      margin-right: -1px;
-      position: relative;
-
-      span {
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 19px;
-        color: #FFFFFF;
-        right: 13px;
-        position: relative;
-      }
-
-      span.anticon {
-        position: absolute;
-        top: 20px;
-        right: 47px;
-      }
-
-      path {
-        color: #FFFFFF;
-        width: 13px;
-        height: 12px;
-      }
-    }
   }
 
 

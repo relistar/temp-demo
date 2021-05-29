@@ -16,8 +16,10 @@ export default function Home() {
                             <div className="empty empty--first bg-diag-line"/>
                             <div className="empty empty--second"/>
                             <div className="empty empty--third empty--circle-top">
-                                <svg width="100%" height="124" viewBox="0 0 275 124" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M274 0C274 67.931 212.887 123 137.5 123C62.1131 123 1 67.931 1 0" stroke="#DCE8FF"/>
+                                <svg width="100%" height="124" viewBox="0 0 275 124" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M274 0C274 67.931 212.887 123 137.5 123C62.1131 123 1 67.931 1 0"
+                                          stroke="#DCE8FF"/>
                                 </svg>
                             </div>
                             <div className="empty empty--fourth"/>
@@ -27,7 +29,10 @@ export default function Home() {
                                 <img src="/img/logo.svg"/>
                             </div>
                             <div className="main-page-header__text">
-                                Фаза - это проводник, по которому ток приходит к потребителю. Соответственно ноль служит для того, чтобы электрический ток двигался в обратном направлении к нулевому контуру. ... Заземляющий провод, называемый так же землей, не находится под напряжением и предназначен&nbsp;для&nbsp;защиты человека от поражения электрическим током.
+                                Фаза - это проводник, по которому ток приходит к потребителю. Соответственно ноль служит
+                                для того, чтобы электрический ток двигался в обратном направлении к нулевому контуру.
+                                ... Заземляющий провод, называемый так же землей, не находится под напряжением и
+                                предназначен&nbsp;для&nbsp;защиты человека от поражения электрическим током.
                             </div>
                         </div>
                         <div className="page-header page-header--sub d-lg-none">
@@ -43,9 +48,11 @@ export default function Home() {
                         <div className="constructor-card constructor-card--first">
                             <div className="constructor-card__icon"><CalculatorOutlined/></div>
                             <div className="constructor-card__name">Конструктор щита</div>
-                            <div className="constructor-card__desc">Ответьте на ряд вопросов и мы поможем Вам sвыбрать готовое решение</div>
+                            <div className="constructor-card__desc">Ответьте на ряд вопросов и мы поможем Вам sвыбрать
+                                готовое решение
+                            </div>
                             <Link href="/card">
-                                <div className="constructor-card__btn">
+                                <div className="button constructor-card__btn">
                                     <Button type="primary">Собрать щит<ArrowRightOutlined/></Button>
                                 </div>
                             </Link>
@@ -56,7 +63,7 @@ export default function Home() {
                             <div className="constructor-card__desc">Уже знаете что собирать? Тогда выберите <br/>товары
                                 из готовой спецификации и мы <br/>рассчитаем продукцию
                             </div>
-                            <div className="constructor-card__btn">
+                            <div className="button constructor-card__btn">
                                 <Button type="primary">Собрать щит<ArrowRightOutlined/></Button>
                             </div>
                         </div>
