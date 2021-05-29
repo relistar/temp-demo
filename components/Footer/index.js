@@ -8,7 +8,7 @@ export default function MyFooter() {
 
                 <div className="footer">
                     <div className="footer__main">
-                        <div className="footer__col">
+                        <div className="footer__col footer__col--first footer__col--left">
                             <div className="logo logo--footer">
                                 <Link href="/">
                                     <img src="/img/logo-white.png" alt="logo"/>
@@ -18,7 +18,7 @@ export default function MyFooter() {
                                 Все права защищены
                             </div>
                         </div>
-                        <div className="footer__col">
+                        <div className="footer__col footer__col--second">
                             <nav className="nav">
                                 <ul className="footer-navigation">
                                     <li className="footer-navigation__item">
@@ -41,14 +41,14 @@ export default function MyFooter() {
                         </div>
                     </div>
                     <div className="footer__contacts">
-                        <div className="footer__col footer__col--j-start">
+                        <div className="footer__col--third footer__col footer__col--first footer__col--j-start">
                             <a className="email" href="mailto:info@mail.ru">info@mail.ru</a>
                             <div className="intervals">
                                 c 9 до 18:00 <br/>
                                 без выходных
                             </div>
                         </div>
-                        <div className="footer__col">
+                        <div className="footer__col footer__col--second">
 
                             <a className="footer__phone" href="tel:+79040770777">+7(904) 077-07-77</a>
                             <a className="footer__phone" href="tel:+79040770777">+7(904) 077-07-77</a>

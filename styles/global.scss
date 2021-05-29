@@ -80,6 +80,7 @@ ul, li {
     min-width: auto;
     border-right: none;
     padding: 5px 0;
+    margin-left: 15px;
 
     img {
       margin: inherit;
@@ -127,6 +128,7 @@ ul, li {
         &__item {
           display: block;
           width: 249px;
+          min-width: 249px;
           text-align: center;
           position: relative;
 
@@ -293,6 +295,10 @@ ul, li {
     &--j-start {
       justify-content: start;
     }
+
+    &--first {
+      padding-left: 5px;
+    }
   }
 
   &__main {
@@ -402,6 +408,8 @@ ul, li {
   &--sub {
     height: 87px;
     border-top: $border-blue;
+    position: initial!important;
+
   }
 
   &--under {
@@ -506,10 +514,21 @@ ul, li {
 }
 
 .bg-diag-line {
-  background: linear-gradient(to top right, #fff calc(50% - 1px), #DCE8FF, transparent calc(50% + 1px));
-
+  background: linear-gradient(to top right, transparent calc(50% - 1px), #DCE8FF, transparent calc(50% + 1px));
+  z-index: -1;
   &--reverse {
-    background: linear-gradient(to top left, #fff calc(50% - 1px), #DCE8FF, transparent calc(50% + 1px));
+    background: linear-gradient(to top left, transparent calc(50% - 1px), #DCE8FF, transparent calc(50% + 1px));
+  }
+}
+
+.intro {
+  position: relative;
+
+  .page-header {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
   }
 }
 
@@ -517,22 +536,24 @@ ul, li {
   border-left: $border-blue;
   height: 100%;
   width: 25%;
+  z-index: -1;
 
   &--first {
-    width: 321px;
+    width: 232px;
   }
 
   &--second {
-    width: 322px;
+    width: 29.5%;
+    flex: 1;
   }
 
   &--third {
-    width: 273px;
+    width: 250px;
   }
 
   &--fourth {
     border-right: $border-blue;
-    width: 247px;
+    width: 250px;
   }
 
   &--border-right {
@@ -540,7 +561,9 @@ ul, li {
   }
 
   &--circle-top {
-
+    img {
+      width: 102%;
+    }
   }
 
   &--no-border {

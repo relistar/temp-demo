@@ -1,9 +1,7 @@
 .main-page-header {
-  position: absolute;
   display: flex;
-  top: 48px;
-  left: 48px;
-  height: 67px;
+  height: 155px;
+  padding: 50px 48px;
 
   &__logo {
     margin-right: 60px;
@@ -19,7 +17,9 @@
     font-size: 16px;
     line-height: 29px;
     color: rgba(0, 0, 0, 0.85);
-
     margin: 5px 0;
+    height: 60px;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }

@@ -3,7 +3,7 @@ import MainLayout from "/components/MainLayout"
 import {Button, Input} from 'antd'
 import {ArrowLeftOutlined, ArrowRightOutlined} from '@ant-design/icons'
 
-export default function Home() {
+export default function Quiz() {
 
     return (
         <MainLayout>
