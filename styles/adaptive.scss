@@ -1,0 +1,108 @@
+@mixin showHide($base) {
+  .d-#{$base}-none {
+    display: none!important;
+  }
+
+  .d-#{$base}-block {
+    display: block!important;
+  }
+
+  .d-#{$base}-flex {
+    display: flex!important;
+  }
+}
+
+/*xxl*/
+@media screen and (max-width: 1600px) {
+  @include showHide(xxl);
+}
+
+
+/*xl*/
+@media screen and (max-width: 1200px) {
+  @include showHide(xl);
+}
+
+/*lg*/
+@media screen and (max-width: 992px) {
+  @include showHide(lg);
+
+  .container {
+    width: calc(100% - 80px);
+  }
+
+  .header {
+    height: 73px;
+
+    .logo {
+      width: 32%;
+      height: 100%;
+      justify-content: flex-start;
+      justify-items: center;
+
+      img {
+        margin: 0 18px;
+      }
+
+    }
+
+    &__main {
+      height: 73px;
+      justify-content: space-between;
+      align-items: center;
+      border-right: none;
+    }
+  }
+}
+
+/*md*/
+@media screen and (max-width: 768px) {
+  @include showHide(md);
+
+  .container {
+    width: calc(100% - 20px);
+    margin: 0  0 0  -1px;
+  }
+
+  .contacts-wrap {
+    display: none!important;
+  }
+
+  .header {
+    height: 71px;
+
+    .logo {
+      width: 109px;
+
+      img {
+      }
+
+    }
+
+    &__main {
+      height: 71px;
+
+      .header-right {
+        width: 90px;
+        border-left: $border;
+      }
+    }
+  }
+}
+
+/*sm*/
+@media screen and (max-width: 576px) {
+  @include showHide(sm);
+}
+
+/*xs*/
+@media screen and (max-width: 480px) {
+  @include showHide(xs);
+}
+
+/*xxs*/
+@media screen and (max-width: 375px) {
+  @include showHide(xxs);
+
+}
+

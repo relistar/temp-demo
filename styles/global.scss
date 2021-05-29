@@ -17,7 +17,7 @@ $border-blue: 1px solid #DCE8FF;
 
 body {
   max-width: 1440px;
-  min-width: 1166px;
+  min-width: 375px;
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -58,16 +58,18 @@ ul, li {
 
 .container {
   max-width: 1166px;
-  min-width: 1166px;
-  width: 1166px;
   margin: 0 auto;
 }
 
 .logo {
-  min-width: 173px;
-  border-right: $border;
-  padding: 27px 50px 27px 40px;
+  //min-width: 173px;
+  width: 14.84%;
+  border-right: 1px solid #FFFFFF;
+  /* padding: 27px 50px 27px 40px; */
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   img {
     display: block;
@@ -100,14 +102,16 @@ ul, li {
 
     .empty {
       border-right: $border;
-      width: 149px;
-      min-width: 149px;
+      //width: 149px;
+      //min-width: 149px;
+      width: 12.77%;
       height: inherit;
     }
 
     .nav {
-      width: 845px;
-      min-width: 845px;
+      //width: 845px;
+      //min-width: 845px;
+      width: 72.46%;
 
       .navigation {
         list-style: none;
@@ -172,6 +176,49 @@ ul, li {
             border-left: $border;
 
           }
+        }
+      }
+    }
+
+    .header-right {
+      width: 68%;
+      height: 73px;
+      display: none;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .contacts-wrap {
+      height: 100%;
+    }
+
+    .contacts {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: right;
+      justify-items: center;
+      align-items: center;
+      height: 100%;
+
+      &__item {
+        height: 100%;
+        display: block;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 73px;
+        text-decoration: underline;
+        min-width: 150px;
+
+        color: #070707;
+
+        &--border {
+          border-right: $border;
+          border-left: $border;
+        }
+
+        &--margin {
+          margin-left: 9px;
+          margin-top: 1px;
         }
       }
     }
@@ -394,6 +441,70 @@ ul, li {
   }
 }
 
+.burger-wrap {
+  width: 45px;
+  margin-left: 32px;
+  margin-top: -1px;
+}
+
+.burger {
+  width: 45px;
+  height: 23px;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  display: flex;
+
+  &__line {
+    width: 100%;
+    height: 3px;
+
+    background-color: #2F54EB;
+  }
+}
+
+.burger-menu-title {
+
+  &__logo {
+    width: 68px;
+    margin-bottom: 20px;
+  }
+
+  &__desc {
+    font-size: 14px;
+    line-height: 16px;
+    color: #2F54EB;
+  }
+
+}
+
+.burger-menu {
+
+  .nav {
+    margin-bottom: 95px;
+  }
+
+  .navigation {
+    &__item {
+      margin-bottom: 37px;
+    }
+  }
+
+  .contacts {
+
+    &__item {
+      display: block;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 21px;
+      text-decoration: underline;
+      color: #070707;
+      text-align: left;
+      margin-bottom: 38px;
+    }
+  }
+}
+
 .bg-diag-line {
   background: linear-gradient(to top right, #fff calc(50% - 1px), #DCE8FF, transparent calc(50% + 1px));
 
@@ -460,3 +571,4 @@ ul, li {
 @import "constructor.cards.scss";
 @import "quiz.page.header.scss";
 @import "manual.scss";
+@import "adaptive.scss";

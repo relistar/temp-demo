@@ -9,7 +9,7 @@ const {Content} = Layout
 
 export default function MainLayout({children, title = 'Title'}) {
     return (
-        <div>
+        <>
             <Head>
                 <title>{title}</title>
 
@@ -42,7 +42,7 @@ export default function MainLayout({children, title = 'Title'}) {
                 {children}
             </Content>
             <Footer/>
-        </div>
+        </>
 
     )
 }

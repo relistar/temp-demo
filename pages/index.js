@@ -16,12 +16,12 @@ export default function Home() {
                             <div className="main-page-header__logo">
                                 <img src="/img/logo.svg"/>
                             </div>
-                            <div className="main-page-header__text">
+                           {/* <div className="main-page-header__text">
                                 Фаза - это проводник, по которому ток приходит к потребителю. Соответственно ноль служит
                                 для
                                 <br/>
                                 того, чтобы электрический ток двигался в обратном направлении к нулевому контуру. ...
-                            </div>
+                            </div>*/}
                         </div>
                         <div className="empty empty--first bg-diag-line"/>
                         <div className="empty empty--second"/>
