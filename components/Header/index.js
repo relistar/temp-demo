@@ -33,7 +33,7 @@ export default function MyHeader(props) {
         <header className={'header d-xss-none'}>
             <div className="container">
                 <div className="preheader d-lg-none">
-                    <div className="preheader__desc">Сборка и производство электрощитов {pathname}</div>
+                    <div className="preheader__desc">Сборка и производство электрощитов</div>
                     <div className="preheader__contacts">
                         <a className="preheader__contact" href="tel:+79040770777">+7(904) 077-07-77</a>
                         <a className="preheader__contact" href="tel:+79040770777">+7(904) 077-07-77</a>
