@@ -60,7 +60,7 @@ export default function Manual() {
         <MainLayout>
             <section>
                 <div className="container">
-                    <div className="page-header">
+                    <div className="page-header page-header--manual">
                         {/*TODO rename*/}
                         <div className="quiz-page-header">
                             <h1>Ручной подбор щита</h1>
@@ -77,7 +77,7 @@ export default function Manual() {
                         </div>
                         <div className="empty empty--fourth"/>
                     </div>
-                    <div className="page-header page-header--under-big page-header--border-top">
+                    <div className="page-header page-header--under-big page-header--border-top d-lg-none">
                         <div className="empty empty--first"/>
                         <div className="empty empty--second"/>
                         <div className="empty empty--third empty--no-border"/>
@@ -88,24 +88,109 @@ export default function Manual() {
                             <ul className="categories">
                                 <li className="categories-item categories-item--selected">
                                     <span className="categories-item__text">Автоматы</span>
-                                    <span className="categories-item__icon"><ArrowRightOutlined width={20} height={20}/></span>
+                                    <span className="categories-item__icon"><ArrowRightOutlined width={11} height={11}/></span>
                                 </li>
+                                <div className="accordion-variants hidden d-md-block">
+                                    <div className="char-form-lines">
+                                        <div className="char-form-lines__item">
+                                            <div className="char-form-lines__name">Количество полюсов</div>
+                                            <div className="char-form-variants">
+                                                <div className="char-form-variant char-form-variant--selected">1</div>
+                                                <div className="char-form-variant">2</div>
+                                                <div className="char-form-variant">3</div>
+                                            </div>
+                                        </div>
+                                        <div className="char-form-lines__item">
+                                            <div className="char-form-lines__name">Номинал</div>
+                                            <div className="char-form-variants">
+                                                <div className="char-form-variant">1</div>
+                                                <div className="char-form-variant">2</div>
+                                                <div className="char-form-variant">3</div>
+                                                <div className="char-form-variant">3</div>
+                                            </div>
+                                        </div>
+                                        <div className="char-form-lines__item">
+                                            <div className="char-form-lines__name">Предельная отключающая способность</div>
+                                            <div className="char-form-variants">
+                                                <div className="char-form-variant">1</div>
+                                                <div className="char-form-variant">2</div>
+                                                <div className="char-form-variant">3</div>
+                                            </div>
+                                        </div>
+                                        <div className="char-form-lines__item">
+                                            <div className="char-form-lines__name">Номинал</div>
+                                            <div className="char-form-variants">
+                                                <div className="char-form-variant">1</div>
+                                                <div className="char-form-variant">2</div>
+                                                <div className="char-form-variant">3</div>
+                                            </div>
+                                        </div>
+                                        <div className="char-form-lines__item">
+                                            <div className="char-form-lines__name">Номинал</div>
+                                            <div className="char-form-variants">
+                                                <div className="char-form-variant">1</div>
+                                                <div className="char-form-variant">2</div>
+                                                <div className="char-form-variant">3</div>
+                                            </div>
+                                        </div>
+                                        <div className="char-form-lines__item">
+                                            <div className="char-form-lines__name">Номинал</div>
+                                            <div className="char-form-variants">
+                                                <div className="char-form-variant">1</div>
+                                                <div className="char-form-variant">2</div>
+                                                <div className="char-form-variant">3</div>
+                                            </div>
+                                        </div>
+                                        <div className="char-form-lines__item">
+                                            <div className="char-form-lines__name">Номинал</div>
+                                            <div className="char-form-variants">
+                                                <div className="char-form-variant">1</div>
+                                                <div className="char-form-variant">2</div>
+                                                <div className="char-form-variant">3</div>
+                                            </div>
+                                        </div>
+                                        <div className="char-form-lines__item">
+                                            <div className="char-form-lines__name">Номинал</div>
+                                            <div className="char-form-variants">
+                                                <div className="char-form-variant">1</div>
+                                                <div className="char-form-variant">2</div>
+                                                <div className="char-form-variant">3</div>
+                                            </div>
+                                        </div>
+                                        <div className="char-form-lines__item">
+                                            <div className="char-form-lines__name">Номинал</div>
+                                            <div className="char-form-variants">
+                                                <div className="char-form-variant">1</div>
+                                                <div className="char-form-variant">2</div>
+                                                <div className="char-form-variant">3</div>
+                                            </div>
+                                        </div>
+                                        <div className="char-form-lines__item">
+                                            <div className="char-form-lines__name">Номинал</div>
+                                            <div className="char-form-variants">
+                                                <div className="char-form-variant">1</div>
+                                                <div className="char-form-variant">2</div>
+                                                <div className="char-form-variant">3</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <li className="categories-item">
                                     <span className="categories-item__text">Счетчики</span>
-                                    <span className="categories-item__icon"><ArrowRightOutlined width={20} height={20}/></span>
+                                    <span className="categories-item__icon"><ArrowRightOutlined width={11} height={11}/></span>
                                 </li>
                                 <li className="categories-item">
                                     <span className="categories-item__text">УЗО</span>
-                                    <span className="categories-item__icon"><ArrowRightOutlined width={20} height={20}/></span>
+                                    <span className="categories-item__icon"><ArrowRightOutlined width={11} height={11}/></span>
                                 </li>
                                 <li className="categories-item">
                                     <span className="categories-item__text">Рубильники</span>
-                                    <span className="categories-item__icon"><ArrowRightOutlined width={20} height={20}/></span>
+                                    <span className="categories-item__icon"><ArrowRightOutlined width={11} height={11}/></span>
                                 </li>
                             </ul>
                         </div>
                         <div className="char-form">
-                            <div className="char-form-lines">
+                            <div className="char-form-lines d-md-none">
                                 <div className="char-form-lines__item">
                                     <div className="char-form-lines__name">Количество полюсов</div>
                                     <div className="char-form-variants">
@@ -189,14 +274,14 @@ export default function Manual() {
                                 </div>
                             </div>
                             {/*TODO refactor*/}
-                            <div className="char-form__btn">
-                                <Button type="primary">Добавить в спецификацию<ArrowRightOutlined /></Button>
+                            <div className="button char-form__btn">
+                                <Button type="primary">Добавить в спецификацию<ArrowRightOutlined/></Button>
                             </div>
                         </div>
 
                         <div className="spec">
                             <div className="card-info-details">
-                                <CustomScrollbars style={{width: '100%', height: 331}} autoHeightMin={331}>
+                                <CustomScrollbars style={{width: '100%', height: 310}} autoHeightMin={331}>
                                     <div className="card-info-details__head">Спецификация электрощита</div>
                                     <div className="card-info-details__lines">
 
@@ -207,8 +292,7 @@ export default function Manual() {
                                                 <div className="card-info-details-line__controls">
                                                     <div className="input-num">
                                                         <span className="input-num-btn">-</span>
-                                                        <InputNumber min={0} defaultValue={2} onChange={() => {
-                                                        }}/>
+                                                        <InputNumber min={0} defaultValue={2}/>
                                                         <span className="input-num-btn">+</span>
                                                     </div>
                                                     <div className="remove-button">
@@ -220,16 +304,27 @@ export default function Manual() {
                                     </div>
                                 </CustomScrollbars>
                             </div>
-                            <div className="spec__btn">
-                                <Button type="primary">Перейти к щиту<ArrowRightOutlined /></Button>
+                            <div className="card-info-details-submitter">
+                                <div className="button spec__btn">
+                                    <Button type="primary">Перейти к щиту<ArrowRightOutlined/></Button>
+                                </div>
+                                <span className="card-info-details-submitter__label hidden d-lg-block">
+                                    Нажимая кнопку, Вы сохраняете все <br/> изменения, произведенные в этом окне
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <div className="page-header page-header--under">
+                    <div className="page-header page-header--under d-lg-none">
                         <div className="empty empty--first empty--no-border"/>
                         <div className="empty empty--second empty--no-border"/>
                         <div className="empty empty--third empty--no-border"/>
                         <div className="empty empty--fourth empty--no-border empty--no-border-right"/>
+                    </div>
+                    <div className="page-header page-header--under d-xl-none d-xxl-none d-xxxl-none d-lg-flex">
+                        <div className="empty empty--first"/>
+                        <div className="empty empty--second"/>
+                        <div className="empty empty--third"/>
+                        <div className="empty empty--fourth"/>
                     </div>
                 </div>
             </section>
