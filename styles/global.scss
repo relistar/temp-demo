@@ -116,10 +116,8 @@ ul, li {
 }
 
 .logo {
-  //min-width: 173px;
   width: 14.84%;
   border-right: 1px solid #FFFFFF;
-  /* padding: 27px 50px 27px 40px; */
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -131,15 +129,15 @@ ul, li {
   }
 
   &--footer {
-    min-width: auto;
+    width: 66px;
+    height: 16px;
     border-right: none;
     padding: 5px 0;
-    margin-left: 15px;
+
 
     img {
       margin: inherit;
     }
-
   }
 }
 
@@ -157,8 +155,6 @@ ul, li {
 
     .empty {
       border-right: $border;
-      //width: 149px;
-      //min-width: 149px;
       width: 12.77%;
       height: inherit;
     }

@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import Link from "next/link"
 import {Drawer, Button} from 'antd'
 import {CloseIcon} from "../lib/icon"
+import Image from "next/image"
 
 export default function MyHeader() {
     const [burgerOpened, setBurgerOpened] = useState(false)
@@ -17,7 +18,7 @@ export default function MyHeader() {
     const titleBlock = (
         <div className="burger-menu-title">
             <div className="burger-menu-title__logo">
-                <img src="/img/logo.png"/>
+                <Image src="/img/logo.png" width={66} height={16}/>
             </div>
             <div className="burger-menu-title__desc">
                 Сборка и производство электрощитов
@@ -38,7 +39,7 @@ export default function MyHeader() {
                 <div className="header__main">
                     <div className="logo">
                         <Link href="/">
-                            <img src="/img/logo.png"/>
+                            <Image src="/img/logo.png" width={66} height={16}/>
                         </Link>
                     </div>
                     <div className="empty empty--border-white d-lg-none"/>

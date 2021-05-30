@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from "next/link"
+import Image from "next/image"
 
 export default function MyFooter() {
     return (
@@ -11,7 +12,7 @@ export default function MyFooter() {
                         <div className="footer__col footer__col--first footer__col--left">
                             <div className="logo logo--footer">
                                 <Link href="/">
-                                    <img src="/img/logo-white.png" alt="logo"/>
+                                    <Image src="/img/logo-white.png" alt="logo" width={66} height={16} objectFit/>
                                 </Link>
                             </div>
                             <div className="rights">

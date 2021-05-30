@@ -37,7 +37,7 @@
   }
 
   .page-header {
-    height: 92px;
+    height: 96px;
 
     &--sub {
     }
@@ -55,6 +55,7 @@
       height: 100%;
       justify-content: flex-start;
       justify-items: center;
+      padding-left: 18px;
 
       img {
         margin: 0 18px;
