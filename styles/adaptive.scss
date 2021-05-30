@@ -241,19 +241,6 @@
     bottom: 18px;
   }
 
-  .quest-checkbox {
-    width: 50%;
-    padding: 0 22px;
-
-    &--first {
-
-    }
-
-    &--second {
-      padding: 0 13px;
-    }
-  }
-
   .quest-options {
     width: 100%;
     height: 117px;
@@ -262,41 +249,6 @@
 
     &::before {
       display: none;
-    }
-
-    .ant-checkbox-wrapper {
-      margin-top: -8px;
-
-      .ant-checkbox {
-
-        margin: 2px 0 0 -1px;
-
-        .ant-checkbox-input {
-          width: 22px;
-          height: 22px;
-        }
-
-        .ant-checkbox-inner {
-          width: 22px;
-          height: 22px;
-
-          &::after {
-            height: 14px;
-            width: 8px;
-          }
-        }
-
-        &::after {
-          height: 22px;
-          width: 22px;
-        }
-      }
-
-      span {
-        font-weight: normal;
-        font-size: 20px;
-        color: #2F54EB;
-      }
     }
   }
 
@@ -317,7 +269,13 @@
       padding: 17px 67px 132px 18px;
     }
   }
+
+  .quest-checkbox {
+    padding: 0 22px;
+    margin-top: -5px;
+  }
 }
+
 
 /*md*/
 @media screen and (max-width: 767px) {
@@ -540,11 +498,13 @@
       border-bottom: 1px solid #DCE8FF;
       bottom: -1px;
       right: -20px;
+
     }
   }
 
   .quest-buttons {
-    position: relative!important;
+    position: relative !important;
+
     &::after {
       position: absolute;
       content: "";

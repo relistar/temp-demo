@@ -14,7 +14,7 @@ export default function Quiz() {
                             <h1>Конструктор щита</h1>
                             <div className="quiz-question">Укажите количество фаз</div>
                         </div>
-                        <div className="quiz-page-status">Вопрос 12/12</div>
+                        <div className="quiz-page-status">Вопрос 1/12</div>
                         <div className="empty empty--first bg-diag-line"/>
                         <div className="empty empty--second"/>
                         <div className="empty empty--third empty--circle-top">

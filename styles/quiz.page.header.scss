@@ -47,7 +47,7 @@
     content: '';
     display: block;
     border-right: $border-blue;
-    width: 322px;
+    width: 321px;
     height: 100%;
     top: 0;
     left: 0;
@@ -64,7 +64,7 @@
     content: '';
     display: block;
     border-right: $border-blue;
-    width: 322px;
+    width: 321px;
     height: 100%;
     top: 0;
     left: 0;
@@ -90,7 +90,7 @@
 
   &__second {
     width: 522px;
-    padding: 32px 51px 157px;
+    padding: 32px 51px 186px;
   }
 }
 
@@ -110,7 +110,7 @@
     content: '';
     display: block;
     border-right: $border-blue;
-    width: 322px;
+    width: 321px;
     height: 100%;
     top: 0;
     left: 0;
@@ -132,6 +132,50 @@
 
     &:focus::placeholder {
       color: transparent;
+    }
+  }
+}
+
+
+.quest-checkbox {
+  width: 50%;
+  //padding: 0 22px;
+  padding: 0  0 0 88px;
+  //margin-top: -5px;
+
+  &--second {
+    padding: 0 0 0 103px;
+  }
+
+  .ant-checkbox-wrapper {
+    .ant-checkbox {
+      margin: 2px 0 0 -1px;
+
+      .ant-checkbox-input {
+        width: 22px;
+        height: 22px;
+      }
+
+      .ant-checkbox-inner {
+        width: 22px;
+        height: 22px;
+
+        &::after {
+          height: 14px;
+          width: 8px;
+        }
+      }
+
+      &::after {
+        height: 22px;
+        width: 22px;
+      }
+    }
+
+    span {
+      font-weight: normal;
+      font-size: 20px;
+      color: #2F54EB;
     }
   }
 }
