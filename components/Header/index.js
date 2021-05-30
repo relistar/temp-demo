@@ -3,9 +3,12 @@ import Link from "next/link"
 import {Drawer, Button} from 'antd'
 import {CloseIcon} from "../lib/icon"
 import Image from "next/image"
+import { useRouter } from 'next/router'
 
-export default function MyHeader() {
+export default function MyHeader(props) {
     const [burgerOpened, setBurgerOpened] = useState(false)
+
+    const { pathname } = useRouter()
 
     const openBurger = () => {
         setBurgerOpened(true)
@@ -30,7 +33,7 @@ export default function MyHeader() {
         <header className={'header d-xss-none'}>
             <div className="container">
                 <div className="preheader d-lg-none">
-                    <div className="preheader__desc">Сборка и производство электрощитов</div>
+                    <div className="preheader__desc">Сборка и производство электрощитов {pathname}</div>
                     <div className="preheader__contacts">
                         <a className="preheader__contact" href="tel:+79040770777">+7(904) 077-07-77</a>
                         <a className="preheader__contact" href="tel:+79040770777">+7(904) 077-07-77</a>
@@ -45,18 +48,18 @@ export default function MyHeader() {
                     <div className="empty empty--border-white d-lg-none"/>
                     <nav className="nav d-lg-none">
                         <ul className="navigation">
-                            <li className="navigation__item">
+                            <li className={"navigation__item" + (pathname === '/quiz' ? " navigation__item--active" : "")}>
                                 <Link href="/quiz">
                                     <a href="#">Конструктор</a>
                                 </Link>
                             </li>
-                            <li className="navigation__item">
+                            <li className={"navigation__item" + (pathname === '/manual' ? " navigation__item--active" : "")}>
                                 <Link href="/manual">
                                     <a href="#">Ручной подбор</a>
                                 </Link>
                             </li>
-                            <li className="navigation__item navigation__item--active navigation__item--has-left-border">
-                                <Link href="/card"><a href="#">Карточка щита {burgerOpened}</a></Link>
+                            <li className={"navigation__item navigation__item--has-left-border" + (pathname === '/card' ? " navigation__item--active" : "")}>
+                                <Link href="/card"><a href="#">Карточка щита</a></Link>
                             </li>
                         </ul>
                     </nav>
