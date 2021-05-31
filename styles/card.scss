@@ -5,7 +5,7 @@
 }
 
 .card-info {
-  width: 844px;
+  width: calc(100% - 321px);
 
   &__top {
     border: $border-blue;
@@ -21,6 +21,7 @@
   border-right: none;
 
   img {
+    height: 100%;
     position: absolute;
     margin: auto;
     top: -1px;

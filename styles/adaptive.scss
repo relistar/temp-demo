@@ -57,6 +57,31 @@
     &--under {
       height: 95px;
     }
+
+    &--second {
+      height: 92px;
+    }
+
+    &--card {
+      height: 92px;
+
+      h1 {
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 28px;
+        top: 15px;
+        left: 23px;
+      }
+
+      h2 {
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 135.19%;
+        color: rgba(0, 0, 0, 0.85);
+        top: 34px;
+        left: 23px;
+      }
+    }
   }
 
   .header {
@@ -249,6 +274,7 @@
       color: rgba(0, 0, 0, 0.85);
     }
   }
+
   .quiz-page-status {
     right: 23px;
     bottom: 18px;
@@ -328,19 +354,208 @@
       width: 100%;
       border-top: $border-blue;
 
-       &__btn {
-         width: 337px;
-         margin-right: 37px;
-         position: relative;
+      &__btn {
+        width: 337px;
+        margin-right: 37px;
+        position: relative;
 
-         button {
-           .anticon {
-             margin-left: 36px;
-           }
-         }
-       }
+        button {
+          .anticon {
+            margin-left: 36px;
+          }
+        }
+      }
     }
   }
+
+  .card-image {
+    width: 32%;
+    border-bottom: none;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  .card-info {
+    width: 68%;
+
+    &__top {
+      padding: 14px 0 19px 24px;
+    }
+  }
+
+  .card-info-details {
+    width: 100%;
+    border: $border-blue;
+    padding: 30px 0 33px 19px;
+  }
+
+  .card-info-details-submitter {
+    &__btn {
+      width: 337px;
+      height: 41px;
+      margin-right: 38px;
+    }
+  }
+
+  .card-info-form {
+    flex-wrap: wrap;
+    border-bottom: none;
+
+  }
+
+  .card-info-quest {
+    width: 100%;
+    border-right: none;
+    border-bottom: none;
+
+    &__head {
+      border-bottom: none;
+      padding: 26px 24px 24px;
+    }
+
+    &__body {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      height: auto;
+      padding: 0 24px 6px;
+
+      .ant-checkbox-wrapper {
+        margin-bottom: 24px;
+        width: 50%;
+      }
+    }
+  }
+
+  .nd {
+    border-bottom: $border-blue;
+  }
+
+  .nd-line {
+    display: flex;
+    border: $border-blue;
+    border-bottom: none;
+  }
+
+  .nd-info {
+    border-right: $border-blue;
+    width: 45.5%;
+    padding: 28px 0 8px 22px;
+  }
+
+  .nd-info-line {
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+
+    &__head {
+      width: 50%;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 19px;
+
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    &__val {
+      width: 50%;
+
+      &-brand {
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 19px;
+        margin-right: 4px;
+        color: rgba(0, 0, 0, 0.85);
+      }
+
+      &-seria {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 19px;
+        color: rgba(0, 0, 0, 0.85);
+      }
+
+      &-price {
+        padding-left: 4px;
+        margin-top: -3px;
+        padding-bottom: -21px;
+        font-weight: bold;
+        font-size: 16px;
+        display: block;
+        line-height: 19px;
+        color: rgba(0, 0, 0, 0.85);
+      }
+
+      &-avail {
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 19px;
+        color: rgba(0, 0, 0, 0.85);
+        position: relative;
+        margin-top: -13px;
+        margin-left: 18px;
+        display: block;
+
+        &::before {
+          content: '';
+          position: relative;
+          display: block;
+          background-color: #DBDBDB;
+          height: 6px;
+          width: 6px;
+          left: -14px;
+          top: 12px;
+        }
+
+        &--true {
+
+          &::before {
+            background-color: #2F54EB;
+          }
+        }
+      }
+
+      &-bs {
+        padding-left: 3px;
+      }
+    }
+  }
+
+  .nd-actions {
+    width: 54.5%;
+    position: relative;
+
+    .left {
+      border-top: $border-blue;
+      border-right: $border-blue;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 51%;
+      height: 51px;
+
+      button {
+        height: 51px;
+      }
+    }
+
+    .right {
+      border-top: $border-blue;
+      position: absolute;
+      width: 49%;
+      bottom: 0;
+      right: 0;
+      height: 51px;
+
+      button {
+        height: 51px;
+      }
+    }
+  }
+
 }
 
 
@@ -487,6 +702,18 @@
 
     &--under {
       height: 59px;
+    }
+
+    &--card {
+      .empty {
+
+        &--fourth {
+
+          &::after {
+            bottom: -1px;
+          }
+        }
+      }
     }
   }
 
@@ -657,8 +884,8 @@
     }
 
     &__btn {
-      width: 341px!important;
-      margin-right: 0!important;
+      width: 341px !important;
+      margin-right: 0 !important;
 
     }
   }
@@ -722,6 +949,7 @@
       }
     }
   }
+
 }
 
 
@@ -869,6 +1097,21 @@
     &--under {
       height: 59px;
     }
+
+    &--card {
+      h1 {
+        top: 20px;
+        left: 20px;
+      }
+
+      h2 {
+        left: 18px;
+      }
+    }
+
+    &--small {
+      height: 59px;
+    }
   }
 
   .footer-wrap {
@@ -995,7 +1238,7 @@
   }
 
   .spec {
-    padding-bottom: 0!important;
+    padding-bottom: 0 !important;
 
     .card-info-details {
       padding: 34px 0 0 14px;
@@ -1038,8 +1281,8 @@
     }
 
     &__btn {
-      width: 341px!important;
-      margin-right: 0!important;
+      width: 341px !important;
+      margin-right: 0 !important;
 
     }
   }
@@ -1101,6 +1344,213 @@
           }
         }
       }
+    }
+  }
+
+  .card-info {
+
+    &-form {
+      position: relative;
+
+      &::after {
+        position: absolute;
+        content: "";
+        width: 20px;
+        border-bottom: 1px solid #DCE8FF;
+        bottom: 0;
+        right: -20px;
+      }
+    }
+
+    &__top {
+      position: relative;
+
+      &::after {
+        position: absolute;
+        content: "";
+        width: 20px;
+        border-bottom: 1px solid #DCE8FF;
+        bottom: -1px;
+        right: -20px;
+      }
+    }
+  }
+
+  .nd-line {
+    flex-wrap: wrap;
+
+    .nd-info {
+      width: 100%;
+      border-right: none;
+      padding: 16px 0 0 17px;
+
+      &-line {
+        &__head {
+          width: 43%;
+        }
+
+        &__val {
+          width: 57%;
+
+          &-brand {
+            margin-right: 4px;
+          }
+
+          &-price {
+            padding-left: 4px;
+            margin-top: -3px;
+            padding-bottom: -21px;
+          }
+
+          &-avail {
+            margin-top: -13px;
+            margin-left: 18px;
+
+            &::before {
+              left: -14px;
+              top: 12px;
+            }
+          }
+
+          &-bs {
+            padding-left: 3px;
+          }
+        }
+      }
+    }
+
+    .nd-actions {
+      width: 100%;
+    }
+  }
+
+  .card-info {
+    width: 100%;
+
+    &__top {
+      padding: 28px 0 28px 19px;
+    }
+  }
+
+  .card-info-line {
+
+  }
+
+  .card-subtitle {
+    width: 70%;
+    padding-left: 0;
+  }
+
+  .card-answer {
+    margin-bottom: 16px;
+  }
+
+  .card-info-quest {
+    &__head {
+      padding: 35px 95px 71px 20px;
+    }
+
+    &__body {
+      flex-direction: column;
+      justify-content: space-between;
+      border-bottom: $border-blue;
+
+      .ant-checkbox-wrapper {
+        width: 100%;
+        margin-bottom: 57px;
+        margin-left: -4px;
+
+        &:last-child {
+          margin-bottom: 41px;
+        }
+      }
+    }
+  }
+
+  .nd-actions {
+    position: relative;
+    display: flex;
+
+    .left, .right {
+      position: relative;
+    }
+
+    &::before {
+      position: absolute;
+      content: "";
+      width: 20px;
+      border-bottom: 1px solid #DCE8FF;
+      bottom: 50px;
+      right: -20px;
+    }
+
+    &::after {
+      position: absolute;
+      content: "";
+      width: 20px;
+      border-bottom: 1px solid #DCE8FF;
+      bottom: -1px;
+      right: -20px;
+    }
+  }
+
+  .card {
+
+    .card-info-details {
+      position: relative;
+      padding: 34px 0 12px 18px;
+
+      &::after {
+        position: absolute;
+        content: "";
+        width: 20px;
+        border-bottom: 1px solid #DCE8FF;
+        bottom: -1px;
+        right: -20px;
+      }
+
+
+      &-line {
+
+        &__controls {
+          margin-right: 0;
+
+          .remove-button {
+            margin-left: 0;
+            margin-right: 0;
+
+            button {
+              span {
+                svg {
+                  width: 13px;
+                  height: 13px;
+                  margin: 0 0px 1px 14px;
+                }
+              }
+            }
+
+          }
+        }
+      }
+    }
+
+    .card-info-details-submitter {
+      margin: 32px 0 0;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: flex-end;
+
+      &__label {
+        align-self: flex-start;
+        margin: 14px -1px;
+      }
+    }
+
+    &__btn {
+      width: 341px !important;
+      margin-right: 0 !important;
+
     }
   }
 }

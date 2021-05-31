@@ -61,7 +61,7 @@ export default function Home() {
         <MainLayout>
             <section className="card">
                 <div className="container">
-                    <div className="page-header">
+                    <div className="page-header page-header--card">
                         <Title>
                             Карточка электрощита
                         </Title>
@@ -77,7 +77,7 @@ export default function Home() {
                         <div className="empty empty--fourth"/>
                     </div>
                     <div className="card-main">
-                        <div className="card-image">
+                        <div className="card-image d-md-none">
                             <img src="/img/card-image.png"/>
                         </div>
                         <div className="card-info">
@@ -103,7 +103,7 @@ export default function Home() {
                                         <span className="card-answer__text">Молнизащита</span>
                                         <span className="card-answer__value">Нет</span>
                                     </div>
-                                    <div className="card-answer">
+                                    {/*<div className="card-answer">
                                         <span className="card-answer__text">Площадь</span>
                                         <span className="card-answer__value">240</span>
                                     </div>
@@ -122,7 +122,7 @@ export default function Home() {
                                     <div className="card-answer">
                                         <span className="card-answer__text">Молнизащита</span>
                                         <span className="card-answer__value">Нет</span>
-                                    </div>
+                                    </div>*/}
                                 </div>
                                 <div className="card-subtitle">Параметры подобраны исходя из ответов в разделе
                                     “Конструктор”
@@ -142,14 +142,14 @@ export default function Home() {
                                         <Checkbox>Собрать на гребенке</Checkbox>
                                         <Checkbox>Стеклянная дверца</Checkbox>
                                         <Checkbox>Стеклянная дверца</Checkbox>
+                                        {/*<Checkbox>Стеклянная дверца</Checkbox>
                                         <Checkbox>Стеклянная дверца</Checkbox>
                                         <Checkbox>Стеклянная дверца</Checkbox>
                                         <Checkbox>Стеклянная дверца</Checkbox>
-                                        <Checkbox>Стеклянная дверца</Checkbox>
-                                        <Checkbox>Стеклянная дверца</Checkbox>
+                                        <Checkbox>Стеклянная дверца</Checkbox>*/}
                                     </div>
                                 </div>
-                                <div className="card-info-details">
+                                <div className="card-info-details d-lg-none">
                                     <CustomScrollbars style={{width: '100%', height: 331}} autoHeightMin={331}>
                                         <div className="card-info-details__head">Спецификация электрощита</div>
                                         <div className="card-info-details__lines">
@@ -187,7 +187,71 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
-                    <div className="page-header page-header--second">
+
+                    <div className="page-header page-header--card page-header--small hidden d-md-flex">
+                        <div className="empty empty--first bg-diag-line"/>
+                        <div className="empty empty--second"/>
+                        <div className="empty empty--third empty--circle-top">
+                            <svg width="274" height="124" viewBox="0 0 275 124" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M274 0C274 67.931 212.887 123 137.5 123C62.1131 123 1 67.931 1 0"
+                                      stroke="#DCE8FF"/>
+                            </svg>
+                        </div>
+                        <div className="empty empty--fourth"/>
+                    </div>
+
+                    <div className="card-info-details hidden d-lg-block">
+                        <CustomScrollbars style={{width: '100%', height: 270}} autoHeightMin={270}>
+                            <div className="card-info-details__head">Спецификация электрощита</div>
+                            <div className="card-info-details__lines">
+
+                                {specLines.map((line, index) => (
+                                    <div className="card-info-details-line">
+                                                    <span
+                                                        className="card-info-details-line__name">{index + 1}. {line.name}</span>
+                                        <div className="card-info-details-line__controls">
+                                            <div className="input-num">
+                                                <span className="input-num-btn">-</span>
+                                                <InputNumber min={0} defaultValue={2} onChange={() => {
+                                                }}/>
+                                                <span className="input-num-btn">+</span>
+                                            </div>
+                                            <div className="remove-button">
+                                                <Button icon={<DeleteOutlined/>}/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </CustomScrollbars>
+                        <div className="card-info-details-submitter">
+                            <div className="card-info-details-submitter__btn btn-wrap">
+                                <Button type="primary">
+                                    Сохранить
+                                </Button>
+                            </div>
+                            <span className="card-info-details-submitter__label">
+                                            Нажимая кнопку, Вы сохраняете все <br/> изменения, произведенные в этом окне
+                                        </span>
+                        </div>
+                    </div>
+                    <div className="page-header page-header--card hidden d-lg-flex">
+                        <Title level={2}>
+                            Варианты электрощитов, подходящие под Ваши параметры
+                        </Title>
+                        <div className="empty empty--first bg-diag-line"/>
+                        <div className="empty empty--second"/>
+                        <div className="empty empty--third empty--circle-top">
+                            <svg width="274" height="124" viewBox="0 0 275 124" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M274 0C274 67.931 212.887 123 137.5 123C62.1131 123 1 67.931 1 0"
+                                      stroke="#DCE8FF"/>
+                            </svg>
+                        </div>
+                        <div className="empty empty--fourth"/>
+                    </div>
+                    <div className="page-header page-header--second d-lg-none">
                         <Title level={2}>
                             Варианты электрощитов, подходящие под Ваши параметры
                         </Title>
@@ -203,7 +267,7 @@ export default function Home() {
                             </svg>
                         </div>
                     </div>
-                    <div className="spec-var-table">
+                    <div className="spec-var-table  spec-var-table--desktop d-lg-none">
                         <div className="table-head">
                             <div className="table-head__item table-head__item--first">Бренд/серия</div>
                             <div className="table-head__item table-head__item--second">Стоимость</div>
@@ -347,6 +411,154 @@ export default function Home() {
                                 <div className="empty-table-lines__col empty-table-lines__col--fifth">&nbsp;</div>
                             </div>
                         </div>
+                    </div>
+
+                    <div className="nd hidden d-lg-block">
+                        <div className="nd-line">
+                            <div className="nd-info">
+                                <div className="nd-info-line">
+                                    <div className="nd-info-line__head">Бренд/серия</div>
+                                    <div className="nd-info-line__val">
+                                        <div className="nd-info-line__val-bs">
+                                            <span className="nd-info-line__val-brand">ABB</span>
+                                            <span className="nd-info-line__val-seria">премиум</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="nd-info-line">
+                                    <div className="nd-info-line__head">Стоимость</div>
+                                    <div className="nd-info-line__val">
+                                        <span className="nd-info-line__val-price">29‘920 ₽</span>
+                                    </div>
+                                </div>
+                                <div className="nd-info-line">
+                                    <div className="nd-info-line__head">Наличие</div>
+                                    <div className="nd-info-line__val">
+                                        <span className="nd-info-line__val-avail nd-info-line__val-avail--true">В наличии</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="nd-actions">
+                                <div className="btn-wrap left">
+                                    <Button>Скачать</Button>
+                                </div>
+                                <div className="btn-wrap right">
+                                    <Button icon={<FileTextOutlined/>}>Заказать</Button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="nd-line">
+                            <div className="nd-info">
+                                <div className="nd-info-line">
+                                    <div className="nd-info-line__head">Бренд/серия</div>
+                                    <div className="nd-info-line__val">
+                                        <div className="nd-info-line__val-bs">
+                                            <span className="nd-info-line__val-brand">ABB</span>
+                                            <span className="nd-info-line__val-seria">премиум</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="nd-info-line">
+                                    <div className="nd-info-line__head">Стоимость</div>
+                                    <div className="nd-info-line__val">
+                                        <span className="nd-info-line__val-price">29‘920 ₽</span>
+                                    </div>
+                                </div>
+                                <div className="nd-info-line">
+                                    <div className="nd-info-line__head">Наличие</div>
+                                    <div className="nd-info-line__val">
+                                        <span className="nd-info-line__val-avail nd-info-line__val-avail--true">В наличии</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="nd-actions">
+                                <div className="btn-wrap left">
+                                    <Button>Скачать</Button>
+                                </div>
+                                <div className="btn-wrap right">
+                                    <Button icon={<FileTextOutlined/>}>Заказать</Button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="nd-line">
+                            <div className="nd-info">
+                                <div className="nd-info-line">
+                                    <div className="nd-info-line__head">Бренд/серия</div>
+                                    <div className="nd-info-line__val">
+                                        <div className="nd-info-line__val-bs">
+                                            <span className="nd-info-line__val-brand">ABB</span>
+                                            <span className="nd-info-line__val-seria">премиум</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="nd-info-line">
+                                    <div className="nd-info-line__head">Стоимость</div>
+                                    <div className="nd-info-line__val">
+                                        <span className="nd-info-line__val-price">29‘920 ₽</span>
+                                    </div>
+                                </div>
+                                <div className="nd-info-line">
+                                    <div className="nd-info-line__head">Наличие</div>
+                                    <div className="nd-info-line__val">
+                                        <span className="nd-info-line__val-avail nd-info-line__val-avail--true">В наличии</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="nd-actions">
+                                <div className="btn-wrap left">
+                                    <Button>Скачать</Button>
+                                </div>
+                                <div className="btn-wrap right">
+                                    <Button icon={<FileTextOutlined/>}>Заказать</Button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="nd-line">
+                            <div className="nd-info">
+                                <div className="nd-info-line">
+                                    <div className="nd-info-line__head">Бренд/серия</div>
+                                    <div className="nd-info-line__val">
+                                        <div className="nd-info-line__val-bs">
+                                            <span className="nd-info-line__val-brand">ABB</span>
+                                            <span className="nd-info-line__val-seria">премиум</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="nd-info-line">
+                                    <div className="nd-info-line__head">Стоимость</div>
+                                    <div className="nd-info-line__val">
+                                        <span className="nd-info-line__val-price">29‘920 ₽</span>
+                                    </div>
+                                </div>
+                                <div className="nd-info-line">
+                                    <div className="nd-info-line__head">Наличие</div>
+                                    <div className="nd-info-line__val">
+                                        <span className="nd-info-line__val-avail nd-info-line__val-avail--true">В наличии</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="nd-actions">
+                                <div className="btn-wrap left">
+                                    <Button>Скачать</Button>
+                                </div>
+                                <div className="btn-wrap right">
+                                    <Button icon={<FileTextOutlined/>}>Заказать</Button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="page-header page-header--card hidden d-lg-flex">
+                        <div className="empty empty--first bg-diag-line"/>
+                        <div className="empty empty--second"/>
+                        <div className="empty empty--third empty--circle-top">
+                            <svg width="274" height="124" viewBox="0 0 275 124" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M274 0C274 67.931 212.887 123 137.5 123C62.1131 123 1 67.931 1 0"
+                                      stroke="#DCE8FF"/>
+                            </svg>
+                        </div>
+                        <div className="empty empty--fourth"/>
                     </div>
                 </div>
             </section>
