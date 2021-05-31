@@ -3,6 +3,7 @@ import {Layout} from 'antd'
 import Header from '/components/Header'
 import Footer from '/components/Footer'
 import Head from "next/head"
+import { GoogleFonts } from "next-google-fonts";
 
 const {Content} = Layout
 
@@ -35,6 +36,8 @@ export default function MainLayout({children, title = 'Title'}) {
                 <meta name="msapplication-TileColor" content="#ffffff"/>
                 <meta name="msapplication-TileImage" content="/fav/ms-icon-144x144.png"/>
                 <meta name="theme-color" content="#ffffff"/>
+
+                <GoogleFonts href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" />
             </Head>
             <Header/>
             <Content>

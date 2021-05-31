@@ -1,4 +1,3 @@
-@import "../public/fonts/roboto/roboto.css";
 @import "antd.rewrite.scss";
 
 $blue: #F0F5FF;
@@ -11,6 +10,8 @@ $border-blue: 1px solid #DCE8FF;
   margin: 0;
   font-size: 16px;
   font-family: $roboto;
+  font-style: normal;
+  font-weight: normal;
   color: #070707;
   box-sizing: border-box;
 }
@@ -33,8 +34,6 @@ input[type=number] {
 }
 
 a {
-  font-weight: normal;
-  font-style: normal;
   color: #070707;
   text-decoration: none;
   text-align: center;
@@ -65,8 +64,6 @@ ul, li {
     height: 100%;
 
     span {
-      font-style: normal;
-      font-weight: normal;
       font-size: 16px;
       line-height: 19px;
       color: #FFFFFF;
@@ -184,8 +181,6 @@ ul, li {
 
           a {
             font-size: 16px;
-            font-weight: normal;
-            font-style: normal;
             color: #070707;
             text-decoration: none;
             width: fit-content;
@@ -300,7 +295,6 @@ ul, li {
     font-size: 14px;
     line-height: 16px;
     font-weight: bold;
-    font-style: normal;
     color: #070707;
     text-decoration: underline;
     margin-left: 37px;
@@ -365,7 +359,6 @@ ul, li {
     width: 38%;
 
     .email {
-      font-style: normal;
       font-weight: bold;
       font-size: 14px;
       line-height: 8px;
@@ -379,8 +372,6 @@ ul, li {
 
     .intervals {
       height: 32px;
-      font-style: normal;
-      font-weight: normal;
       font-size: 14px;
       line-height: 16px;
       color: #FFFFFF;
@@ -399,7 +390,6 @@ ul, li {
 
   &__phone {
     height: 16px;
-    font-style: normal;
     font-weight: bold;
     font-size: 14px;
     line-height: 16px;
@@ -412,8 +402,6 @@ ul, li {
 
   &__callback {
     height: 19px;
-    font-style: normal;
-    font-weight: normal;
     font-size: 16px;
     line-height: 19px;
     text-decoration-line: underline;
@@ -437,8 +425,6 @@ ul, li {
 
   &__item a {
     font-family: $roboto;
-    font-style: normal;
-    font-weight: normal;
     font-size: 16px;
     line-height: 19px;
     color: #FFFFFF;

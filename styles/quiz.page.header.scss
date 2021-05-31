@@ -117,8 +117,6 @@
   }
 
   .ant-input {
-    font-style: normal;
-    font-weight: normal;
     font-size: 16px;
     line-height: 16px;
     color: #070707;
@@ -170,7 +168,6 @@
     }
 
     span {
-      font-weight: normal;
       font-size: 20px;
       color: #2F54EB;
     }
@@ -178,8 +175,6 @@
 }
 
 .ant-input:placeholder-shown {
-  font-style: normal;
-  font-weight: normal;
   font-size: 12px;
   line-height: 14px;
   color: rgba(0, 0, 0, 0.2);
