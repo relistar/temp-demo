@@ -5,7 +5,7 @@ import {Button, Checkbox, InputNumber} from 'antd'
 import {DeleteOutlined, FileTextOutlined} from '@ant-design/icons'
 import CustomScrollbars from "/components/lib/Scrollbars"
 
-export default function Home() {
+export default function Card() {
     const specLines = [
         {
             name: "Щит модуля",
