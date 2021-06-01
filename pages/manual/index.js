@@ -1,10 +1,11 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 import MainLayout from "/components/MainLayout"
 import {Button, Input, InputNumber} from 'antd'
 import {ArrowLeftOutlined, ArrowRightOutlined, DeleteOutlined} from '@ant-design/icons'
 import CustomScrollbars from "../../components/lib/Scrollbars"
+import {API} from "../../api/manual";
 
-export default function Manual() {
+export default function Manual({categories}) {
     const specLines = [
         {
             name: "Щит модуля",
@@ -56,6 +57,40 @@ export default function Manual() {
         }
     ]
 
+    const [activeCategory, setActiveCategory] = useState(categories[0].id)
+    const [characteristics, setCharacteristics] = useState(null)
+
+    useEffect(() => {
+        API.getCharacteristicsByCategoryId(activeCategory).then(res => {
+            setCharacteristics(res.data)
+        })
+
+    }, [activeCategory])
+
+    const handleCategoryClick = (categoryId) => {
+        console.log(categoryId)
+        setActiveCategory(categoryId)
+    }
+
+    function handleCharClick(characteristicId, selectedVariantId) {
+        console.log(characteristicId, selectedVariantId)
+
+        const chars = [...characteristics]
+        const char = chars.find(char => char.id === characteristicId)
+        let variants = char.variants;
+        console.log(variants)
+        variants = variants.map(variant => {
+            variant.selected = variant.id === selectedVariantId;
+            return variant
+        })
+
+        char.variants = variants
+
+        setCharacteristics(chars)
+
+        console.log(char)
+    }
+
     return (
         <MainLayout>
             <section>
@@ -86,10 +121,21 @@ export default function Manual() {
                     <div className="manual">
                         <div className="categories-block">
                             <ul className="categories">
-                                <li className="categories-item categories-item--selected">
-                                    <span className="categories-item__text">Автоматы</span>
-                                    <span className="categories-item__icon"><ArrowRightOutlined width={11} height={11}/></span>
-                                </li>
+                                {
+                                    categories.map((category) => (
+                                        <li key={category.id}
+                                            onClick={() => {
+                                                handleCategoryClick(category.id)
+                                            }}
+                                            className={'categories-item ' + (activeCategory === category.id ? 'categories-item--selected' : '')}>
+                                            <span className="categories-item__text">{category.name}</span>
+                                            <span className="categories-item__icon"><ArrowRightOutlined width={11}
+                                                                                                        height={11}/></span>
+                                        </li>
+                                    ))
+                                }
+
+                                {/*
                                 <div className="accordion-variants hidden d-md-block">
                                     <div className="char-form-lines">
                                         <div className="char-form-lines__item">
@@ -174,24 +220,27 @@ export default function Manual() {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <li className="categories-item">
-                                    <span className="categories-item__text">Счетчики</span>
-                                    <span className="categories-item__icon"><ArrowRightOutlined width={11} height={11}/></span>
-                                </li>
-                                <li className="categories-item">
-                                    <span className="categories-item__text">УЗО</span>
-                                    <span className="categories-item__icon"><ArrowRightOutlined width={11} height={11}/></span>
-                                </li>
-                                <li className="categories-item">
-                                    <span className="categories-item__text">Рубильники</span>
-                                    <span className="categories-item__icon"><ArrowRightOutlined width={11} height={11}/></span>
-                                </li>
+                                </div>*/}
                             </ul>
                         </div>
                         <div className="char-form">
                             <div className="char-form-lines d-md-none">
-                                <div className="char-form-lines__item">
+                                {characteristics && characteristics.map(char => (
+                                    <div className="char-form-lines__item">
+                                        <div className="char-form-lines__name">{char.name}</div>
+                                        <div className="char-form-variants">
+                                            {char.variants.map(variant => (
+                                                <div key={variant.id}
+                                                     className={'char-form-variant ' + (variant.selected ? 'char-form-variant--selected' : '')}
+                                                     onClick={() => handleCharClick(char.id, variant.id)}
+                                                >
+                                                    {variant.value}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
+                                {/*<div className="char-form-lines__item">
                                     <div className="char-form-lines__name">Количество полюсов</div>
                                     <div className="char-form-variants">
                                         <div className="char-form-variant char-form-variant--selected">1</div>
@@ -271,7 +320,7 @@ export default function Manual() {
                                         <div className="char-form-variant">2</div>
                                         <div className="char-form-variant">3</div>
                                     </div>
-                                </div>
+                                </div>*/}
                             </div>
                             {/*TODO refactor*/}
                             <div className="button char-form__btn">
@@ -330,4 +379,18 @@ export default function Manual() {
             </section>
         </MainLayout>
     )
+}
+
+
+export async function getServerSideProps(context) {
+    const res = await API.getCategories()
+
+    console.log(res.data)
+
+
+    return {
+        props: {
+            categories: res.data
+        }
+    }
 }
