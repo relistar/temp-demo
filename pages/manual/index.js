@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react"
 import MainLayout from "/components/MainLayout"
-import {Button, InputNumber} from 'antd'
+import {Button, InputNumber, message} from 'antd'
 import {ArrowRightOutlined, DeleteOutlined} from '@ant-design/icons'
 import CustomScrollbars from "../../components/lib/Scrollbars"
-import {API} from "../../api/manual";
+import {API, API_FR} from "../../api/manual";
 
 export default function Manual({categories}) {
     const specLines = [
@@ -63,10 +63,14 @@ export default function Manual({categories}) {
     const [spec, setSpec] = useState({spec_id: null})
 
     useEffect(() => {
-        API.getCharacteristicsByCategoryId(activeCategory).then(res => {
+        API_FR.getCharacteristicsByCategoryId(activeCategory).then(res => {
             setCharacteristics(res.data)
         })
     }, [activeCategory])
+
+    const info = () => {
+        message.info(`Редирект на /card/${spec.spec_id}`);
+    };
 
 
     const handleCategoryClick = (categoryId) => {
@@ -110,7 +114,7 @@ export default function Manual({categories}) {
         const chars = buildCharsForPostSpec();
         const specPayload = {...spec, category_id: activeCategory, chars}
 
-        API.postSpec(specPayload).then(res => {
+        API_FR.postSpec(specPayload).then(res => {
             const data = res.data;
             setSpec({...data, spec_id: data.id})
         })
@@ -120,8 +124,8 @@ export default function Manual({categories}) {
 
         const payload = {headerId: spec.spec_id, lineId: id, qty: quantity}
 
-        API.updateSpecLine(payload).then(() => {
-            API.getSpecDetailsById(spec.spec_id).then(res => {
+        API_FR.updateSpecLine(payload).then(() => {
+            API_FR.getSpecDetailsById(spec.spec_id).then(res => {
                 const lines = res.data.lines;
                 setSpec({...spec, lines: lines.length ? lines : null, spec_id: lines.length ? spec.spec_id : null})
             })
@@ -265,7 +269,7 @@ export default function Manual({categories}) {
                             {spec.spec_id && (
                                 <div className="card-info-details-submitter">
                                     <div className="button spec__btn">
-                                        <Button type="primary">Перейти к щиту<ArrowRightOutlined/></Button>
+                                        <Button onClick={info} type="primary">Перейти к щиту<ArrowRightOutlined/></Button>
                                     </div>
                                     <span className="card-info-details-submitter__label hidden d-lg-block">
                                         Нажимая кнопку, Вы сохраняете все <br/> изменения, произведенные в этом окне
@@ -293,12 +297,8 @@ export default function Manual({categories}) {
 }
 
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
     const res = await API.getCategories()
-
-    console.log(res.data)
-
-
     return {
         props: {
             categories: res.data
