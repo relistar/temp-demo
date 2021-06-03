@@ -106,3 +106,30 @@ h1.ant-typography, .ant-typography h1 {
   background: #488FF7;
   border-color: #488FF7;
 }
+.ant-radio-wrapper {
+  span {
+    font-size: 20px;
+    color: #2F54EB;
+  }
+}
+.ant-radio {
+  width: 22px;
+  height: 22px;
+  .ant-radio-inner {
+    border-color: #E5E5E5;
+    border-radius: 0;
+
+    width: 22px;
+    height: 22px;
+
+    &::after {
+      background-color: #061178;
+      border-radius: 0;
+      width: 16px;
+      height: 16px;
+      top: 2px;
+      left: 2px;
+    }
+  }
+
+}

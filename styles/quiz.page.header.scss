@@ -41,6 +41,7 @@
 .quest__empty {
   height: 95px;
   border-bottom: $border-blue;
+  position: relative;
 
   &::before {
     position: absolute;
@@ -98,11 +99,11 @@
 
   display: flex;
   justify-content: flex-start;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: center;
   align-content: center;
   position: relative;
-  height: 95px;
+  min-height: 95px;
   border-bottom: $border-blue;
 
   &::before {
@@ -130,6 +131,20 @@
 
     &:focus::placeholder {
       color: transparent;
+    }
+  }
+
+  .ant-radio-group {
+    width: 100%;
+  }
+
+  .ant-radio-wrapper {
+    width: 50%;
+    padding: 0  0 0 88px;
+    margin: 20px 0;
+
+    &:nth-child(2n) {
+      padding: 0 0 0 103px;
     }
   }
 }

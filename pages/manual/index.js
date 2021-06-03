@@ -3,67 +3,16 @@ import MainLayout from "/components/MainLayout"
 import {Button, InputNumber, message} from 'antd'
 import {ArrowRightOutlined, DeleteOutlined} from '@ant-design/icons'
 import CustomScrollbars from "../../components/lib/Scrollbars"
-import {API, API_FR} from "../../api/manual";
+import {API} from "../../api/manual";
 
 export default function Manual({categories}) {
-    const specLines = [
-        {
-            name: "Щит модуля",
-            qty: 1
-        },
-        {
-            name: "Щит модуля",
-            qty: 1
-        },
-        {
-            name: "Реле напряжения",
-            qty: 1
-        },
-        {
-            name: "Щит модуля",
-            qty: 1
-        },
-        {
-            name: "УЗО",
-            qty: 1
-        },
-        {
-            name: "Автомат",
-            qty: 1
-        },
-        {
-            name: "Автомат",
-            qty: 1
-        },
-        {
-            name: "Автомат",
-            qty: 1
-        },
-        {
-            name: "Автомат",
-            qty: 1
-        },
-        {
-            name: "Автомат",
-            qty: 1
-        },
-        {
-            name: "Автомат",
-            qty: 1
-        },
-        {
-            name: "Автомат",
-            qty: 1
-        }
-    ]
-
     const [activeCategory, setActiveCategory] = useState(categories[0].id)
     const [characteristics, setCharacteristics] = useState(null)
     const [isCharFormValid, setIsCharFormValid] = useState(false)
     const [spec, setSpec] = useState({spec_id: null})
 
     useEffect(() => {
-        API_FR.getCharacteristicsByCategoryId(activeCategory).then(res => {
+        API.getCharacteristicsByCategoryId(activeCategory).then(res => {
             setCharacteristics(res.data)
         })
     }, [activeCategory])
@@ -114,7 +63,7 @@ export default function Manual({categories}) {
         const chars = buildCharsForPostSpec();
         const specPayload = {...spec, category_id: activeCategory, chars}
 
-        API_FR.postSpec(specPayload).then(res => {
+        API.postSpec(specPayload).then(res => {
             const data = res.data;
             setSpec({...data, spec_id: data.id})
         })
@@ -124,8 +73,8 @@ export default function Manual({categories}) {
 
         const payload = {headerId: spec.spec_id, lineId: id, qty: quantity}
 
-        API_FR.updateSpecLine(payload).then(() => {
-            API_FR.getSpecDetailsById(spec.spec_id).then(res => {
+        API.updateSpecLine(payload).then(() => {
+            API.getSpecDetailsById(spec.spec_id).then(res => {
                 const lines = res.data.lines;
                 setSpec({...spec, lines: lines.length ? lines : null, spec_id: lines.length ? spec.spec_id : null})
             })

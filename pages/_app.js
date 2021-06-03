@@ -6,6 +6,7 @@ import 'antd/lib/input-number/style/index.css'
 import 'antd/lib/checkbox/style/index.css'
 import 'antd/lib/drawer/style/index.css'
 import 'antd/lib/message/style/index.css'
+import 'antd/lib/radio/style/index.css'
 import '/styles/global.scss'
 import React from "react"
 import ruRu from "antd/lib/locale/ru_RU"

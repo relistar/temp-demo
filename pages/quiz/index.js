@@ -1,9 +1,52 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 import MainLayout from "/components/MainLayout"
 import {Button, Checkbox, Input} from 'antd'
 import {ArrowLeftOutlined, ArrowRightOutlined} from '@ant-design/icons'
+import {API} from "../../api/manual";
+import {Radio} from 'antd';
 
-export default function Quiz() {
+export default function Quiz({questions: questionsProp}) {
+    const [questions, setQuestions] = useState(questionsProp)
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
+    const [currentQuestion, setCurrentQuestion] = useState(getQuestion(0))
+    const [currentQuestionValue, setCurrentQuestionValue] = useState(currentQuestion.type === 'LOV' ? currentQuestion.variants[0].id : null)
+
+    useEffect(() => {
+        const question = getQuestion(currentQuestionIndex);
+
+        if (question.value) {
+            setCurrentQuestionValue(question.value)
+        } else {
+            setCurrentQuestionValue(question.type === 'LOV' ? question.variants[0].id : null)
+        }
+
+        setCurrentQuestion(question)
+    }, [currentQuestionIndex])
+
+    function getQuestion(index) {
+        return questions[currentQuestionIndex]
+    }
+
+    function handleRadioChange(e) {
+        setCurrentQuestionValue(e.target.value)
+    }
+
+    function handleNextQuestion() {
+        if (currentQuestionValue) {
+            const newQuest = {...currentQuestion}
+            newQuest.value = currentQuestionValue
+
+            const newQuestions = [...questions]
+            newQuestions[currentQuestionIndex] = newQuest
+
+            setQuestions(newQuestions)
+            setCurrentQuestionIndex(currentQuestionIndex + 1)
+        }
+    }
+
+    function handlePrevQuestion() {
+        setCurrentQuestionIndex(currentQuestionIndex - 1)
+    }
 
     return (
         <MainLayout>
@@ -12,9 +55,9 @@ export default function Quiz() {
                     <div className="page-header page-header--quiz">
                         <div className="quiz-page-header">
                             <h1>Конструктор щита</h1>
-                            <div className="quiz-question">Укажите количество фаз</div>
+                            <div className="quiz-question">{currentQuestion.text}</div>
                         </div>
-                        <div className="quiz-page-status">Вопрос 1/12</div>
+                        <div className="quiz-page-status">Вопрос {currentQuestionIndex + 1}/{questions.length}</div>
                         <div className="empty empty--first bg-diag-line"/>
                         <div className="empty empty--second"/>
                         <div className="empty empty--third empty--circle-top">
@@ -29,42 +72,58 @@ export default function Quiz() {
                     <div className="quiz">
                         <div className="quiz-answers d-lg-none">
                             <div className="card-answers">
-                                <div className="card-answer">
-                                    <span className="card-answer__text">Кол-во фаз</span>
-                                    <span className="card-answer__value">3</span>
-                                </div>
+                                {questions.map(q => {
+                                    return q.value && (
+                                        <div className="card-answer">
+                                            <span className="card-answer__text">{q.text}</span>
+                                            <span className="card-answer__value">{q.type === 'LOV' ? q.variants.find(variant => variant.id === q.value).text : q.value}</span>
+                                        </div>
+                                    )
+                                })}
                             </div>
                         </div>
                         <div className="quest">
                             <div className="quest__first">
                                 <div className="quest-options">
-                                    <div className="quest-checkbox quest-checkbox--first">
+                                    {currentQuestion.type === 'LOV' && (
+                                        <Radio.Group onChange={handleRadioChange} value={currentQuestionValue}>
+                                            {currentQuestion.variants.map(variant => (
+                                                <Radio key={variant.id} value={variant.id}>{variant.text}</Radio>
+                                            ))}
+                                        </Radio.Group>
+                                    )}
+                                    {currentQuestion.type === 'NUM' && (
+                                        <Input type="number" placeholder={currentQuestion.text}
+                                               onChange={handleRadioChange} value={currentQuestionValue}/>
+                                    )}
+                                    {/*<div className="quest-checkbox quest-checkbox--first">
                                         <Checkbox>1 фаза</Checkbox>
                                     </div>
                                     <div className="quest-checkbox quest-checkbox--second">
                                         <Checkbox>3 фазы</Checkbox>
-                                    </div>
+                                    </div>*/}
                                     {/*<Input type="number" placeholder="Кол-во линий"/>*/}
                                 </div>
                                 <div className="quest__empty d-lg-none"/>
                             </div>
                             <div className="quest__second">
                                 <div className="quest-desc">
-                                    Фаза – это проводник, по которому ток приходит к потребителю. Соответственно ноль
-                                    служит для того, чтобы электрический ток двигался в обратном направлении к нулевому
-                                    контуру. ... Заземляющий провод, называемый так же землей, не находится под
-                                    напряжением и предназначен для защиты человека от поражения электрическим током.
+                                    {currentQuestion.label}
                                 </div>
                             </div>
                         </div>
                         <div className="quest-buttons">
-                            <div className="button button--back-icon quest-btn quest-btn--back">
-                                <Button type="primary" icon={<ArrowLeftOutlined/>}>Назад</Button>
-                            </div>
-
-                            <div className="button quest-btn quest-btn--forward">
-                                <Button type="primary">Далее<ArrowRightOutlined/></Button>
-                            </div>
+                            {currentQuestionIndex > 0 && (
+                                <div onClick={handlePrevQuestion}
+                                     className="button button--back-icon quest-btn quest-btn--back">
+                                    <Button type="primary" icon={<ArrowLeftOutlined/>}>Назад</Button>
+                                </div>
+                            )}
+                            {currentQuestionValue && (
+                                <div onClick={handleNextQuestion} className="button quest-btn quest-btn--forward">
+                                    <Button type="primary">Далее<ArrowRightOutlined/></Button>
+                                </div>
+                            )}
                         </div>
                     </div>
 
@@ -85,4 +144,13 @@ export default function Quiz() {
             </section>
         </MainLayout>
     )
+}
+
+export async function getServerSideProps() {
+    const res = await API.getQuiz()
+    return {
+        props: {
+            questions: res.data
+        }
+    }
 }
