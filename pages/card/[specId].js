@@ -4,7 +4,7 @@ import Title from "antd/lib/typography/Title"
 import {Button, Checkbox, InputNumber, Modal} from 'antd'
 import {CheckCircleOutlined, CloseCircleOutlined, DeleteOutlined, FileTextOutlined} from '@ant-design/icons'
 import CustomScrollbars from "/components/lib/Scrollbars"
-import {API} from "../../api/manual"
+import {FR_API} from "../../api/manual"
 import currency from "currency.js"
 import {useRouter} from "next/router";
 import {CloseIcon} from "../../components/lib/icon";
@@ -59,7 +59,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
     function handleSaveSpecClick() {
         const specPayload = {specId: spec.specId, lines: spec.lines, options: spec.options}
 
-        API.postSpecForm(specPayload).then(res => {
+        FR_API.postSpecForm(specPayload).then(res => {
             const spec = res.data;
 
             if (spec.lines.length) {
@@ -68,7 +68,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                 router.push({pathname: '/'})
             }
 
-            API.getBuildDetailsById(spec.specId).then(res => {
+            FR_API.getBuildDetailsById(spec.specId).then(res => {
                 setSpecDetails(res.data)
             })
         }).catch(res => {
@@ -79,7 +79,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
     function handleCreateOrder(brandId, segment) {
         const payload = {brandId, segment, specId: spec.specId}
 
-        API.createOrderByDetail(payload).then(res => {
+        FR_API.createOrderByDetail(payload).then(res => {
             setIsModalOpened(true)
         })
     }
@@ -95,7 +95,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
     function handleDownloadSpecFile(brandId, segment) {
         const payload = {brandId, segment, specId: spec.specId}
 
-        API.downloadSpecFileByDetail(payload).then(res => {
+        FR_API.downloadSpecFileByDetail(payload).then(res => {
             downloader(res.data, payload.specId + '_' + payload.brandId + '_' + segment + Math.floor(Date.now() / 1000) + '.pdf')
         })
     }
@@ -477,11 +477,11 @@ export default function Card({specificationProp, specificationDetailsProp}) {
 export async function getServerSideProps({params}) {
     const specId = params.specId;
 
-    const specificationRes = await API.getSpecDetailsById(specId)
+    const specificationRes = await FR_API.getSpecDetailsById(specId)
     let specificationDetailsRes = null
 
     try {
-        specificationDetailsRes = await API.getBuildDetailsById(specId)
+        specificationDetailsRes = await FR_API.getBuildDetailsById(specId)
     } catch (err) {
     }
 
