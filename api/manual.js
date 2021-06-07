@@ -4,7 +4,7 @@ const environment = process.env.NODE_ENV
 
 const API_PROTOCOL = environment === 'production' ? 'http://' : 'http://'
 
-const API_ROOT = 'https://dev-tadoit.ru/docs/api/v1/'
+const API_ROOT = 'https://dev-tadoit.ru/api/v1/'
 
 const axiosInstance = axios.create({
     baseURL: API_ROOT,
