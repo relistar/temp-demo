@@ -1,4 +1,4 @@
-import {API} from "../../../api/manual";
+import {API} from "../../../bapi/manual";
 
 export default function charsHandler(req, res) {
     const categoryId = req.query.categoryId;

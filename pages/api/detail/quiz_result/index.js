@@ -1,4 +1,4 @@
-import {API} from "../../../../api/manual";
+import {API} from "../../../../bapi/manual";
 
 export default function postQuizHandler(req, res) {
     API.postQuiz(req.body).then(response => {

@@ -4,7 +4,7 @@ import Title from "antd/lib/typography/Title"
 import {Button, Checkbox, InputNumber, Modal} from 'antd'
 import {CheckCircleOutlined, CloseCircleOutlined, DeleteOutlined, FileTextOutlined} from '@ant-design/icons'
 import CustomScrollbars from "/components/lib/Scrollbars"
-import {FR_API} from "../../api/manual"
+import {FR_API} from "../../bapi/manual"
 import currency from "currency.js"
 import {useRouter} from "next/router";
 import {CloseIcon} from "../../components/lib/icon";

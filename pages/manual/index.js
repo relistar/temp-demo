@@ -3,7 +3,7 @@ import MainLayout from "/components/MainLayout"
 import {Button, InputNumber, message} from 'antd'
 import {ArrowRightOutlined, DeleteOutlined} from '@ant-design/icons'
 import CustomScrollbars from "../../components/lib/Scrollbars"
-import {FR_API} from "../../api/manual";
+import {FR_API} from "../../bapi/manual";
 import {useRouter} from "next/router";
 
 export default function Manual({categories}) {

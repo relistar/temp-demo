@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import MainLayout from "/components/MainLayout"
 import {Button, Checkbox, Input} from 'antd'
 import {ArrowLeftOutlined, ArrowRightOutlined} from '@ant-design/icons'
-import {FR_API} from "../../api/manual";
+import {FR_API} from "../../bapi/manual";
 import {Radio} from 'antd';
 import {fitPageHeaderHeight} from "../../native/fitHeader";
 import {useRouter} from "next/router";

@@ -1,4 +1,4 @@
-import {API} from "../../../../api/manual";
+import {API} from "../../../../bapi/manual";
 
 export default function postSpecFormHandler(req, res) {
     API.postSpecForm(req.body).then(response => {

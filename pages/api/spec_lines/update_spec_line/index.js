@@ -1,4 +1,4 @@
-import {API} from "../../../../api/manual";
+import {API} from "../../../../bapi/manual";
 
 export default function updateSpecHandler(req, res) {
     API.updateSpecLine(req.body).then(response => {
