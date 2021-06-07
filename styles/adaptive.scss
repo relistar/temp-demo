@@ -253,7 +253,7 @@
     top: 0;
     left: 0;
     height: 92px;
-    width: 100%;
+    width: 75%;
 
     h1 {
       font-weight: bold;
@@ -370,10 +370,6 @@
   .card-image {
     width: 32%;
     border-bottom: none;
-
-    img {
-      height: 100%;
-    }
   }
 
   .card-info {
@@ -1158,6 +1154,7 @@
 
   .quiz-page-header {
     height: 111px;
+    width: 85%;
 
     h1 {
       top: 17px;
@@ -1629,6 +1626,39 @@
         margin-bottom: 20px;
 
       }
+    }
+  }
+
+  .ant-modal {
+    padding: 0 11px;
+  }
+
+  .ant-modal-body {
+    padding: 27px 0 8px;
+    &::before {
+      width: 27px;
+    }
+  }
+
+  .order-creation-sub-msg {
+    padding: 0 60px;
+  }
+
+  .modal-footer-empty {
+    &--first {
+      width: 28px;
+    }
+
+    &--second {
+      flex: 1;
+    }
+
+    &--third {
+      width: 14px;
+    }
+
+    &--fourth {
+      width: 18px;
     }
   }
 }

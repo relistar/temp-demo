@@ -4,12 +4,15 @@ import {Button, Checkbox, Input} from 'antd'
 import {ArrowLeftOutlined, ArrowRightOutlined} from '@ant-design/icons'
 import {API} from "../../api/manual";
 import {Radio} from 'antd';
+import {fitPageHeaderHeight} from "../../native/fitHeader";
+import {useRouter} from "next/router";
 
 export default function Quiz({questions: questionsProp}) {
+    const router = useRouter()
     const [questions, setQuestions] = useState(questionsProp)
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [currentQuestion, setCurrentQuestion] = useState(getQuestion(0))
-    const [currentQuestionValue, setCurrentQuestionValue] = useState(currentQuestion.type === 'LOV' ? currentQuestion.variants[0].id : null)
+    const [currentQuestionValue, setCurrentQuestionValue] = useState(currentQuestion.type === 'LOV' ? currentQuestion.variants[0].variantId : null)
 
     useEffect(() => {
         const question = getQuestion(currentQuestionIndex);
@@ -17,11 +20,15 @@ export default function Quiz({questions: questionsProp}) {
         if (question.value) {
             setCurrentQuestionValue(question.value)
         } else {
-            setCurrentQuestionValue(question.type === 'LOV' ? question.variants[0].id : null)
+            setCurrentQuestionValue(question.type === 'LOV' ? question.variants[0].variantId : null)
         }
 
         setCurrentQuestion(question)
     }, [currentQuestionIndex])
+
+    useEffect(() => {
+        fitPageHeaderHeight()
+    }, [currentQuestion])
 
     function getQuestion(index) {
         return questions[currentQuestionIndex]
@@ -48,8 +55,35 @@ export default function Quiz({questions: questionsProp}) {
         setCurrentQuestionIndex(currentQuestionIndex - 1)
     }
 
+    function collectCardCreationPayload(questions) {
+        return questions.map(question => ({questionId: question.questionId, answer: +question.value}))
+    }
+
+    function handleSubmitQuiz() {
+        if (currentQuestionValue) {
+            const newQuest = {...currentQuestion}
+            newQuest.value = currentQuestionValue
+
+            const newQuestions = [...questions]
+            newQuestions[currentQuestionIndex] = newQuest
+
+            const cardQuizCreationPayload = collectCardCreationPayload(newQuestions)
+
+            API.postQuiz(cardQuizCreationPayload).then(res => {
+                const specId = res.data.specId;
+
+                router.push({
+                    pathname: '/card/[specId]',
+                    query: { specId: specId }
+                })
+            }).catch(res => {
+                console.log(res)
+            })
+        }
+    }
+
     return (
-        <MainLayout>
+        <MainLayout title={"Конструктор щита"}>
             <section>
                 <div className="container">
                     <div className="page-header page-header--quiz">
@@ -74,9 +108,10 @@ export default function Quiz({questions: questionsProp}) {
                             <div className="card-answers">
                                 {questions.map(q => {
                                     return q.value && (
-                                        <div className="card-answer">
+                                        <div key={q.questionId} className="card-answer">
                                             <span className="card-answer__text">{q.text}</span>
-                                            <span className="card-answer__value">{q.type === 'LOV' ? q.variants.find(variant => variant.id === q.value).text : q.value}</span>
+                                            <span
+                                                className="card-answer__value">{q.type === 'LOV' ? q.variants.find(variant => variant.variantId === q.value).text : q.value}</span>
                                         </div>
                                     )
                                 })}
@@ -88,7 +123,7 @@ export default function Quiz({questions: questionsProp}) {
                                     {currentQuestion.type === 'LOV' && (
                                         <Radio.Group onChange={handleRadioChange} value={currentQuestionValue}>
                                             {currentQuestion.variants.map(variant => (
-                                                <Radio key={variant.id} value={variant.id}>{variant.text}</Radio>
+                                                <Radio key={variant.variantId} value={variant.variantId}>{variant.text}</Radio>
                                             ))}
                                         </Radio.Group>
                                     )}
@@ -96,13 +131,6 @@ export default function Quiz({questions: questionsProp}) {
                                         <Input type="number" placeholder={currentQuestion.text}
                                                onChange={handleRadioChange} value={currentQuestionValue}/>
                                     )}
-                                    {/*<div className="quest-checkbox quest-checkbox--first">
-                                        <Checkbox>1 фаза</Checkbox>
-                                    </div>
-                                    <div className="quest-checkbox quest-checkbox--second">
-                                        <Checkbox>3 фазы</Checkbox>
-                                    </div>*/}
-                                    {/*<Input type="number" placeholder="Кол-во линий"/>*/}
                                 </div>
                                 <div className="quest__empty d-lg-none"/>
                             </div>
@@ -119,9 +147,14 @@ export default function Quiz({questions: questionsProp}) {
                                     <Button type="primary" icon={<ArrowLeftOutlined/>}>Назад</Button>
                                 </div>
                             )}
-                            {currentQuestionValue && (
+                            {(currentQuestionValue && !(currentQuestionIndex + 1 === questions.length)) && (
                                 <div onClick={handleNextQuestion} className="button quest-btn quest-btn--forward">
                                     <Button type="primary">Далее<ArrowRightOutlined/></Button>
+                                </div>
+                            )}
+                            {(currentQuestionValue && (currentQuestionIndex + 1 === questions.length)) && (
+                                <div onClick={handleSubmitQuiz} className="button quest-btn quest-btn--forward">
+                                    <Button type="primary">Перейти к щиту<ArrowRightOutlined/></Button>
                                 </div>
                             )}
                         </div>

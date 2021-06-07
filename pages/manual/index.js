@@ -4,12 +4,15 @@ import {Button, InputNumber, message} from 'antd'
 import {ArrowRightOutlined, DeleteOutlined} from '@ant-design/icons'
 import CustomScrollbars from "../../components/lib/Scrollbars"
 import {API} from "../../api/manual";
+import {useRouter} from "next/router";
 
 export default function Manual({categories}) {
-    const [activeCategory, setActiveCategory] = useState(categories[0].id)
+    const router = useRouter()
+
+    const [activeCategory, setActiveCategory] = useState(categories[0].categoryId)
     const [characteristics, setCharacteristics] = useState(null)
     const [isCharFormValid, setIsCharFormValid] = useState(false)
-    const [spec, setSpec] = useState({spec_id: null})
+    const [spec, setSpec] = useState({specId: null})
 
     useEffect(() => {
         API.getCharacteristicsByCategoryId(activeCategory).then(res => {
@@ -18,7 +21,7 @@ export default function Manual({categories}) {
     }, [activeCategory])
 
     const info = () => {
-        message.info(`Редирект на /card/${spec.spec_id}`);
+        message.info(`Редирект на /card/${spec.specId}`);
     };
 
 
@@ -31,15 +34,15 @@ export default function Manual({categories}) {
         return characteristics.every(char => char.variants.some(variant => variant.selected))
     }
 
-    const handleCharClick = (characteristicId, selectedVariantId) => {
+    const handleCharClick = (charId, selectedVariantId) => {
         const chars = [...characteristics]
 
-        const char = chars.find(char => char.id === characteristicId)
+        const char = chars.find(char => char.charId === charId)
 
         let variants = char.variants;
 
         variants = variants.map(variant => {
-            variant.selected = variant.id === selectedVariantId;
+            variant.selected = variant.variantId === selectedVariantId;
             return variant
         })
 
@@ -53,43 +56,50 @@ export default function Manual({categories}) {
     function buildCharsForPostSpec() {
         return characteristics.map(char => {
             return {
-                charId: char.id,
-                variantId: char.variants.find(variant => variant.selected).id
+                charId: char.charId,
+                variantId: char.variants.find(variant => variant.selected).variantId
             }
         });
     }
 
     const handleAddToSpecClick = () => {
         const chars = buildCharsForPostSpec();
-        const specPayload = {...spec, category_id: activeCategory, chars}
+        const specPayload = {...spec, categoryId: activeCategory, chars}
 
         API.postSpec(specPayload).then(res => {
             const data = res.data;
-            setSpec({...data, spec_id: data.id})
+            console.log(res.data)
+            setSpec({...data, specId: data.specId})
         })
     }
 
-    const handleSpecLineQuantityChange = (id, quantity) => {
+    const handleSpecLineQuantityChange = (specLineId, quantity) => {
 
-        const payload = {headerId: spec.spec_id, lineId: id, qty: quantity}
+        const payload = {specId: spec.specId, specLineId: specLineId, qty: quantity}
 
-        API.updateSpecLine(payload).then(() => {
-            API.getSpecDetailsById(spec.spec_id).then(res => {
-                const lines = res.data.lines;
-                setSpec({...spec, lines: lines.length ? lines : null, spec_id: lines.length ? spec.spec_id : null})
-            })
+        API.updateSpecLine(payload).then(res => {
+            const lines = res.data.lines;
+            console.log(lines)
+            setSpec({...spec, lines: lines.length ? lines : null, specId: lines.length ? spec.specId : null})
+        })
+    }
+
+    function handleSubmitCardCreation() {
+        router.push({
+            pathname: '/card/[specId]',
+            query: { specId: spec.specId }
         })
     }
 
     return (
-        <MainLayout>
+        <MainLayout  title={"Ручной подбор щита"}>
             <section>
                 <div className="container">
                     <div className="page-header page-header--manual">
                         {/*TODO rename*/}
                         <div className="quiz-page-header">
                             <h1>Ручной подбор щита</h1>
-                            <div className="quiz-question">Спецификация {spec.spec_id && '№' + spec.spec_id}</div>
+                            <div className="quiz-question">Спецификация {spec.specId && '№' + spec.specId}</div>
                         </div>
                         <div className="empty empty--first bg-diag-line"/>
                         <div className="empty empty--second"/>
@@ -114,26 +124,26 @@ export default function Manual({categories}) {
                                 {
                                     categories.map((category) => (
                                         <>
-                                            <li key={category.id}
+                                            <li key={category.categoryId}
                                                 onClick={() => {
-                                                    handleCategoryClick(category.id)
+                                                    handleCategoryClick(category.categoryId)
                                                 }}
-                                                className={'categories-item ' + (activeCategory === category.id ? 'categories-item--selected' : '')}>
+                                                className={'categories-item ' + (activeCategory === category.categoryId ? 'categories-item--selected' : '')}>
                                                 <span className="categories-item__text">{category.name}</span>
                                                 <span className="categories-item__icon"><ArrowRightOutlined width={11}
                                                                                                             height={11}/></span>
                                             </li>
-                                            {activeCategory === category.id && (
+                                            {activeCategory === category.categoryId && (
                                                 <div className="accordion-variants hidden d-md-block">
                                                     <div className="char-form-lines">
                                                         {characteristics && characteristics.map(char => (
-                                                            <div key={char.id} className="char-form-lines__item">
+                                                            <div key={'m' + char.charId} className="char-form-lines__item">
                                                                 <div className="char-form-lines__name">{char.name}</div>
                                                                 <div className="char-form-variants">
                                                                     {char.variants.map(variant => (
-                                                                        <div key={variant.id}
+                                                                        <div key={'m' + variant.variantId}
                                                                              className={'char-form-variant ' + (variant.selected ? 'char-form-variant--selected' : '')}
-                                                                             onClick={() => handleCharClick(char.id, variant.id)}
+                                                                             onClick={() => handleCharClick(char.charId, variant.variantId)}
                                                                         >
                                                                             {variant.value}
                                                                         </div>
@@ -152,13 +162,13 @@ export default function Manual({categories}) {
                         <div className="char-form">
                             <div className="char-form-lines d-md-none">
                                 {characteristics && characteristics.map(char => (
-                                    <div key={char.id} className="char-form-lines__item">
+                                    <div key={'d' + char.charId} className="char-form-lines__item">
                                         <div className="char-form-lines__name">{char.name}</div>
                                         <div className="char-form-variants">
                                             {char.variants.map(variant => (
-                                                <div key={variant.id}
+                                                <div key={'d' + variant.variantId}
                                                      className={'char-form-variant ' + (variant.selected ? 'char-form-variant--selected' : '')}
-                                                     onClick={() => handleCharClick(char.id, variant.id)}
+                                                     onClick={() => handleCharClick(char.charId, variant.variantId)}
                                                 >
                                                     {variant.value}
                                                 </div>
@@ -178,26 +188,32 @@ export default function Manual({categories}) {
 
                         <div className="spec">
                             <div className="card-info-details">
-                                {spec.spec_id ? (
+                                {spec.specId ? (
                                     <CustomScrollbars style={{width: '100%', height: 310}} autoHeightMin={331}>
                                         <div className="card-info-details__head">Спецификация электрощита</div>
                                         <div className="card-info-details__lines">
 
                                             {spec.lines.map((line, index) => (
-                                                <div key={line.id} className="card-info-details-line">
+                                                <div key={line.specLineId} className="card-info-details-line">
                                                     <span
                                                         className="card-info-details-line__name">{index + 1}. {line.name}</span>
                                                     <div className="card-info-details-line__controls">
                                                         <div className="input-num">
-                                                            <span onClick={(val) => handleSpecLineQuantityChange(line.id, line.quantity - 1)} className="input-num-btn">-</span>
+                                                            <span
+                                                                onClick={(val) => handleSpecLineQuantityChange(line.specLineId, line.quantity - 1)}
+                                                                className="input-num-btn">-</span>
                                                             <InputNumber min={0}
                                                                          value={line.quantity}
-                                                                         onPressEnter={(val) => handleSpecLineQuantityChange(line.id, val)}
+                                                                         onPressEnter={(val) => handleSpecLineQuantityChange(line.specLineId, val)}
                                                             />
-                                                            <span onClick={(val) => handleSpecLineQuantityChange(line.id, line.quantity + 1)} className="input-num-btn">+</span>
+                                                            <span
+                                                                onClick={(val) => handleSpecLineQuantityChange(line.specLineId, line.quantity + 1)}
+                                                                className="input-num-btn">+</span>
                                                         </div>
                                                         <div className="remove-button">
-                                                            <Button onClick={(val) => handleSpecLineQuantityChange(line.id, 0)} icon={<DeleteOutlined/>}/>
+                                                            <Button
+                                                                onClick={(val) => handleSpecLineQuantityChange(line.specLineId, 0)}
+                                                                icon={<DeleteOutlined/>}/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -215,10 +231,11 @@ export default function Manual({categories}) {
                                 )
                                 }
                             </div>
-                            {spec.spec_id && (
+                            {spec.specId && (
                                 <div className="card-info-details-submitter">
                                     <div className="button spec__btn">
-                                        <Button onClick={info} type="primary">Перейти к щиту<ArrowRightOutlined/></Button>
+                                        <Button onClick={handleSubmitCardCreation} type="primary">Перейти к
+                                            щиту<ArrowRightOutlined/></Button>
                                     </div>
                                     <span className="card-info-details-submitter__label hidden d-lg-block">
                                         Нажимая кнопку, Вы сохраняете все <br/> изменения, произведенные в этом окне
@@ -248,6 +265,7 @@ export default function Manual({categories}) {
 
 export async function getServerSideProps() {
     const res = await API.getCategories()
+    console.log(res.data)
     return {
         props: {
             categories: res.data

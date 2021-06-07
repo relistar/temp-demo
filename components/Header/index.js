@@ -42,7 +42,9 @@ export default function MyHeader(props) {
                 <div className="header__main">
                     <div className="logo">
                         <Link href="/">
-                            <Image src="/img/logo.png" width={66} height={16}/>
+                            <a href="/">
+                                <Image src="/img/logo.png" width={66} height={16}/>
+                            </a>
                         </Link>
                     </div>
                     <div className="empty empty--border-white d-lg-none"/>
@@ -50,16 +52,18 @@ export default function MyHeader(props) {
                         <ul className="navigation">
                             <li className={"navigation__item" + (pathname === '/quiz' ? " navigation__item--active" : "")}>
                                 <Link href="/quiz">
-                                    <a href="#">Конструктор</a>
+                                    <a key="quiz" href="#">Конструктор</a>
                                 </Link>
                             </li>
                             <li className={"navigation__item" + (pathname === '/manual' ? " navigation__item--active" : "")}>
                                 <Link href="/manual">
-                                    <a href="#">Ручной подбор</a>
+                                    <a key="manual" href="#">Ручной подбор</a>
                                 </Link>
                             </li>
-                            <li className={"navigation__item navigation__item--has-left-border" + (pathname === '/card' ? " navigation__item--active" : "")}>
-                                <Link href="/card"><a href="#">Карточка щита</a></Link>
+                            <li className={"navigation__item navigation__item--has-left-border" + (pathname.startsWith('/card') ? " navigation__item--active" : "")}>
+                                <Link href="/card">
+                                    <a key="manual" href="#">Карточка щита</a>
+                                </Link>
                             </li>
                         </ul>
                     </nav>

@@ -1,18 +1,19 @@
 import axios from 'axios'
+
 const environment = process.env.NODE_ENV
 
-const API_PROTOCOL = environment === 'production' ? 'https://' : 'http://'
+const API_PROTOCOL = environment === 'production' ? 'http://' : 'http://'
 
-const API_ROOT =  API_PROTOCOL + 'ovz1.j7775013.pxlzp.vps.myjino.ru/api/v1/'
+const API_ROOT = 'https://dev-tadoit.ru/docs/api/v1/'
 
 const axiosInstance = axios.create({
     baseURL: API_ROOT,
-    timeout: 1000
+    timeout: 100000
 })
 
 const jsonAxiosInstance = axios.create({
     baseURL: API_ROOT,
-    timeout: 1000,
+    timeout: 100000,
     headers: {
         'accept': 'application/json',
         'Content-Type': 'application/json'
@@ -35,9 +36,22 @@ export const API = {
     getSpecDetailsById: (specId) => {
         return jsonAxiosInstance.get(`/detail/${specId}`)
     },
+    getBuildDetailsById: (specId) => {
+        return axiosInstance.get(`/details_agg/${specId}`)
+    },
     getQuiz() {
         return axiosInstance.get('/quiz')
+    },
+    postQuiz(payload) {
+        return jsonAxiosInstance.post('/detail/quiz_result/', payload)
+    },
+    postSpecForm(spec) {
+        return jsonAxiosInstance.put('/detail/quiz_result_upd/', spec)
+    },
+    createOrderByDetail(detail) {
+        return jsonAxiosInstance.post('/order_headers/selected_detail/', detail)
+    },
+    downloadSpecFileByDetail(payload) {
+        return jsonAxiosInstance.post('/detail/specification/pdf/', payload, {responseType: 'blob'})
     }
 }
-
-

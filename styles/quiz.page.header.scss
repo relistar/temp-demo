@@ -4,6 +4,7 @@
   top: 48px;
   left: 48px;
   height: 67px;
+  width: 75%;
 
 
   h1 {
@@ -36,6 +37,7 @@
   top: 48px;
   left: 0;
   position: relative;
+  height: fit-content;
 }
 
 .quest__empty {
@@ -83,6 +85,7 @@
   position: relative;
   border-top: $border-blue;
   margin-bottom: -55px;
+  min-height: 290px;
 
   &__first {
     border-right: $border-blue;

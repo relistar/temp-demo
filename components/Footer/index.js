@@ -12,7 +12,9 @@ export default function MyFooter() {
                         <div className="footer__col footer__col--first footer__col--left">
                             <div className="logo logo--footer">
                                 <Link href="/">
-                                    <Image src="/img/logo-white.png" alt="logo" width={66} height={16} objectFit/>
+                                    <a href="/">
+                                        <Image src="/img/logo-white.png" alt="logo" width={66} height={16} objectFit/>
+                                    </a>
                                 </Link>
                             </div>
                             <div className="rights">
