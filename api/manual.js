@@ -2,10 +2,12 @@ import axios from 'axios'
 
 const environment = process.env.NODE_ENV
 
-const API_PROTOCOL = environment === 'production' ? 'http://' : 'http://'
+const isProd = environment === 'production';
+
+const API_PROTOCOL = isProd ? 'http://' : 'http://'
 
 const API_ROOT = 'https://dev-tadoit.ru/api/v1/'
-const API_ROOT_FR = 'http://localhost:3000/api/'
+const API_ROOT_FR = isProd ? 'https://temp-demo-one.vercel.app/api/' : 'http://localhost:3000/api/'
 
 const axiosInstance = axios.create({
     baseURL: API_ROOT,
