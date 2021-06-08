@@ -69,7 +69,7 @@ export const API = {
         return jsonAxiosInstance.post('/order_headers/selected_detail/', detail)
     },
     downloadSpecFileByDetail(payload) {
-        return jsonAxiosInstance.post('/detail/specification/pdf/', payload, {responseType: 'blob'})
+        return jsonAxiosInstance.post('/detail/specification/pdf/', payload,{responseType: 'stream'})
     }
 }
 

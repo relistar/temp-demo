@@ -105,7 +105,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
     function handleDownloadSpecFile(brandId, segment) {
         const payload = {brandId, segment, specId: spec.specId}
 
-        API.downloadSpecFileByDetail(payload).then(res => {
+        FR_API.downloadSpecFileByDetail(payload).then(res => {
             downloader(res.data, payload.specId + '_' + payload.brandId + '_' + segment + Math.floor(Date.now() / 1000) + '.pdf')
         })
     }
