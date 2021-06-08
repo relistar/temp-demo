@@ -26,7 +26,7 @@ export default function Home() {
                         </div>
                         <div className="main-page-header">
                             <div className="main-page-header__logo">
-                                <img src="/logo.svg" width={181} height={65}/>
+                                <img src="/img/logo.svg" width={181} height={65}/>
                             </div>
                             <div className="main-page-header__text">
                                 Фаза - это проводник, по которому ток приходит к потребителю. Соответственно ноль служит

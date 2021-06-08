@@ -21,7 +21,7 @@ export default function MyHeader(props) {
     const titleBlock = (
         <div className="burger-menu-title">
             <div className="burger-menu-title__logo">
-                <Image src="/logo.png" width={66} height={16}/>
+                <img src="/img/logo.png" width={66} height={16}/>
             </div>
             <div className="burger-menu-title__desc">
                 Сборка и производство электрощитов
@@ -43,7 +43,7 @@ export default function MyHeader(props) {
                     <div className="logo">
                         <Link href="/">
                             <a href="/">
-                                <Image src="/logo.png" width={66} height={16}/>
+                                <img src="/img/logo.png" width={66} height={16}/>
                             </a>
                         </Link>
                     </div>
