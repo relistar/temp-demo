@@ -13,7 +13,7 @@ export default function MyFooter() {
                             <div className="logo logo--footer">
                                 <Link href="/">
                                     <a href="/">
-                                        <Image src="/img/logo-white.png" alt="logo" width={66} height={16} objectFit/>
+                                        <Image src="/images/logo-white.png" alt="logo" width={66} height={16} objectFit/>
                                     </a>
                                 </Link>
                             </div>
