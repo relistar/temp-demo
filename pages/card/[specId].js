@@ -121,7 +121,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                     </div>
                     <div className="card-main">
                         <div className="card-image d-md-none">
-                            <img src="/images/card-image.png"/>
+                            <img src="/card-image.png"/>
                         </div>
                         <div className="card-info">
                             <div className="card-info__top">
