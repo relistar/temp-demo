@@ -55,14 +55,9 @@ export default function MyHeader(props) {
                                     <a key="quiz" href="#">Конструктор</a>
                                 </Link>
                             </li>
-                            <li className={"navigation__item" + (pathname === '/manual' ? " navigation__item--active" : "")}>
+                            <li className={"navigation__item navigation__item--has-left-border" + (pathname === '/manual' ? " navigation__item--active" : "")}>
                                 <Link href="/manual">
                                     <a key="manual" href="#">Ручной подбор</a>
-                                </Link>
-                            </li>
-                            <li className={"navigation__item navigation__item--has-left-border" + (pathname.startsWith('/card') ? " navigation__item--active" : "")}>
-                                <Link href="/card">
-                                    <a key="manual" href="#">Карточка щита</a>
                                 </Link>
                             </li>
                         </ul>
@@ -98,13 +93,10 @@ export default function MyHeader(props) {
                                         <a href="#">Конструктор</a>
                                     </Link>
                                 </li>
-                                <li className="navigation__item">
+                                <li className="navigation__item navigation__item--active navigation__item--has-left-border">
                                     <Link href="/manual">
                                         <a href="#">Ручной подбор</a>
                                     </Link>
-                                </li>
-                                <li className="navigation__item navigation__item--active navigation__item--has-left-border">
-                                    <Link href="/card"><a href="#">Карточка щита</a></Link>
                                 </li>
                             </ul>
                         </nav>

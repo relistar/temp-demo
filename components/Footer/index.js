@@ -30,13 +30,8 @@ export default function MyFooter() {
                                         </Link>
                                     </li>
                                     <li className="footer-navigation__item">
-                                        <Link href="/quiz2">
+                                        <Link href="/manual">
                                             <a href="#">Ручной подбор</a>
-                                        </Link>
-                                    </li>
-                                    <li className="footer-navigation__item">
-                                        <Link href="/card">
-                                            <a href="#">Карточка щита</a>
                                         </Link>
                                     </li>
                                 </ul>

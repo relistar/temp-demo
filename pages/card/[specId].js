@@ -4,7 +4,7 @@ import Title from "antd/lib/typography/Title"
 import {Button, Checkbox, InputNumber, Modal} from 'antd'
 import {CheckCircleOutlined, CloseCircleOutlined, DeleteOutlined, FileTextOutlined} from '@ant-design/icons'
 import CustomScrollbars from "/components/lib/Scrollbars"
-import {FR_API} from "../../bapi/manual"
+import {API, FR_API} from "../../bapi/manual"
 import currency from "currency.js"
 import {useRouter} from "next/router";
 import {CloseIcon} from "../../components/lib/icon";
@@ -17,7 +17,12 @@ export default function Card({specificationProp, specificationDetailsProp}) {
     const [isModalOpened, setIsModalOpened] = React.useState(false)
 
 
-    function handleSpecLineQuantityChange(specLineId, quantity) {
+    function handleSpecLineQuantityChange(specLineId, quantity, remove) {
+
+        if (quantity < 0) {
+            return
+        }
+
         const newSpec = {...spec}
         let newLines = [...newSpec.lines]
         /*if (quantity !== 0) {
@@ -31,6 +36,9 @@ export default function Card({specificationProp, specificationDetailsProp}) {
         const currentLine = newLines.find(line => line.specLineId === specLineId)
         currentLine.quantity = quantity
 
+        if(remove) {
+            currentLine.isRemoved = remove
+        }
 
         setSpec(newSpec)
     }
@@ -57,7 +65,9 @@ export default function Card({specificationProp, specificationDetailsProp}) {
     }
 
     function handleSaveSpecClick() {
-        const specPayload = {specId: spec.specId, lines: spec.lines, options: spec.options}
+        const lines = spec.lines.map(line => { return {...line, isRemoved: !!line.isRemoved}})
+
+        const specPayload = {specId: spec.specId, lines: lines, options: spec.options}
 
         FR_API.postSpecForm(specPayload).then(res => {
             const spec = res.data;
@@ -95,7 +105,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
     function handleDownloadSpecFile(brandId, segment) {
         const payload = {brandId, segment, specId: spec.specId}
 
-        FR_API.downloadSpecFileByDetail(payload).then(res => {
+        API.downloadSpecFileByDetail(payload).then(res => {
             downloader(res.data, payload.specId + '_' + payload.brandId + '_' + segment + Math.floor(Date.now() / 1000) + '.pdf')
         })
     }
@@ -173,8 +183,13 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                                         <div className="card-info-details__head">Спецификация электрощита</div>
                                         <div className="card-info-details__lines">
 
-                                            {spec.lines.map((line, index) => (
-                                                <div key={line.specLineId} className="card-info-details-line">
+                                            {spec.lines.map((line, index) => {
+
+                                                if(line.isRemoved) {
+                                                    return
+                                                }
+
+                                                return <div key={line.specLineId} className="card-info-details-line">
                                                     <span
                                                         className="card-info-details-line__name">{index + 1}. {line.name}</span>
                                                     <div className="card-info-details-line__controls">
@@ -192,12 +207,12 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                                                         </div>
                                                         <div className="remove-button">
                                                             <Button
-                                                                onClick={(val) => handleSpecLineQuantityChange(line.specLineId, 0)}
+                                                                onClick={(val) => handleSpecLineQuantityChange(line.specLineId, 0, true)}
                                                                 icon={<DeleteOutlined/>}/>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            ))}
+                                            })}
                                         </div>
                                     </CustomScrollbars>
                                     <div className="card-info-details-submitter">
@@ -232,8 +247,12 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                             <div className="card-info-details__head">Спецификация электрощита</div>
                             <div className="card-info-details__lines">
 
-                                {spec.lines.map((line, index) => (
-                                    <div key={line.specLineId} className="card-info-details-line">
+                                {spec.lines.map((line, index) => {
+                                    if(line.isRemoved) {
+                                        return
+                                    }
+
+                                    return <div key={line.specLineId} className="card-info-details-line">
                                                     <span
                                                         className="card-info-details-line__name">{index + 1}. {line.name}</span>
                                         <div className="card-info-details-line__controls">
@@ -251,12 +270,12 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                                             </div>
                                             <div className="remove-button">
                                                 <Button
-                                                    onClick={() => handleSpecLineQuantityChange(line.specLineId, 0)}
+                                                    onClick={() => handleSpecLineQuantityChange(line.specLineId, 0, true)}
                                                     icon={<DeleteOutlined/>}/>
                                             </div>
                                         </div>
                                     </div>
-                                ))}
+                                })}
                             </div>
                         </CustomScrollbars>
                         <div className="card-info-details-submitter">
