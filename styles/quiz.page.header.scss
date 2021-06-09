@@ -4,6 +4,7 @@
   top: 48px;
   left: 48px;
   height: 67px;
+  width: 75%;
 
 
   h1 {
@@ -36,11 +37,13 @@
   top: 48px;
   left: 0;
   position: relative;
+  height: fit-content;
 }
 
 .quest__empty {
   height: 95px;
   border-bottom: $border-blue;
+  position: relative;
 
   &::before {
     position: absolute;
@@ -82,6 +85,7 @@
   position: relative;
   border-top: $border-blue;
   margin-bottom: -55px;
+  min-height: 290px;
 
   &__first {
     border-right: $border-blue;
@@ -98,11 +102,11 @@
 
   display: flex;
   justify-content: flex-start;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: center;
   align-content: center;
   position: relative;
-  height: 95px;
+  min-height: 95px;
   border-bottom: $border-blue;
 
   &::before {
@@ -130,6 +134,20 @@
 
     &:focus::placeholder {
       color: transparent;
+    }
+  }
+
+  .ant-radio-group {
+    width: 100%;
+  }
+
+  .ant-radio-wrapper {
+    width: 50%;
+    padding: 0  0 0 88px;
+    margin: 20px 0;
+
+    &:nth-child(2n) {
+      padding: 0 0 0 103px;
     }
   }
 }

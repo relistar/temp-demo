@@ -21,7 +21,7 @@ export default function MyHeader(props) {
     const titleBlock = (
         <div className="burger-menu-title">
             <div className="burger-menu-title__logo">
-                <Image src="/img/logo.png" width={66} height={16}/>
+                <img src="/img/logo.png" width={66} height={16}/>
             </div>
             <div className="burger-menu-title__desc">
                 Сборка и производство электрощитов
@@ -42,7 +42,9 @@ export default function MyHeader(props) {
                 <div className="header__main">
                     <div className="logo">
                         <Link href="/">
-                            <Image src="/img/logo.png" width={66} height={16}/>
+                            <a href="/">
+                                <img src="/img/logo.png" width={66} height={16}/>
+                            </a>
                         </Link>
                     </div>
                     <div className="empty empty--border-white d-lg-none"/>
@@ -50,16 +52,13 @@ export default function MyHeader(props) {
                         <ul className="navigation">
                             <li className={"navigation__item" + (pathname === '/quiz' ? " navigation__item--active" : "")}>
                                 <Link href="/quiz">
-                                    <a href="#">Конструктор</a>
+                                    <a key="quiz" href="#">Конструктор</a>
                                 </Link>
                             </li>
-                            <li className={"navigation__item" + (pathname === '/manual' ? " navigation__item--active" : "")}>
+                            <li className={"navigation__item navigation__item--has-left-border" + (pathname === '/manual' ? " navigation__item--active" : "")}>
                                 <Link href="/manual">
-                                    <a href="#">Ручной подбор</a>
+                                    <a key="manual" href="#">Ручной подбор</a>
                                 </Link>
-                            </li>
-                            <li className={"navigation__item navigation__item--has-left-border" + (pathname === '/card' ? " navigation__item--active" : "")}>
-                                <Link href="/card"><a href="#">Карточка щита</a></Link>
                             </li>
                         </ul>
                     </nav>
@@ -94,13 +93,10 @@ export default function MyHeader(props) {
                                         <a href="#">Конструктор</a>
                                     </Link>
                                 </li>
-                                <li className="navigation__item">
+                                <li className="navigation__item navigation__item--active navigation__item--has-left-border">
                                     <Link href="/manual">
                                         <a href="#">Ручной подбор</a>
                                     </Link>
-                                </li>
-                                <li className="navigation__item navigation__item--active navigation__item--has-left-border">
-                                    <Link href="/card"><a href="#">Карточка щита</a></Link>
                                 </li>
                             </ul>
                         </nav>

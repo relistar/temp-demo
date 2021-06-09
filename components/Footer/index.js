@@ -12,7 +12,9 @@ export default function MyFooter() {
                         <div className="footer__col footer__col--first footer__col--left">
                             <div className="logo logo--footer">
                                 <Link href="/">
-                                    <Image src="/img/logo-white.png" alt="logo" width={66} height={16} objectFit/>
+                                    <a href="/">
+                                        <img src="/img/logo-white.png" alt="logo" width={66} height={16}/>
+                                    </a>
                                 </Link>
                             </div>
                             <div className="rights">
@@ -28,13 +30,8 @@ export default function MyFooter() {
                                         </Link>
                                     </li>
                                     <li className="footer-navigation__item">
-                                        <Link href="/quiz2">
+                                        <Link href="/manual">
                                             <a href="#">Ручной подбор</a>
-                                        </Link>
-                                    </li>
-                                    <li className="footer-navigation__item">
-                                        <Link href="/card">
-                                            <a href="#">Карточка щита</a>
                                         </Link>
                                     </li>
                                 </ul>

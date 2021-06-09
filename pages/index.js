@@ -8,7 +8,7 @@ import Link from "next/link"
 export default function Home() {
 
     return (
-        <MainLayout>
+        <MainLayout title={"Главная"}>
             <section>
                 <div className="container">
                     <div className="intro">

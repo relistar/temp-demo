@@ -1,70 +1,104 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 import MainLayout from "/components/MainLayout"
-import {Button, Input, InputNumber} from 'antd'
-import {ArrowLeftOutlined, ArrowRightOutlined, DeleteOutlined} from '@ant-design/icons'
+import {Button, InputNumber, message} from 'antd'
+import {ArrowRightOutlined, DeleteOutlined} from '@ant-design/icons'
 import CustomScrollbars from "../../components/lib/Scrollbars"
+import {API} from "../../bapi/manual";
+import {useRouter} from "next/router";
 
-export default function Manual() {
-    const specLines = [
-        {
-            name: "Щит модуля",
-            qty: 1
-        },
-        {
-            name: "Щит модуля",
-            qty: 1
-        },
-        {
-            name: "Реле напряжения",
-            qty: 1
-        },
-        {
-            name: "Щит модуля",
-            qty: 1
-        },
-        {
-            name: "УЗО",
-            qty: 1
-        },
-        {
-            name: "Автомат",
-            qty: 1
-        },
-        {
-            name: "Автомат",
-            qty: 1
-        },
-        {
-            name: "Автомат",
-            qty: 1
-        },
-        {
-            name: "Автомат",
-            qty: 1
-        },
-        {
-            name: "Автомат",
-            qty: 1
-        },
-        {
-            name: "Автомат",
-            qty: 1
-        },
-        {
-            name: "Автомат",
-            qty: 1
-        }
-    ]
+export default function Manual({categories}) {
+    const router = useRouter()
+
+    const [activeCategory, setActiveCategory] = useState(categories[0].categoryId)
+    const [characteristics, setCharacteristics] = useState(null)
+    const [isCharFormValid, setIsCharFormValid] = useState(false)
+    const [spec, setSpec] = useState({specId: null})
+
+    useEffect(() => {
+        API.getCharacteristicsByCategoryId(activeCategory).then(res => {
+            setCharacteristics(res.data)
+        })
+    }, [activeCategory])
+
+    const info = () => {
+        message.info(`Редирект на /card/${spec.specId}`);
+    };
+
+
+    const handleCategoryClick = (categoryId) => {
+        setActiveCategory(categoryId)
+        setIsCharFormValid(false)
+    }
+
+    const validateCharacteristics = () => {
+        return characteristics.every(char => char.variants.some(variant => variant.selected))
+    }
+
+    const handleCharClick = (charId, selectedVariantId) => {
+        const chars = [...characteristics]
+
+        const char = chars.find(char => char.charId === charId)
+
+        let variants = char.variants;
+
+        variants = variants.map(variant => {
+            variant.selected = variant.variantId === selectedVariantId;
+            return variant
+        })
+
+        char.variants = variants
+
+        setCharacteristics(chars)
+
+        setIsCharFormValid(validateCharacteristics())
+    }
+
+    function buildCharsForPostSpec() {
+        return characteristics.map(char => {
+            return {
+                charId: char.charId,
+                variantId: char.variants.find(variant => variant.selected).variantId
+            }
+        });
+    }
+
+    const handleAddToSpecClick = () => {
+        const chars = buildCharsForPostSpec();
+        const specPayload = {...spec, categoryId: activeCategory, chars}
+
+        API.postSpec(specPayload).then(res => {
+            const data = res.data;
+
+            setSpec({...data, specId: data.specId})
+        })
+    }
+
+    const handleSpecLineQuantityChange = (specLineId, quantity) => {
+
+        const payload = {specId: spec.specId, specLineId: specLineId, qty: quantity}
+
+        API.updateSpecLine(payload).then(res => {
+            const lines = res.data.lines;
+            setSpec({...spec, lines: lines.length ? lines : null, specId: lines.length ? spec.specId : null})
+        })
+    }
+
+    function handleSubmitCardCreation() {
+        router.push({
+            pathname: '/card/[specId]',
+            query: { specId: spec.specId }
+        })
+    }
 
     return (
-        <MainLayout>
+        <MainLayout  title={"Ручной подбор щита"}>
             <section>
                 <div className="container">
                     <div className="page-header page-header--manual">
                         {/*TODO rename*/}
                         <div className="quiz-page-header">
                             <h1>Ручной подбор щита</h1>
-                            <div className="quiz-question">Спецификация №12</div>
+                            <div className="quiz-question">Спецификация {spec.specId && '№' + spec.specId}</div>
                         </div>
                         <div className="empty empty--first bg-diag-line"/>
                         <div className="empty empty--second"/>
@@ -86,232 +120,127 @@ export default function Manual() {
                     <div className="manual">
                         <div className="categories-block">
                             <ul className="categories">
-                                <li className="categories-item categories-item--selected">
-                                    <span className="categories-item__text">Автоматы</span>
-                                    <span className="categories-item__icon"><ArrowRightOutlined width={11} height={11}/></span>
-                                </li>
-                                <div className="accordion-variants hidden d-md-block">
-                                    <div className="char-form-lines">
-                                        <div className="char-form-lines__item">
-                                            <div className="char-form-lines__name">Количество полюсов</div>
-                                            <div className="char-form-variants">
-                                                <div className="char-form-variant char-form-variant--selected">1</div>
-                                                <div className="char-form-variant">2</div>
-                                                <div className="char-form-variant">3</div>
-                                            </div>
-                                        </div>
-                                        <div className="char-form-lines__item">
-                                            <div className="char-form-lines__name">Номинал</div>
-                                            <div className="char-form-variants">
-                                                <div className="char-form-variant">1</div>
-                                                <div className="char-form-variant">2</div>
-                                                <div className="char-form-variant">3</div>
-                                                <div className="char-form-variant">3</div>
-                                            </div>
-                                        </div>
-                                        <div className="char-form-lines__item">
-                                            <div className="char-form-lines__name">Предельная отключающая способность</div>
-                                            <div className="char-form-variants">
-                                                <div className="char-form-variant">1</div>
-                                                <div className="char-form-variant">2</div>
-                                                <div className="char-form-variant">3</div>
-                                            </div>
-                                        </div>
-                                        <div className="char-form-lines__item">
-                                            <div className="char-form-lines__name">Номинал</div>
-                                            <div className="char-form-variants">
-                                                <div className="char-form-variant">1</div>
-                                                <div className="char-form-variant">2</div>
-                                                <div className="char-form-variant">3</div>
-                                            </div>
-                                        </div>
-                                        <div className="char-form-lines__item">
-                                            <div className="char-form-lines__name">Номинал</div>
-                                            <div className="char-form-variants">
-                                                <div className="char-form-variant">1</div>
-                                                <div className="char-form-variant">2</div>
-                                                <div className="char-form-variant">3</div>
-                                            </div>
-                                        </div>
-                                        <div className="char-form-lines__item">
-                                            <div className="char-form-lines__name">Номинал</div>
-                                            <div className="char-form-variants">
-                                                <div className="char-form-variant">1</div>
-                                                <div className="char-form-variant">2</div>
-                                                <div className="char-form-variant">3</div>
-                                            </div>
-                                        </div>
-                                        <div className="char-form-lines__item">
-                                            <div className="char-form-lines__name">Номинал</div>
-                                            <div className="char-form-variants">
-                                                <div className="char-form-variant">1</div>
-                                                <div className="char-form-variant">2</div>
-                                                <div className="char-form-variant">3</div>
-                                            </div>
-                                        </div>
-                                        <div className="char-form-lines__item">
-                                            <div className="char-form-lines__name">Номинал</div>
-                                            <div className="char-form-variants">
-                                                <div className="char-form-variant">1</div>
-                                                <div className="char-form-variant">2</div>
-                                                <div className="char-form-variant">3</div>
-                                            </div>
-                                        </div>
-                                        <div className="char-form-lines__item">
-                                            <div className="char-form-lines__name">Номинал</div>
-                                            <div className="char-form-variants">
-                                                <div className="char-form-variant">1</div>
-                                                <div className="char-form-variant">2</div>
-                                                <div className="char-form-variant">3</div>
-                                            </div>
-                                        </div>
-                                        <div className="char-form-lines__item">
-                                            <div className="char-form-lines__name">Номинал</div>
-                                            <div className="char-form-variants">
-                                                <div className="char-form-variant">1</div>
-                                                <div className="char-form-variant">2</div>
-                                                <div className="char-form-variant">3</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <li className="categories-item">
-                                    <span className="categories-item__text">Счетчики</span>
-                                    <span className="categories-item__icon"><ArrowRightOutlined width={11} height={11}/></span>
-                                </li>
-                                <li className="categories-item">
-                                    <span className="categories-item__text">УЗО</span>
-                                    <span className="categories-item__icon"><ArrowRightOutlined width={11} height={11}/></span>
-                                </li>
-                                <li className="categories-item">
-                                    <span className="categories-item__text">Рубильники</span>
-                                    <span className="categories-item__icon"><ArrowRightOutlined width={11} height={11}/></span>
-                                </li>
+                                {
+                                    categories.map((category) => (
+                                        <>
+                                            <li key={category.categoryId}
+                                                onClick={() => {
+                                                    handleCategoryClick(category.categoryId)
+                                                }}
+                                                className={'categories-item ' + (activeCategory === category.categoryId ? 'categories-item--selected' : '')}>
+                                                <span className="categories-item__text">{category.name}</span>
+                                                <span className="categories-item__icon"><ArrowRightOutlined width={11}
+                                                                                                            height={11}/></span>
+                                            </li>
+                                            {activeCategory === category.categoryId && (
+                                                <div className="accordion-variants hidden d-md-block">
+                                                    <div className="char-form-lines">
+                                                        {characteristics && characteristics.map(char => (
+                                                            <div key={'m' + char.charId} className="char-form-lines__item">
+                                                                <div className="char-form-lines__name">{char.name}</div>
+                                                                <div className="char-form-variants">
+                                                                    {char.variants.map(variant => (
+                                                                        <div key={'m' + variant.variantId}
+                                                                             className={'char-form-variant ' + (variant.selected ? 'char-form-variant--selected' : '')}
+                                                                             onClick={() => handleCharClick(char.charId, variant.variantId)}
+                                                                        >
+                                                                            {variant.value}
+                                                                        </div>
+                                                                    ))}
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </>
+                                    ))
+                                }
                             </ul>
                         </div>
                         <div className="char-form">
                             <div className="char-form-lines d-md-none">
-                                <div className="char-form-lines__item">
-                                    <div className="char-form-lines__name">Количество полюсов</div>
-                                    <div className="char-form-variants">
-                                        <div className="char-form-variant char-form-variant--selected">1</div>
-                                        <div className="char-form-variant">2</div>
-                                        <div className="char-form-variant">3</div>
+                                {characteristics && characteristics.map(char => (
+                                    <div key={'d' + char.charId} className="char-form-lines__item">
+                                        <div className="char-form-lines__name">{char.name}</div>
+                                        <div className="char-form-variants">
+                                            {char.variants.map(variant => (
+                                                <div key={'d' + variant.variantId}
+                                                     className={'char-form-variant ' + (variant.selected ? 'char-form-variant--selected' : '')}
+                                                     onClick={() => handleCharClick(char.charId, variant.variantId)}
+                                                >
+                                                    {variant.value}
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="char-form-lines__item">
-                                    <div className="char-form-lines__name">Номинал</div>
-                                    <div className="char-form-variants">
-                                        <div className="char-form-variant">1</div>
-                                        <div className="char-form-variant">2</div>
-                                        <div className="char-form-variant">3</div>
-                                        <div className="char-form-variant">3</div>
-                                    </div>
-                                </div>
-                                <div className="char-form-lines__item">
-                                    <div className="char-form-lines__name">Предельная отключающая способность</div>
-                                    <div className="char-form-variants">
-                                        <div className="char-form-variant">1</div>
-                                        <div className="char-form-variant">2</div>
-                                        <div className="char-form-variant">3</div>
-                                    </div>
-                                </div>
-                                <div className="char-form-lines__item">
-                                    <div className="char-form-lines__name">Номинал</div>
-                                    <div className="char-form-variants">
-                                        <div className="char-form-variant">1</div>
-                                        <div className="char-form-variant">2</div>
-                                        <div className="char-form-variant">3</div>
-                                    </div>
-                                </div>
-                                <div className="char-form-lines__item">
-                                    <div className="char-form-lines__name">Номинал</div>
-                                    <div className="char-form-variants">
-                                        <div className="char-form-variant">1</div>
-                                        <div className="char-form-variant">2</div>
-                                        <div className="char-form-variant">3</div>
-                                    </div>
-                                </div>
-                                <div className="char-form-lines__item">
-                                    <div className="char-form-lines__name">Номинал</div>
-                                    <div className="char-form-variants">
-                                        <div className="char-form-variant">1</div>
-                                        <div className="char-form-variant">2</div>
-                                        <div className="char-form-variant">3</div>
-                                    </div>
-                                </div>
-                                <div className="char-form-lines__item">
-                                    <div className="char-form-lines__name">Номинал</div>
-                                    <div className="char-form-variants">
-                                        <div className="char-form-variant">1</div>
-                                        <div className="char-form-variant">2</div>
-                                        <div className="char-form-variant">3</div>
-                                    </div>
-                                </div>
-                                <div className="char-form-lines__item">
-                                    <div className="char-form-lines__name">Номинал</div>
-                                    <div className="char-form-variants">
-                                        <div className="char-form-variant">1</div>
-                                        <div className="char-form-variant">2</div>
-                                        <div className="char-form-variant">3</div>
-                                    </div>
-                                </div>
-                                <div className="char-form-lines__item">
-                                    <div className="char-form-lines__name">Номинал</div>
-                                    <div className="char-form-variants">
-                                        <div className="char-form-variant">1</div>
-                                        <div className="char-form-variant">2</div>
-                                        <div className="char-form-variant">3</div>
-                                    </div>
-                                </div>
-                                <div className="char-form-lines__item">
-                                    <div className="char-form-lines__name">Номинал</div>
-                                    <div className="char-form-variants">
-                                        <div className="char-form-variant">1</div>
-                                        <div className="char-form-variant">2</div>
-                                        <div className="char-form-variant">3</div>
-                                    </div>
-                                </div>
+                                ))}
                             </div>
-                            {/*TODO refactor*/}
-                            <div className="button char-form__btn">
-                                <Button type="primary">Добавить в спецификацию<ArrowRightOutlined/></Button>
-                            </div>
+
+                            {isCharFormValid && (
+                                <div className="button char-form__btn">
+                                    <Button onClick={() => handleAddToSpecClick()} type="primary">Добавить в
+                                        спецификацию<ArrowRightOutlined/></Button>
+                                </div>
+                            )}
                         </div>
 
                         <div className="spec">
                             <div className="card-info-details">
-                                <CustomScrollbars style={{width: '100%', height: 310}} autoHeightMin={331}>
-                                    <div className="card-info-details__head">Спецификация электрощита</div>
-                                    <div className="card-info-details__lines">
+                                {spec.specId ? (
+                                    <CustomScrollbars style={{width: '100%', height: 310}} autoHeightMin={331}>
+                                        <div className="card-info-details__head">Спецификация электрощита</div>
+                                        <div className="card-info-details__lines">
 
-                                        {specLines.map((line, index) => (
-                                            <div className="card-info-details-line">
+                                            {spec.lines.map((line, index) => (
+                                                <div key={line.specLineId} className="card-info-details-line">
                                                     <span
                                                         className="card-info-details-line__name">{index + 1}. {line.name}</span>
-                                                <div className="card-info-details-line__controls">
-                                                    <div className="input-num">
-                                                        <span className="input-num-btn">-</span>
-                                                        <InputNumber min={0} defaultValue={2}/>
-                                                        <span className="input-num-btn">+</span>
-                                                    </div>
-                                                    <div className="remove-button">
-                                                        <Button icon={<DeleteOutlined/>}/>
+                                                    <div className="card-info-details-line__controls">
+                                                        <div className="input-num">
+                                                            <span
+                                                                onClick={(val) => handleSpecLineQuantityChange(line.specLineId, line.quantity - 1)}
+                                                                className="input-num-btn">-</span>
+                                                            <InputNumber min={0}
+                                                                         value={line.quantity}
+                                                                         onPressEnter={(val) => handleSpecLineQuantityChange(line.specLineId, val)}
+                                                            />
+                                                            <span
+                                                                onClick={(val) => handleSpecLineQuantityChange(line.specLineId, line.quantity + 1)}
+                                                                className="input-num-btn">+</span>
+                                                        </div>
+                                                        <div className="remove-button">
+                                                            <Button
+                                                                onClick={(val) => handleSpecLineQuantityChange(line.specLineId, 0)}
+                                                                icon={<DeleteOutlined/>}/>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        ))}
+                                            ))}
+                                        </div>
+                                    </CustomScrollbars>
+                                ) : (
+                                    <>
+                                        <div className="card-info-details__head">Спецификация электрощита</div>
+                                        <div className="card-info-details__empty">
+                                            Спецификация сейчас пуста. Чтобы добавить продукцию, необходимо выбрать
+                                            нужное количество товара в первом столбце.
+                                        </div>
+                                    </>
+                                )
+                                }
+                            </div>
+                            {spec.specId && (
+                                <div className="card-info-details-submitter">
+                                    <div className="button spec__btn">
+                                        <Button onClick={handleSubmitCardCreation} type="primary">Перейти к
+                                            щиту<ArrowRightOutlined/></Button>
                                     </div>
-                                </CustomScrollbars>
-                            </div>
-                            <div className="card-info-details-submitter">
-                                <div className="button spec__btn">
-                                    <Button type="primary">Перейти к щиту<ArrowRightOutlined/></Button>
+                                    <span className="card-info-details-submitter__label hidden d-lg-block">
+                                        Нажимая кнопку, Вы сохраняете все <br/> изменения, произведенные в этом окне
+                                    </span>
                                 </div>
-                                <span className="card-info-details-submitter__label hidden d-lg-block">
-                                    Нажимая кнопку, Вы сохраняете все <br/> изменения, произведенные в этом окне
-                                </span>
-                            </div>
+                            )}
                         </div>
                     </div>
                     <div className="page-header page-header--under d-lg-none">
@@ -330,4 +259,14 @@ export default function Manual() {
             </section>
         </MainLayout>
     )
+}
+
+
+export async function getServerSideProps() {
+    const res = await API.getCategories()
+    return {
+        props: {
+            categories: res.data
+        }
+    }
 }
