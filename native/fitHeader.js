@@ -6,6 +6,10 @@ export function fitPageHeaderHeight() {
     const quizPageHeader = document.querySelector('.quiz-page-header h1');
     const quizQuestion = document.querySelector('.quiz-question');
 
+    if(!pageHeader || !quizPageHeader || !quizQuestion) {
+        return
+    }
+
     function getWidth() {
         return Math.max(
             document.body.scrollWidth,

@@ -1,8 +1,8 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import MainLayout from "/components/MainLayout"
 import Title from "antd/lib/typography/Title"
 import {Button, Checkbox, InputNumber, Modal} from 'antd'
-import {CheckCircleOutlined, CloseCircleOutlined, DeleteOutlined, FileTextOutlined} from '@ant-design/icons'
+import {CheckCircleOutlined, DeleteOutlined, FileTextOutlined} from '@ant-design/icons'
 import CustomScrollbars from "/components/lib/Scrollbars"
 import {API} from "../../bapi/manual"
 import currency from "currency.js"
@@ -15,10 +15,15 @@ export default function Card({specificationProp, specificationDetailsProp}) {
     const [spec, setSpec] = useState(specificationProp)
     const [specDetails, setSpecDetails] = useState(specificationDetailsProp)
     const [isModalOpened, setIsModalOpened] = React.useState(false)
+    const [orderDetails, setOrderDetails] = React.useState({orderId: 0})
 
+    useEffect(() => {
+        if(orderDetails.orderId) {
+            setIsModalOpened(true)
+        }
+    }, [orderDetails.orderId])
 
     function handleSpecLineQuantityChange(specLineId, quantity, remove) {
-
         if (quantity < 0) {
             return
         }
@@ -83,7 +88,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
         const payload = {brandId, segment, specId: spec.specId}
 
         API.createOrderByDetail(payload).then(res => {
-            setIsModalOpened(true)
+            setOrderDetails(res.data)
         })
     }
 
@@ -472,7 +477,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                                 Спасибо!
                             </div>
                             <div className="order-creation-msg">
-                                Ваша заявка <span className="order-creation-msg__spec">№ {spec.specId}</span> <br/>успешно
+                                Ваша заявка <span className="order-creation-msg__spec">№ {orderDetails.orderId}</span> <br/>успешно
                                 отправлена!
                             </div>
                             <div className="order-creation-sub-msg">

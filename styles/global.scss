@@ -549,11 +549,11 @@ ul, li {
 }
 
 .bg-diag-line {
-  background: linear-gradient(to top right, transparent calc(50% - 1px), #DCE8FF, transparent calc(50% + 1px));
+  background:linear-gradient(to top right, transparent calc(50% - 1px),  #DCE8FF calc(50% - 1px), #DCE8FF 50%, transparent 50%);
   z-index: -1;
 
   &--reverse {
-    background: linear-gradient(to top left, transparent calc(50% - 1px), #DCE8FF, transparent calc(50% + 1px));
+    background:linear-gradient(to bottom right, transparent calc(50% - 1px),  #DCE8FF calc(50% - 1px), #DCE8FF 50%, transparent 50%);
   }
 }
 

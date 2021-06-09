@@ -12,9 +12,6 @@ if(isLocalDocker) {
     currentEnvConfig = config['vercel']
 }
 
-
-console.log(currentEnvConfig)
-
 const API_BASE_URL = currentEnvConfig.api.base
 const API_ROOT = currentEnvConfig.api.root
 
