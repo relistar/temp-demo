@@ -3,11 +3,15 @@ import axios from 'axios'
 const config = process.env.config;
 const isLocalDocker = process.env.NODE_DOCKER
 const environment = process.env.NODE_ENV
+const vercel = process.env.VERCEL
 let currentEnvConfig = config[environment]
 
 if(isLocalDocker) {
     currentEnvConfig = config['docker']
+} else if(vercel) {
+    currentEnvConfig = config['vercel']
 }
+
 
 console.log(currentEnvConfig)
 

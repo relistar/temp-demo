@@ -18,6 +18,12 @@ module.exports = {
                     root: "https://dev-tadoit.ru/api/v1/",
                     base: "https://dev-tadoit.ru/api/v1/"
                 }
+            },
+            vercel: {
+                api: {
+                    root: "https://temp-demo-one.vercel.app/api/v1/",
+                    base: "https://dev-tadoit.ru/api/v1/"
+                }
             }
         }
     },
