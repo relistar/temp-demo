@@ -25,13 +25,6 @@ export default function Card({specificationProp, specificationDetailsProp}) {
 
         const newSpec = {...spec}
         let newLines = [...newSpec.lines]
-        /*if (quantity !== 0) {
-            const currentLine = newLines.find(line => line.specLineId === specLineId)
-            currentLine.quantity = quantity
-        } else {
-            newLines = newLines.filter(line => line.specLineId !== specLineId)
-            newSpec.lines = newLines
-        }*/
 
         const currentLine = newLines.find(line => line.specLineId === specLineId)
         currentLine.quantity = quantity

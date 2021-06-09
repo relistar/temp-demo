@@ -68,7 +68,7 @@ export default function Manual({categories}) {
 
         FR_API.postSpec(specPayload).then(res => {
             const data = res.data;
-            console.log(res.data)
+
             setSpec({...data, specId: data.specId})
         })
     }
@@ -79,7 +79,6 @@ export default function Manual({categories}) {
 
         FR_API.updateSpecLine(payload).then(res => {
             const lines = res.data.lines;
-            console.log(lines)
             setSpec({...spec, lines: lines.length ? lines : null, specId: lines.length ? spec.specId : null})
         })
     }
@@ -265,7 +264,6 @@ export default function Manual({categories}) {
 
 export async function getServerSideProps() {
     const res = await FR_API.getCategories()
-    console.log(res.data)
     return {
         props: {
             categories: res.data
