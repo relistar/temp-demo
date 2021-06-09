@@ -25,6 +25,7 @@ module.exports = {
                     base: "https://dev-tadoit.ru/api/v1/"
                 }
             }
-        }
+        },
+        NEXT_PUBLIC_VERCEL: false
     },
 }
