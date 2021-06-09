@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import MainLayout from "/components/MainLayout"
 import {Button, Checkbox, Input} from 'antd'
 import {ArrowLeftOutlined, ArrowRightOutlined} from '@ant-design/icons'
-import {FR_API} from "../../bapi/manual";
+import {API} from "../../bapi/manual";
 import {Radio} from 'antd';
 import {fitPageHeaderHeight} from "../../native/fitHeader";
 import {useRouter} from "next/router";
@@ -69,7 +69,7 @@ export default function Quiz({questions: questionsProp}) {
 
             const cardQuizCreationPayload = collectCardCreationPayload(newQuestions)
 
-            FR_API.postQuiz(cardQuizCreationPayload).then(res => {
+            API.postQuiz(cardQuizCreationPayload).then(res => {
                 const specId = res.data.specId;
 
                 router.push({
@@ -180,7 +180,7 @@ export default function Quiz({questions: questionsProp}) {
 }
 
 export async function getServerSideProps() {
-    const res = await FR_API.getQuiz()
+    const res = await API.getQuiz()
     return {
         props: {
             questions: res.data

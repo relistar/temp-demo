@@ -1,21 +1,26 @@
 import axios from 'axios'
 
+const config = process.env.config;
+const isLocalDocker = process.env.NODE_DOCKER
 const environment = process.env.NODE_ENV
+let currentEnvConfig = config[environment]
 
-const isProd = environment === 'production';
+if(isLocalDocker) {
+    currentEnvConfig = config['docker']
+}
 
-const API_PROTOCOL = isProd ? 'http://' : 'http://'
+console.log(currentEnvConfig)
 
-const API_ROOT = 'https://dev-tadoit.ru/api/v1/'
-const API_ROOT_FR = isProd ? 'https://temp-demo-one.vercel.app/api/' : 'http://localhost:3000/api/'
+const API_BASE_URL = currentEnvConfig.api.base
+const API_ROOT = currentEnvConfig.api.root
 
-const axiosInstance = axios.create({
-    baseURL: API_ROOT,
+const api = axios.create({
+    baseURL: API_BASE_URL,
     timeout: 100000
 })
 
-const jsonAxiosInstance = axios.create({
-    baseURL: API_ROOT,
+const jsonApi = axios.create({
+    baseURL: API_BASE_URL,
     timeout: 100000,
     headers: {
         'accept': 'application/json',
@@ -23,13 +28,13 @@ const jsonAxiosInstance = axios.create({
     }
 })
 
-const FRaxiosInstance = axios.create({
-    baseURL: API_ROOT_FR,
+const rootApi = axios.create({
+    baseURL: API_ROOT,
     timeout: 500000
 })
 
-const FRjsonAxiosInstance = axios.create({
-    baseURL: API_ROOT_FR,
+const jsonRootApi = axios.create({
+    baseURL: API_ROOT,
     timeout: 500000,
     headers: {
         'accept': 'application/json',
@@ -37,74 +42,74 @@ const FRjsonAxiosInstance = axios.create({
     }
 })
 
-export const API = {
+export const BASE_API = {
     getCategories: () => {
-        return axiosInstance.get('/categories')
+        return api.get('/categories')
     },
     getCharacteristicsByCategoryId: (categoryId) => {
-        return axiosInstance.get(`/characteristics/${categoryId}`)
+        return api.get(`/characteristics/${categoryId}`)
     },
     postSpec: (spec) => {
-        return jsonAxiosInstance.post('/detail/manual_spec_create/', spec)
+        return jsonApi.post('/detail/manual_spec_create/', spec)
     },
     updateSpecLine: (payload) => {
-        return jsonAxiosInstance.put('/spec_lines/update_spec_line/', payload)
+        return jsonApi.put('/spec_lines/update_spec_line/', payload)
     },
     getSpecDetailsById: (specId) => {
-        return jsonAxiosInstance.get(`/detail/${specId}`)
+        return jsonApi.get(`/detail/${specId}`)
     },
     getBuildDetailsById: (specId) => {
-        return axiosInstance.get(`/details_agg/${specId}`)
+        return api.get(`/details_agg/${specId}`)
     },
     getQuiz() {
-        return axiosInstance.get('/quiz')
+        return api.get('/quiz')
     },
     postQuiz(payload) {
-        return jsonAxiosInstance.post('/detail/quiz_result/', payload)
+        return jsonApi.post('/detail/quiz_result/', payload)
     },
     postSpecForm(spec) {
-        return jsonAxiosInstance.put('/detail/quiz_result_upd/', spec)
+        return jsonApi.put('/detail/quiz_result_upd/', spec)
     },
     createOrderByDetail(detail) {
-        return jsonAxiosInstance.post('/order_headers/selected_detail/', detail)
+        return jsonApi.post('/order_headers/selected_detail/', detail)
     },
     downloadSpecFileByDetail(payload) {
-        return jsonAxiosInstance.post('/detail/specification/pdf/', payload,{responseType: 'stream'})
+        return jsonApi.post('/detail/specification/pdf/', payload,{responseType: 'stream'})
     }
 }
 
-export const FR_API = {
+export const API = {
     getCategories: () => {
-        return FRaxiosInstance.get('/categories')
+        return rootApi.get('/categories/')
     },
     getCharacteristicsByCategoryId: (categoryId) => {
-        return FRaxiosInstance.get(`/characteristics/${categoryId}`)
+        return rootApi.get(`/characteristics/${categoryId}/`)
     },
     postSpec: (spec) => {
-        return FRjsonAxiosInstance.post('/detail/manual_spec_create', spec)
+        return jsonRootApi.post('/detail/manual_spec_create/', spec)
     },
     updateSpecLine: (payload) => {
-        return FRjsonAxiosInstance.put('/spec_lines/update_spec_line', payload)
+        return jsonRootApi.put('/spec_lines/update_spec_line/', payload)
     },
     getSpecDetailsById: (specId) => {
-        return FRjsonAxiosInstance.get(`/detail/${specId}`)
+        return jsonRootApi.get(`/detail/${specId}/`)
     },
     getBuildDetailsById: (specId) => {
-        return FRaxiosInstance.get(`/details_agg/${specId}`)
+        return rootApi.get(`/details_agg/${specId}/`)
     },
     getQuiz() {
-        return FRaxiosInstance.get('/quiz')
+        return rootApi.get('/quiz/')
     },
     postQuiz(payload) {
-        return FRjsonAxiosInstance.post('/detail/quiz_result', payload)
+        return jsonRootApi.post('/detail/quiz_result/', payload)
     },
     postSpecForm(spec) {
-        return FRjsonAxiosInstance.put('/detail/quiz_result_upd', spec)
+        return jsonRootApi.put('/detail/quiz_result_upd/', spec)
     },
     createOrderByDetail(detail) {
-        return FRjsonAxiosInstance.post('/order_headers/selected_detail', detail)
+        return jsonRootApi.post('/order_headers/selected_detail/', detail)
     },
     downloadSpecFileByDetail(payload) {
-        return FRjsonAxiosInstance.post('/detail/specification/pdf', payload, {responseType: 'blob'})
+        return jsonRootApi.post('/detail/specification/pdf/', payload, {responseType: 'blob'})
     }
 }

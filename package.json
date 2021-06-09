@@ -13,24 +13,14 @@
     "@ant-design/icons": "^4.6.2",
     "antd": "^4.15.4",
     "axios": "^0.21.1",
-    "cookie-cutter": "^0.2.0",
-    "cookies": "^0.8.0",
     "currency.js": "^2.0.4",
-    "js-cookie": "^2.2.1",
     "js-file-download": "^0.4.12",
     "next": "10.2.0",
-    "next-cookies": "^2.0.3",
     "next-google-fonts": "^2.2.0",
     "normalize.css": "^8.0.1",
     "react": "17.0.2",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "17.0.2",
-    "react-native-input-spinner": "^1.7.10",
-    "react-scrollbars-custom": "^4.0.25",
     "sass": "^1.32.12"
-  },
-  "devDependencies": {
-    "json-server": "^0.16.3",
-    "json-server-auth": "^2.0.2"
   }
 }

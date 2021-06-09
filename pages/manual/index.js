@@ -3,7 +3,7 @@ import MainLayout from "/components/MainLayout"
 import {Button, InputNumber, message} from 'antd'
 import {ArrowRightOutlined, DeleteOutlined} from '@ant-design/icons'
 import CustomScrollbars from "../../components/lib/Scrollbars"
-import {FR_API} from "../../bapi/manual";
+import {API} from "../../bapi/manual";
 import {useRouter} from "next/router";
 
 export default function Manual({categories}) {
@@ -15,7 +15,7 @@ export default function Manual({categories}) {
     const [spec, setSpec] = useState({specId: null})
 
     useEffect(() => {
-        FR_API.getCharacteristicsByCategoryId(activeCategory).then(res => {
+        API.getCharacteristicsByCategoryId(activeCategory).then(res => {
             setCharacteristics(res.data)
         })
     }, [activeCategory])
@@ -66,7 +66,7 @@ export default function Manual({categories}) {
         const chars = buildCharsForPostSpec();
         const specPayload = {...spec, categoryId: activeCategory, chars}
 
-        FR_API.postSpec(specPayload).then(res => {
+        API.postSpec(specPayload).then(res => {
             const data = res.data;
 
             setSpec({...data, specId: data.specId})
@@ -77,7 +77,7 @@ export default function Manual({categories}) {
 
         const payload = {specId: spec.specId, specLineId: specLineId, qty: quantity}
 
-        FR_API.updateSpecLine(payload).then(res => {
+        API.updateSpecLine(payload).then(res => {
             const lines = res.data.lines;
             setSpec({...spec, lines: lines.length ? lines : null, specId: lines.length ? spec.specId : null})
         })
@@ -263,7 +263,7 @@ export default function Manual({categories}) {
 
 
 export async function getServerSideProps() {
-    const res = await FR_API.getCategories()
+    const res = await API.getCategories()
     return {
         props: {
             categories: res.data

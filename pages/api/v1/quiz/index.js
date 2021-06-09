@@ -1,7 +1,7 @@
-import {API} from "../../../bapi/manual";
+import {BASE_API} from "../../../../bapi/manual";
 
 export default function getQuizHandler(req, res) {
-    API.getQuiz().then(response => {
+    BASE_API.getQuiz().then(response => {
         res.status(200).json(response.data)
     })
 }
