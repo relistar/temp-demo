@@ -26,6 +26,6 @@ module.exports = {
                 }
             }
         },
-        NEXT_PUBLIC_VERCEL: false
+        NEXT_PUBLIC_VERCEL: true
     },
 }
