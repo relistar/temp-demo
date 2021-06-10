@@ -97,7 +97,7 @@ export const API = {
         return jsonRootApi.get(`/detail/${specId}/`)
     },
     getBuildDetailsById: (specId) => {
-        return rootApi.get(`/details_agg/${specId}/`)
+        return rootApi.get(`/details_agg/${specId}`)
     },
     getQuiz() {
         return rootApi.get('/quiz/')

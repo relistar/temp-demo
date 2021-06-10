@@ -56,7 +56,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
 
     function formatPrice(price) {
         return currency(price, {
-            separator: ' \' ',
+            separator: '\'',
             pattern: '# !',
             symbol: '₽'
         }).format()
@@ -70,12 +70,13 @@ export default function Card({specificationProp, specificationDetailsProp}) {
         API.postSpecForm(specPayload).then(res => {
             const spec = res.data;
 
-            if (spec.lines.length) {
+            if (spec) {
                 setSpec(spec)
             } else {
                 router.push({pathname: '/'})
             }
 
+        }).then(res => {
             API.getBuildDetailsById(spec.specId).then(res => {
                 setSpecDetails(res.data)
             })
