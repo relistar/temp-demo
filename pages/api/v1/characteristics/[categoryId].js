@@ -3,6 +3,8 @@ import {applySession} from "next-session";
 import {options} from "../../../../session";
 
 export default async function charsHandler(req, res) {
+    console.log(req.headers)
+
     await applySession(req, res, options);
 
     const categoryId = req.query.categoryId;
