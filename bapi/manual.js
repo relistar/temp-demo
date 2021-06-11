@@ -1,17 +1,8 @@
 import axios from 'axios'
+import {getEnvConfig} from "../config";
+import qs from "qs";
 
-const config = process.env.config;
-const isLocalDocker = process.env.NODE_DOCKER
-const environment = process.env.NODE_ENV
-const vercel = process.env.NEXT_PUBLIC_VERCEL
-
-let currentEnvConfig = config[environment]
-
-if(isLocalDocker) {
-    currentEnvConfig = config['docker']
-} else if(vercel) {
-    currentEnvConfig = config['vercel']
-}
+const currentEnvConfig = getEnvConfig();
 
 const API_BASE_URL = currentEnvConfig.api.base
 const API_ROOT = currentEnvConfig.api.root
@@ -44,46 +35,58 @@ const jsonRootApi = axios.create({
     }
 })
 
+function buildAuthHeader(token) {
+    return {
+        headers: {
+            'Authorization': `Bearer ${token.access_token}`
+        }
+    }
+}
+
 export const BASE_API = {
-    getCategories: () => {
-        return api.get('/categories')
+    getCategories: (token) => {
+        return api.get('/categories/', buildAuthHeader(token))
     },
-    getCharacteristicsByCategoryId: (categoryId) => {
-        return api.get(`/characteristics/${categoryId}`)
+    getCharacteristicsByCategoryId: (categoryId, token) => {
+        return api.get(`/characteristics/${categoryId}`, buildAuthHeader(token))
     },
-    postSpec: (spec) => {
-        return jsonApi.post('/detail/manual_spec_create/', spec)
+    postSpec: (spec, token) => {
+        return jsonApi.post('/detail/manual_spec_create/', spec, buildAuthHeader(token))
     },
-    updateSpecLine: (payload) => {
-        return jsonApi.put('/spec_lines/update_spec_line/', payload)
+    updateSpecLine: (payload, token) => {
+        return jsonApi.put('/spec_lines/update_spec_line/', payload, buildAuthHeader(token))
     },
-    getSpecDetailsById: (specId) => {
-        return jsonApi.get(`/detail/${specId}`)
+    getSpecDetailsById: (specId, token) => {
+        return jsonApi.get(`/detail/${specId}`, buildAuthHeader(token))
     },
-    getBuildDetailsById: (specId) => {
-        return api.get(`/details_agg/${specId}`)
+    getBuildDetailsById: (specId, token) => {
+        return api.get(`/details_agg/${specId}`, buildAuthHeader(token))
     },
-    getQuiz() {
-        return api.get('/quiz')
+    getQuiz(token) {
+        return api.get('/quiz', buildAuthHeader(token))
     },
-    postQuiz(payload) {
-        return jsonApi.post('/detail/quiz_result/', payload)
+    postQuiz(payload, token) {
+        return jsonApi.post('/detail/quiz_result/', payload, buildAuthHeader(token))
     },
-    postSpecForm(spec) {
-        return jsonApi.put('/detail/quiz_result_upd/', spec)
+    postSpecForm(spec, token) {
+        return jsonApi.put('/detail/quiz_result_upd/', spec, buildAuthHeader(token))
     },
-    createOrderByDetail(detail) {
-        return jsonApi.post('/order_headers/selected_detail/', detail)
+    createOrderByDetail(detail, token) {
+        return jsonApi.post('/order_headers/selected_detail/', detail, buildAuthHeader(token))
     },
-    downloadSpecFileByDetail(payload) {
-        return jsonApi.post('/detail/specification/pdf/', payload,{responseType: 'stream'})
+    downloadSpecFileByDetail(payload, token) {
+        return jsonApi.post('/detail/specification/pdf/', payload, {responseType: 'stream', headers: buildAuthHeader(token).headers})
+    },
+    loginByCredentials(payload) {
+        return jsonApi.post('/login/access-token/', qs.stringify(payload), {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
     }
 }
 
 export const API = {
-    getCategories: () => {
-        return rootApi.get('/categories/')
-    },
     getCharacteristicsByCategoryId: (categoryId) => {
         return rootApi.get(`/characteristics/${categoryId}/`)
     },
@@ -93,14 +96,8 @@ export const API = {
     updateSpecLine: (payload) => {
         return jsonRootApi.put('/spec_lines/update_spec_line/', payload)
     },
-    getSpecDetailsById: (specId) => {
-        return jsonRootApi.get(`/detail/${specId}/`)
-    },
     getBuildDetailsById: (specId) => {
         return rootApi.get(`/details_agg/${specId}`)
-    },
-    getQuiz() {
-        return rootApi.get('/quiz/')
     },
     postQuiz(payload) {
         return jsonRootApi.post('/detail/quiz_result/', payload)
@@ -113,5 +110,12 @@ export const API = {
     },
     downloadSpecFileByDetail(payload) {
         return jsonRootApi.post('/detail/specification/pdf/', payload, {responseType: 'blob'})
+    },
+    loginByCredentials(payload) {
+        return jsonRootApi.post('/login/access-token/', qs.stringify(payload), {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
     }
 }

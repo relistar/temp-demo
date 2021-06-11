@@ -4,11 +4,14 @@ import Title from "antd/lib/typography/Title"
 import {Button, Checkbox, InputNumber, Modal} from 'antd'
 import {CheckCircleOutlined, DeleteOutlined, FileTextOutlined} from '@ant-design/icons'
 import CustomScrollbars from "/components/lib/Scrollbars"
-import {API} from "../../bapi/manual"
+import {API, BASE_API} from "../../bapi/manual"
 import currency from "currency.js"
 import {useRouter} from "next/router";
 import {CloseIcon} from "../../components/lib/icon";
 import downloader from "js-file-download"
+import {withAuthServerSideProps} from "../../session/withAuth";
+import {applySession} from "next-session";
+import {options} from "../../session";
 
 export default function Card({specificationProp, specificationDetailsProp}) {
     const router = useRouter()
@@ -492,16 +495,19 @@ export default function Card({specificationProp, specificationDetailsProp}) {
     )
 }
 
-export async function getServerSideProps({params}) {
+async function getCardServerSideProps({req, res, params}) {
+    await applySession(req, res, options)
+
+    const token = req.session.token;
+
     const specId = params.specId;
 
-    const specificationRes = await API.getSpecDetailsById(specId)
+    const specificationRes = await BASE_API.getSpecDetailsById(specId, token)
     let specificationDetailsRes = null
 
     try {
-        specificationDetailsRes = await API.getBuildDetailsById(specId)
-    } catch (err) {
-    }
+        specificationDetailsRes = await BASE_API.getBuildDetailsById(specId, token)
+    } catch (err) {}
 
     return {
         props: {
@@ -510,3 +516,5 @@ export async function getServerSideProps({params}) {
         }
     }
 }
+
+export const getServerSideProps = withAuthServerSideProps(getCardServerSideProps);
