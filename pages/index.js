@@ -4,6 +4,10 @@ import {CalculatorOutlined, ArrowRightOutlined} from "@ant-design/icons"
 import {Button} from "antd"
 import {HandClickIcon} from "../components/lib/icon"
 import Link from "next/link"
+import {applySession} from "next-session";
+import {options} from "../session";
+import {BASE_API} from "../bapi/manual";
+import {withAuthServerSideProps} from "../session/withAuth";
 
 export default function Home() {
 
@@ -88,3 +92,12 @@ export default function Home() {
         </MainLayout>
     )
 }
+
+async function getMainServerSideProps({req, res}) {
+    return {
+        props: {
+        }
+    }
+}
+
+export const getServerSideProps = withAuthServerSideProps(getMainServerSideProps);
