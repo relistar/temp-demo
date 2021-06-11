@@ -2,12 +2,15 @@ import React, {useEffect, useState} from "react"
 import MainLayout from "/components/MainLayout"
 import {Button, Checkbox, Input} from 'antd'
 import {ArrowLeftOutlined, ArrowRightOutlined} from '@ant-design/icons'
-import {API} from "../../bapi/manual";
+import {API, BASE_API} from "../../bapi/manual";
 import {Radio} from 'antd';
 import {fitPageHeaderHeight} from "../../native/fitHeader";
 import {useRouter} from "next/router";
+import {applySession} from "next-session";
+import {options} from "../../session";
+import {withAuthServerSideProps} from "../../session/withAuth";
 
-export default function Quiz({questions: questionsProp}) {
+export default function Quiz({questions: questionsProp, views}) {
     const router = useRouter()
     const [questions, setQuestions] = useState(questionsProp)
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
@@ -84,6 +87,7 @@ export default function Quiz({questions: questionsProp}) {
 
     return (
         <MainLayout title={"Конструктор щита"}>
+            {views}
             <section>
                 <div className="container">
                     <div className="page-header page-header--quiz">
@@ -179,11 +183,18 @@ export default function Quiz({questions: questionsProp}) {
     )
 }
 
-export async function getServerSideProps() {
-    const res = await API.getQuiz()
+async function getQuizServerSideProps({req, res}) {
+    await applySession(req, res, options)
+
+    const token = req.session.token;
+
+    const response = await BASE_API.getQuiz(token)
+
     return {
         props: {
-            questions: res.data
+            questions: response.data
         }
     }
 }
+
+export const getServerSideProps = withAuthServerSideProps(getQuizServerSideProps);

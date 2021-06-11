@@ -1,0 +1,35 @@
+.login-form {
+  max-width: 350px;
+  margin: 100px auto 200px;
+
+  .ant-col {
+    min-height: 52px;
+  }
+  .ant-form-item-control-input {
+    height: 52px;
+    min-height: 52px;
+  }
+
+  .ant-form-item-control-input-content {
+    height: 52px;
+  }
+
+  .ant-input-affix-wrapper-lg {
+    height: 52px;
+  }
+
+  .ant-input:placeholder-shown {
+    height: 42px;
+  }
+  .ant-form-item-explain {
+    margin: 10px 0 0;
+  }
+
+  .ant-form-item {
+      margin-bottom: 35px;
+  }
+
+  .ant-form-item-has-error {
+    margin-bottom: 10px;
+  }
+}

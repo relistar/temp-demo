@@ -3,22 +3,19 @@ import MainLayout from "/components/MainLayout"
 import {Button, InputNumber, message} from 'antd'
 import {ArrowRightOutlined, DeleteOutlined} from '@ant-design/icons'
 import CustomScrollbars from "../../components/lib/Scrollbars"
-import {API} from "../../bapi/manual";
+import {API, BASE_API} from "../../bapi/manual";
 import {useRouter} from "next/router";
+import {withAuthServerSideProps} from "../../session/withAuth";
+import {applySession} from "next-session";
+import {options} from "../../session";
 
-export default function Manual({categories}) {
+export default function Manual({categories, characteristicsProp}) {
     const router = useRouter()
 
     const [activeCategory, setActiveCategory] = useState(categories[0].categoryId)
-    const [characteristics, setCharacteristics] = useState(null)
+    const [characteristics, setCharacteristics] = useState(characteristicsProp)
     const [isCharFormValid, setIsCharFormValid] = useState(false)
     const [spec, setSpec] = useState({specId: null})
-
-    useEffect(() => {
-        API.getCharacteristicsByCategoryId(activeCategory).then(res => {
-            setCharacteristics(res.data)
-        })
-    }, [activeCategory])
 
     const info = () => {
         message.info(`Редирект на /card/${spec.specId}`);
@@ -26,6 +23,9 @@ export default function Manual({categories}) {
 
 
     const handleCategoryClick = (categoryId) => {
+        API.getCharacteristicsByCategoryId(categoryId).then(res => {
+            setCharacteristics(res.data)
+        })
         setActiveCategory(categoryId)
         setIsCharFormValid(false)
     }
@@ -261,12 +261,22 @@ export default function Manual({categories}) {
     )
 }
 
+async function getManualServerSideProps({req, res}) {
+    await applySession(req, res, options)
 
-export async function getServerSideProps() {
-    const res = await API.getCategories()
+    const token = req.session.token;
+
+    const categoriesResponse = await BASE_API.getCategories(token)
+    const categories = categoriesResponse.data
+    const characteristicsResponse = await BASE_API.getCharacteristicsByCategoryId(categories[0].categoryId, token)
+    const characteristics = characteristicsResponse.data
+
     return {
         props: {
-            categories: res.data
+            categories: categories,
+            characteristicsProp: characteristics
         }
     }
 }
+
+export const getServerSideProps = withAuthServerSideProps(getManualServerSideProps);
