@@ -54,7 +54,7 @@ module.exports = {
                 sessionCookie: {
                     name: 'sc',
                     cookie: {
-                        secure: true,
+                        secure: false,
                         httpOnly: false,
                         sameSite: 'Strict',
                         maxAge: 86400
