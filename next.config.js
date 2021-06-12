@@ -58,7 +58,7 @@ module.exports = {
                     cookieName: 'sc',
                     password: "_Er8EpXY_g-XyaBBQ#VW=Z-*8Rbvgd67k%bZ^%C+CXC8y4V@p_8Z",
                     cookieOptions: {
-                        secure: false,
+                        secure: true,
                         httpOnly: false,
                         sameSite: 'Strict',
                         maxAge: 86400
@@ -66,6 +66,6 @@ module.exports = {
                 }
             }
         },
-        NEXT_PUBLIC_VERCEL: true
+        NEXT_PUBLIC_VERCEL: false
     },
 }
