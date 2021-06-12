@@ -6,7 +6,7 @@ import {API, BASE_API} from "../../bapi/manual";
 import {Radio} from 'antd';
 import {fitPageHeaderHeight} from "../../native/fitHeader";
 import {useRouter} from "next/router";
-import {applySession} from "next-session";
+import {applySession} from "next-iron-session";
 import {options} from "../../session";
 import {withAuthServerSideProps} from "../../session/withAuth";
 
@@ -186,7 +186,7 @@ export default function Quiz({questions: questionsProp, views}) {
 async function getQuizServerSideProps({req, res}) {
     await applySession(req, res, options)
 
-    const token = req.session.token;
+    const token = req.session.get("token");
 
     const response = await BASE_API.getQuiz(token)
 

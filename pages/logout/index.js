@@ -1,7 +1,7 @@
 import React from "react"
 import MainLayout from "../../components/MainLayout";
 import {Button, Form, Input} from "antd";
-import {applySession} from "next-session";
+import {applySession} from "next-iron-session";
 import {options} from "../../session";
 import {API} from "../../bapi/manual";
 

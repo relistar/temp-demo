@@ -4,7 +4,7 @@ import {CalculatorOutlined, ArrowRightOutlined} from "@ant-design/icons"
 import {Button} from "antd"
 import {HandClickIcon} from "../components/lib/icon"
 import Link from "next/link"
-import {applySession} from "next-session";
+import {applySession} from "next-iron-session";
 import {options} from "../session";
 import {BASE_API} from "../bapi/manual";
 import {withAuthServerSideProps} from "../session/withAuth";

@@ -6,7 +6,7 @@ import CustomScrollbars from "../../components/lib/Scrollbars"
 import {API, BASE_API} from "../../bapi/manual";
 import {useRouter} from "next/router";
 import {withAuthServerSideProps} from "../../session/withAuth";
-import {applySession} from "next-session";
+import {applySession} from "next-iron-session";
 import {options} from "../../session";
 
 export default function Manual({categories, characteristicsProp}) {
@@ -264,7 +264,7 @@ export default function Manual({categories, characteristicsProp}) {
 async function getManualServerSideProps({req, res}) {
     await applySession(req, res, options)
 
-    const token = req.session.token;
+    const token = req.session.get("token");
 
     const categoriesResponse = await BASE_API.getCategories(token)
     const categories = categoriesResponse.data
