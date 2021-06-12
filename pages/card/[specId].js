@@ -10,7 +10,7 @@ import {useRouter} from "next/router";
 import {CloseIcon} from "../../components/lib/icon";
 import downloader from "js-file-download"
 import {withAuthServerSideProps} from "../../session/withAuth";
-import {applySession} from "next-session";
+import {applySession} from "next-iron-session";
 import {options} from "../../session";
 
 export default function Card({specificationProp, specificationDetailsProp}) {
@@ -498,7 +498,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
 async function getCardServerSideProps({req, res, params}) {
     await applySession(req, res, options)
 
-    const token = req.session.token;
+    const token = req.session.get("token");
 
     const specId = params.specId;
 

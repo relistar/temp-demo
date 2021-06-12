@@ -1,32 +1,17 @@
 import React from "react"
 import MainLayout from "../../components/MainLayout";
-import {Button, Checkbox, Form, Input} from "antd";
+import {Button, Form, Input} from "antd";
 import {LockOutlined, MailOutlined, UserOutlined} from "@ant-design/icons";
 import {API} from "../../bapi/manual";
 import {useRouter} from "next/router";
-
-const layout = {
-    labelCol: {span: 8},
-    wrapperCol: {span: 16},
-};
-const tailLayout = {
-    wrapperCol: {offset: 8, span: 16},
-};
 
 export default function Login() {
     const router = useRouter();
 
     const onFinish = (values) => {
         API.loginByCredentials(values).then(res => {
-            if (process.browser) {
-                window.localStorage.setItem('token', res.data)
-            }
-
             router.push({pathname: "/auth", query: res.data})
         }).catch(res => {
-            if (process.browser) {
-                window.localStorage.removeItem('token')
-            }
             console.log(res.data)
         })
     }
