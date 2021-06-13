@@ -4,7 +4,7 @@ module.exports = {
             development: {
                 api: {
                     root: "http://localhost:3000/api/v1/",
-                    base: "https://dev-tadoit.ru/api/v1/"
+                    base: "https://api.dev-tadoit.ru/api/v1/"
                 },
                 sessionCookieConfig: {
                     cookieName: 'sc',
@@ -20,7 +20,7 @@ module.exports = {
             docker: {
                 api: {
                     root: "http://localhost:3000/api/v1/",
-                    base: "https://dev-tadoit.ru/api/v1/"
+                    base: "https://api.dev-tadoit.ru/api/v1/"
                 },
                 sessionCookieConfig: {
                     cookieName: 'sc',
@@ -36,7 +36,7 @@ module.exports = {
             production: {
                 api: {
                     root: "https://dev-tadoit.ru/api/v1/",
-                    base: "https://dev-tadoit.ru/api/v1/"
+                    base: "https://api.dev-tadoit.ru/api/v1/"
                 },
                 sessionCookieConfig: {
                     cookieName: 'sc',
@@ -52,7 +52,7 @@ module.exports = {
             vercel: {
                 api: {
                     root: "https://temp-demo-one.vercel.app/api/v1/",
-                    base: "https://dev-tadoit.ru/api/v1/"
+                    base: "https://api.dev-tadoit.ru/api/v1/"
                 },
                 sessionCookieConfig: {
                     cookieName: 'sc',
