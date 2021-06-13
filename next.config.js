@@ -66,6 +66,6 @@ module.exports = {
                 }
             }
         },
-        NEXT_PUBLIC_VERCEL: true
+        NEXT_PUBLIC_VERCEL: false
     },
 }
