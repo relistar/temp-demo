@@ -75,10 +75,13 @@ export const BASE_API = {
         return jsonApi.post('/order_headers/selected_detail/', detail, buildAuthHeader(token))
     },
     downloadSpecFileByDetail(payload, token) {
-        return jsonApi.post('/detail/specification/pdf/', payload, {responseType: 'stream', headers: buildAuthHeader(token).headers})
+        return jsonApi.post('/detail/specification/pdf/', payload, {
+            responseType: 'stream',
+            headers: buildAuthHeader(token).headers
+        })
     },
     loginByCredentials(payload) {
-        return jsonApi.post('/login/access-token/', qs.stringify(payload), {
+        return api.post('/login/access-token', qs.stringify(payload), {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }

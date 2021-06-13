@@ -1,5 +1,5 @@
-import {getEnvConfig} from "../config";
+import {getEnvConfig} from "../config"
 
-const sessionCookieConfig = getEnvConfig().sessionCookieConfig;
+const sessionCookieConfig = getEnvConfig().sessionCookieConfig
 
-export const options = { ...sessionCookieConfig };
+export const options = { ...sessionCookieConfig }
