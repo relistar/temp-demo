@@ -49,7 +49,7 @@ export default function Home() {
                         <div className="constructor-card constructor-card--first">
                             <div className="constructor-card__icon"><CalculatorOutlined/></div>
                             <div className="constructor-card__name">Конструктор щита</div>
-                            <div className="constructor-card__desc">Ответьте на ряд вопросов и мы поможем Вам sвыбрать
+                            <div className="constructor-card__desc">Ответьте на ряд вопросов и мы поможем Вам выбрать
                                 готовое решение
                             </div>
                             <Link href="/quiz">
