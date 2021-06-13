@@ -1,9 +1,9 @@
 import React from "react"
-import MainLayout from "../../components/MainLayout";
 import {Button, Form, Input} from "antd";
-import {LockOutlined, MailOutlined, UserOutlined} from "@ant-design/icons";
+import {LockOutlined, MailOutlined} from "@ant-design/icons";
 import {API} from "../../bapi/manual";
 import {useRouter} from "next/router";
+import MainLayout from "../../components/MainLayout";
 
 export default function Login() {
     const router = useRouter();

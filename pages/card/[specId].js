@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react"
-import MainLayout from "/components/MainLayout"
 import Title from "antd/lib/typography/Title"
 import {Button, Checkbox, InputNumber, Modal} from 'antd'
 import {CheckCircleOutlined, DeleteOutlined, FileTextOutlined} from '@ant-design/icons'
-import CustomScrollbars from "/components/lib/Scrollbars"
+import CustomScrollbars from "../../components/lib/Scrollbars"
 import {API, BASE_API} from "../../bapi/manual"
 import currency from "currency.js"
 import {useRouter} from "next/router";
@@ -12,6 +11,7 @@ import downloader from "js-file-download"
 import {withAuthServerSideProps} from "../../session/withAuth";
 import {applySession} from "next-iron-session";
 import {options} from "../../session";
+import MainLayout from "../../components/MainLayout";
 
 export default function Card({specificationProp, specificationDetailsProp}) {
     const router = useRouter()

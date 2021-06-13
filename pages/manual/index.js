@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react"
-import MainLayout from "/components/MainLayout"
 import {Button, InputNumber, message} from 'antd'
 import {ArrowRightOutlined, DeleteOutlined} from '@ant-design/icons'
 import CustomScrollbars from "../../components/lib/Scrollbars"
@@ -8,6 +7,7 @@ import {useRouter} from "next/router";
 import {withAuthServerSideProps} from "../../session/withAuth";
 import {applySession} from "next-iron-session";
 import {options} from "../../session";
+import MainLayout from "../../components/MainLayout";
 
 export default function Manual({categories, characteristicsProp}) {
     const router = useRouter()

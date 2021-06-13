@@ -1,6 +1,6 @@
 import 'normalize.css'
 import 'antd/dist/antd.css';
-import '/styles/global.scss'
+import '../styles/global.scss'
 import React from "react"
 import ruRu from "antd/lib/locale/ru_RU"
 import {ConfigProvider} from "antd"

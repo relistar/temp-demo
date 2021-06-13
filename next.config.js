@@ -1,4 +1,6 @@
-module.exports = {
+const withPWA = require('next-pwa')
+
+module.exports = withPWA({
     env: {
         config: {
             development: {
@@ -68,4 +70,8 @@ module.exports = {
         },
         NEXT_PUBLIC_VERCEL: false
     },
-}
+    pwa: {
+        dest: 'public',
+        sw: 'service-worker.js'
+    }
+})

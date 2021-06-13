@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react"
-import MainLayout from "/components/MainLayout"
-import {Button, Checkbox, Input} from 'antd'
+import {Button, Input} from 'antd'
 import {ArrowLeftOutlined, ArrowRightOutlined} from '@ant-design/icons'
 import {API, BASE_API} from "../../bapi/manual";
 import {Radio} from 'antd';
@@ -9,6 +8,7 @@ import {useRouter} from "next/router";
 import {applySession} from "next-iron-session";
 import {options} from "../../session";
 import {withAuthServerSideProps} from "../../session/withAuth";
+import MainLayout from "../../components/MainLayout";
 
 export default function Quiz({questions: questionsProp, views}) {
     const router = useRouter()
@@ -182,6 +182,7 @@ export default function Quiz({questions: questionsProp, views}) {
         </MainLayout>
     )
 }
+
 
 async function getQuizServerSideProps({req, res}) {
     await applySession(req, res, options)
