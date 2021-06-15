@@ -7,7 +7,8 @@ export default async function postSpecFormHandler(req, res) {
 
     BASE_API.postSpecForm(req.body, req.session.get("token")).then(response => {
         res.status(200).json(response.data)
-    }).catch(response => {
-        res.status(200).json(response.data)
+    }).catch(({response}) => {
+        console.log(response)
+        res.status(response.status).json(response.data)
     })
 }
