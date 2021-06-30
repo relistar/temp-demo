@@ -8,5 +8,8 @@ export default async function createOrderByDetailHandler(req, res) {
     BASE_API.downloadSpecFileByDetail(req.body, req.session.get("token")).then(response => {
         res.status(200)
         res.send(response.data)
+    }).catch(({response}) => {
+        console.log(response)
+        res.status(response.status).json(response.data)
     })
 }

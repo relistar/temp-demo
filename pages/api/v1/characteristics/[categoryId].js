@@ -9,5 +9,8 @@ export default async function charsHandler(req, res) {
 
     BASE_API.getCharacteristicsByCategoryId(categoryId, req.session.get("token")).then(response => {
         res.status(200).json(response.data)
+    }).catch(({response}) => {
+        console.log(response)
+        res.status(response.status).json(response.data)
     })
 }
