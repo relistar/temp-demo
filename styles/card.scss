@@ -179,16 +179,12 @@
 
   .line-comment {
     display: flex;
-    margin-right: 5px;
     margin-bottom: 15px;
-    border: $border-blue;
-    padding-right: 15px;
-    padding-left: 15px;
-    padding-top: 15px;
+    padding-right: 10px;
 
     &__text {
       font-size: 14px;
-      min-width: 260px;
+      min-width: 200px;
       width: 100%;
 
       .ant-input-textarea-show-count::after {
