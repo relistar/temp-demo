@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Scrollbars} from 'react-custom-scrollbars'
+import {Scrollbars} from 'react-custom-scrollbars-2'
 
 const trackStyles = {
     position: 'absolute',
@@ -39,7 +39,8 @@ export default class CustomScrollbars extends Component {
                 autoHeightMax={200}
                 thumbMinSize={30}
                 universal
-                hideTracksWhenNotNeeded
+                autoHide={false}
+                hideTracksWhenNotNeeded={false}
                 {...this.props}/>
         )
     }

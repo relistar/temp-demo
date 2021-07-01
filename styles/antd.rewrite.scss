@@ -80,8 +80,8 @@ h1.ant-typography, .ant-typography h1 {
 }
 
 .ant-input-number:hover {
-    border: 1px solid #F0F5FF;
-  }
+  border: 1px solid #F0F5FF;
+}
 
 .ant-input-number:focus {
   border: 1px solid #F0F5FF;
@@ -106,15 +106,18 @@ h1.ant-typography, .ant-typography h1 {
   background: #488FF7;
   border-color: #488FF7;
 }
+
 .ant-radio-wrapper {
   span {
     font-size: 20px;
     color: #2F54EB;
   }
 }
+
 .ant-radio {
   width: 22px;
   height: 22px;
+
   .ant-radio-inner {
     border-color: #E5E5E5;
     border-radius: 0;
@@ -131,5 +134,11 @@ h1.ant-typography, .ant-typography h1 {
       left: 2px;
     }
   }
+}
 
+.ant-btn-primary[disabled],
+.ant-btn-primary[disabled]:hover,
+.ant-btn-primary[disabled]:focus,
+.ant-btn-primary[disabled]:active {
+  background-color: #6597ff;
 }
