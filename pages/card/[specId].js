@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 import Title from "antd/lib/typography/Title"
-import {Button, Checkbox, InputNumber, Modal} from 'antd'
-import {CheckCircleOutlined, DeleteOutlined, FileTextOutlined} from '@ant-design/icons'
+import {Button, Checkbox, Modal} from 'antd'
+import {CheckCircleOutlined, FileTextOutlined} from '@ant-design/icons'
 import CustomScrollbars from "../../components/lib/Scrollbars"
 import {API, BASE_API} from "../../bapi/manual"
 import currency from "currency.js"
@@ -12,6 +12,7 @@ import {withAuthServerSideProps} from "../../session/withAuth";
 import {applySession} from "next-iron-session";
 import {options} from "../../session";
 import MainLayout from "../../components/MainLayout";
+import {SpecDetailsLine} from "../../components/SpecDetailsLine";
 
 export default function Card({specificationProp, specificationDetailsProp}) {
     const router = useRouter()
@@ -21,7 +22,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
     const [orderDetails, setOrderDetails] = React.useState({orderId: 0})
 
     useEffect(() => {
-        if(orderDetails.orderId) {
+        if (orderDetails.orderId) {
             setIsModalOpened(true)
         }
     }, [orderDetails.orderId])
@@ -37,7 +38,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
         const currentLine = newLines.find(line => line.specLineId === specLineId)
         currentLine.quantity = quantity
 
-        if(remove) {
+        if (remove) {
             currentLine.isRemoved = remove
         }
 
@@ -66,7 +67,9 @@ export default function Card({specificationProp, specificationDetailsProp}) {
     }
 
     function handleSaveSpecClick() {
-        const lines = spec.lines.map(line => { return {...line, isRemoved: !!line.isRemoved}})
+        const lines = spec.lines.map(line => {
+            return {...line, isRemoved: !!line.isRemoved}
+        })
 
         const specPayload = {specId: spec.specId, lines: lines, options: spec.options}
 
@@ -110,6 +113,34 @@ export default function Card({specificationProp, specificationDetailsProp}) {
         API.downloadSpecFileByDetail(payload).then(res => {
             downloader(res.data, payload.specId + '_' + payload.brandId + '_' + segment + Math.floor(Date.now() / 1000) + '.pdf')
         })
+    }
+
+    function handleCommentSave(specLineId, comment) {
+        const newSpec = {...spec}
+        let newLines = [...newSpec.lines]
+
+        const currentLine = newLines.find(line => line.specLineId === specLineId)
+        currentLine.comment = comment
+
+        setSpec(newSpec)
+    }
+
+    function renderSpecLines() {
+        return <div className="card-info-details__lines">
+            {spec.lines.map((line, index) => {
+
+                if (line.isRemoved) {
+                    return
+                }
+
+                return <SpecDetailsLine key={line.specLineId}
+                                        number={index}
+                                        line={line}
+                                        onQuantityChange={handleSpecLineQuantityChange}
+                                        onRemove={() => handleSpecLineQuantityChange(line.specLineId, 0, true)}
+                                        onCommentSave={handleCommentSave}/>
+            })}
+        </div>;
     }
 
     return (
@@ -181,41 +212,9 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                                     </div>
                                 </div>
                                 <div className="card-info-details d-lg-none">
-                                    <CustomScrollbars style={{width: '100%', height: 331}} autoHeightMin={331}>
-                                        <div className="card-info-details__head">Спецификация электрощита</div>
-                                        <div className="card-info-details__lines">
-
-                                            {spec.lines.map((line, index) => {
-
-                                                if(line.isRemoved) {
-                                                    return
-                                                }
-
-                                                return <div key={line.specLineId} className="card-info-details-line">
-                                                    <span
-                                                        className="card-info-details-line__name">{index + 1}. {line.name}</span>
-                                                    <div className="card-info-details-line__controls">
-                                                        <div className="input-num">
-                                                            <span
-                                                                onClick={(val) => handleSpecLineQuantityChange(line.specLineId, line.quantity - 1)}
-                                                                className="input-num-btn">-</span>
-                                                            <InputNumber min={0}
-                                                                         value={line.quantity}
-                                                                         onChange={(val) => handleSpecLineQuantityChange(line.specLineId, val)}
-                                                            />
-                                                            <span
-                                                                onClick={(val) => handleSpecLineQuantityChange(line.specLineId, line.quantity + 1)}
-                                                                className="input-num-btn">+</span>
-                                                        </div>
-                                                        <div className="remove-button">
-                                                            <Button
-                                                                onClick={(val) => handleSpecLineQuantityChange(line.specLineId, 0, true)}
-                                                                icon={<DeleteOutlined/>}/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            })}
-                                        </div>
+                                    <div className="card-info-details__head">Состав электрощита</div>
+                                    <CustomScrollbars style={{width: '100%', height: 282}} autoHeightMin={282}>
+                                        {renderSpecLines()}
                                     </CustomScrollbars>
                                     <div className="card-info-details-submitter">
                                         <div className="card-info-details-submitter__btn btn-wrap">
@@ -245,40 +244,9 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                         <div className="empty empty--fourth"/>
                     </div>
                     <div className="card-info-details hidden d-lg-block">
-                        <CustomScrollbars style={{width: '100%', height: 270}} autoHeightMin={270}>
-                            <div className="card-info-details__head">Спецификация электрощита</div>
-                            <div className="card-info-details__lines">
-
-                                {spec.lines.map((line, index) => {
-                                    if(line.isRemoved) {
-                                        return
-                                    }
-
-                                    return <div key={line.specLineId} className="card-info-details-line">
-                                                    <span
-                                                        className="card-info-details-line__name">{index + 1}. {line.name}</span>
-                                        <div className="card-info-details-line__controls">
-                                            <div className="input-num">
-                                                            <span
-                                                                onClick={() => handleSpecLineQuantityChange(line.specLineId, line.quantity - 1)}
-                                                                className="input-num-btn">-</span>
-                                                <InputNumber min={0}
-                                                             value={line.quantity}
-                                                             onChange={(val) => handleSpecLineQuantityChange(line.specLineId, val)}
-                                                />
-                                                <span
-                                                    onClick={(val) => handleSpecLineQuantityChange(line.specLineId, line.quantity + 1)}
-                                                    className="input-num-btn">+</span>
-                                            </div>
-                                            <div className="remove-button">
-                                                <Button
-                                                    onClick={() => handleSpecLineQuantityChange(line.specLineId, 0, true)}
-                                                    icon={<DeleteOutlined/>}/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                })}
-                            </div>
+                        <div className="card-info-details__head">Состав электрощита</div>
+                        <CustomScrollbars style={{width: '100%', height: 221}} autoHeightMin={221}>
+                            {renderSpecLines()}
                         </CustomScrollbars>
                         <div className="card-info-details-submitter">
                             <div className="card-info-details-submitter__btn btn-wrap">
@@ -329,8 +297,10 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                                     <div className="table-head__item table-head__item--first">Бренд/серия</div>
                                     <div className="table-head__item table-head__item--second">Стоимость</div>
                                     <div className="table-head__item table-head__item--third">Наличие</div>
-                                    <div className="table-head__item table-head__item--fourth table-head__item--empty"/>
-                                    <div className="table-head__item table-head__item--fifth table-head__item--empty"/>
+                                    <div
+                                        className="table-head__item table-head__item--fourth table-head__item--empty">&nbsp;</div>
+                                    <div
+                                        className="table-head__item table-head__item--fifth table-head__item--empty">&nbsp;</div>
                                 </div>
                                 <div className="table-lines">
                                     {specDetails.map(line => (
@@ -358,14 +328,15 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                                             <div className="table-lines__col table-lines__col--fourth">
                                                 <div className="btn-wrap">
                                                     <Button
-                                                        onClick={() => handleDownloadSpecFile(line.brandId, line.segment)}>Скачать</Button>
+                                                        onClick={() => handleDownloadSpecFile(line.brandId, line.segment)}>Скачать
+                                                        предложение</Button>
                                                 </div>
                                             </div>
                                             <div className="table-lines__col table-lines__col--fifth">
                                                 <div className="btn-wrap btn-wrap--icon">
                                                     <Button
                                                         onClick={() => (handleCreateOrder(line.brandId, line.segment))}
-                                                        icon={<FileTextOutlined/>}>Заказать</Button>
+                                                        icon={<FileTextOutlined/>}>Заказать электрощит</Button>
                                                 </div>
                                             </div>
                                         </div>
@@ -421,11 +392,12 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                                         <div className="nd-actions">
                                             <div className="btn-wrap left">
                                                 <Button
-                                                    onClick={() => handleDownloadSpecFile(line.brandId, line.segment)}>Скачать</Button>
+                                                    onClick={() => handleDownloadSpecFile(line.brandId, line.segment)}>Скачать
+                                                    предложение</Button>
                                             </div>
                                             <div className="btn-wrap right">
                                                 <Button onClick={() => (handleCreateOrder(line.brandId, line.segment))}
-                                                        icon={<FileTextOutlined/>}>Заказать</Button>
+                                                        icon={<FileTextOutlined/>}>Заказать электрощит</Button>
                                             </div>
                                         </div>
                                     </div>
@@ -481,7 +453,8 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                                 Спасибо!
                             </div>
                             <div className="order-creation-msg">
-                                Ваша заявка <span className="order-creation-msg__spec">№ {orderDetails.orderId}</span> <br/>успешно
+                                Ваша заявка <span className="order-creation-msg__spec">№ {orderDetails.orderId}</span>
+                                <br/>успешно
                                 отправлена!
                             </div>
                             <div className="order-creation-sub-msg">
@@ -507,7 +480,8 @@ async function getCardServerSideProps({req, res, params}) {
 
     try {
         specificationDetailsRes = await BASE_API.getBuildDetailsById(specId, token)
-    } catch (err) {}
+    } catch (err) {
+    }
 
     return {
         props: {

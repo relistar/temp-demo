@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import {Button, InputNumber, message} from 'antd'
-import {ArrowRightOutlined, DeleteOutlined} from '@ant-design/icons'
+import {ArrowRightOutlined, DeleteOutlined, MessageOutlined} from '@ant-design/icons'
 import CustomScrollbars from "../../components/lib/Scrollbars"
 import {API, BASE_API} from "../../bapi/manual";
 import {useRouter} from "next/router";
@@ -8,6 +8,7 @@ import {withAuthServerSideProps} from "../../session/withAuth";
 import {applySession} from "next-iron-session";
 import {options} from "../../session";
 import MainLayout from "../../components/MainLayout";
+import {SpecDetailsLine} from "../../components/SpecDetailsLine";
 
 export default function Manual({categories, characteristicsProp}) {
     const router = useRouter()
@@ -16,11 +17,6 @@ export default function Manual({categories, characteristicsProp}) {
     const [characteristics, setCharacteristics] = useState(characteristicsProp)
     const [isCharFormValid, setIsCharFormValid] = useState(false)
     const [spec, setSpec] = useState({specId: null})
-
-    const info = () => {
-        message.info(`Редирект на /card/${spec.specId}`);
-    };
-
 
     const handleCategoryClick = (categoryId) => {
         API.getCharacteristicsByCategoryId(categoryId).then(res => {
@@ -86,16 +82,26 @@ export default function Manual({categories, characteristicsProp}) {
     function handleSubmitCardCreation() {
         router.push({
             pathname: '/card/[specId]',
-            query: { specId: spec.specId }
+            query: {specId: spec.specId}
+        })
+    }
+
+    function handleCommentSave(specLineId, comment) {
+        const currentLine = spec.lines.find(line => line.specLineId === specLineId)
+
+        const payload = {specId: spec.specId, specLineId: specLineId, qty: currentLine.quantity, comment: comment}
+
+        API.updateSpecLine(payload).then(res => {
+            const lines = res.data.lines;
+            setSpec({...spec, lines: lines.length ? lines : null, specId: lines.length ? spec.specId : null})
         })
     }
 
     return (
-        <MainLayout  title={"Ручной подбор щита"}>
+        <MainLayout title={"Ручной подбор щита"}>
             <section>
                 <div className="container">
                     <div className="page-header page-header--manual">
-                        {/*TODO rename*/}
                         <div className="quiz-page-header">
                             <h1>Ручной подбор щита</h1>
                             <div className="quiz-question">Спецификация {spec.specId && '№' + spec.specId}</div>
@@ -136,7 +142,8 @@ export default function Manual({categories, characteristicsProp}) {
                                                 <div className="accordion-variants hidden d-md-block">
                                                     <div className="char-form-lines">
                                                         {characteristics && characteristics.map(char => (
-                                                            <div key={'m' + char.charId} className="char-form-lines__item">
+                                                            <div key={'m' + char.charId}
+                                                                 className="char-form-lines__item">
                                                                 <div className="char-form-lines__name">{char.name}</div>
                                                                 <div className="char-form-variants">
                                                                     {char.variants.map(variant => (
@@ -188,40 +195,26 @@ export default function Manual({categories, characteristicsProp}) {
                         <div className="spec">
                             <div className="card-info-details">
                                 {spec.specId ? (
-                                    <CustomScrollbars style={{width: '100%', height: 310}} autoHeightMin={331}>
-                                        <div className="card-info-details__head">Спецификация электрощита</div>
-                                        <div className="card-info-details__lines">
+                                    <>
+                                        <div className="card-info-details__head">Состав электрощита</div>
+                                        <CustomScrollbars style={{width: '100%', height: 261}} autoHeightMin={261}>
+                                            <div className="card-info-details__lines">
 
-                                            {spec.lines.map((line, index) => (
-                                                <div key={line.specLineId} className="card-info-details-line">
-                                                    <span
-                                                        className="card-info-details-line__name">{index + 1}. {line.name}</span>
-                                                    <div className="card-info-details-line__controls">
-                                                        <div className="input-num">
-                                                            <span
-                                                                onClick={(val) => handleSpecLineQuantityChange(line.specLineId, line.quantity - 1)}
-                                                                className="input-num-btn">-</span>
-                                                            <InputNumber min={0}
-                                                                         value={line.quantity}
-                                                                         onPressEnter={(val) => handleSpecLineQuantityChange(line.specLineId, val)}
-                                                            />
-                                                            <span
-                                                                onClick={(val) => handleSpecLineQuantityChange(line.specLineId, line.quantity + 1)}
-                                                                className="input-num-btn">+</span>
-                                                        </div>
-                                                        <div className="remove-button">
-                                                            <Button
-                                                                onClick={(val) => handleSpecLineQuantityChange(line.specLineId, 0)}
-                                                                icon={<DeleteOutlined/>}/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </CustomScrollbars>
+                                                {spec.lines.map((line, index) => (
+                                                    <SpecDetailsLine key={line.specLineId}
+                                                                     number={index}
+                                                                     line={line}
+                                                                     onQuantityChange={handleSpecLineQuantityChange}
+                                                                     onRemove={() => handleSpecLineQuantityChange(line.specLineId, 0)}
+                                                                     onCommentSave={handleCommentSave}
+                                                    />
+                                                ))}
+                                            </div>
+                                        </CustomScrollbars>
+                                    </>
                                 ) : (
                                     <>
-                                        <div className="card-info-details__head">Спецификация электрощита</div>
+                                        <div className="card-info-details__head">Состав электрощита</div>
                                         <div className="card-info-details__empty">
                                             Спецификация сейчас пуста. Чтобы добавить продукцию, необходимо выбрать
                                             нужное количество товара в первом столбце.
