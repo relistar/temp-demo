@@ -102,7 +102,7 @@
 
 .card-info-details {
   width: 520px;
-  padding: 27px 22px 22px 25px;
+  padding: 27px 18px 22px 25px;
 
   &__head {
     font-size: 20px;
@@ -144,7 +144,6 @@
   justify-content: space-between;
   justify-items: center;
   width: 100%;
-  margin-bottom: 15px;
   height: 25px;
 
   &__name {
@@ -162,16 +161,69 @@
     display: flex;
     flex-wrap: nowrap;
     justify-items: center;
-    margin-right: 20px;
 
     .input-num {
       margin-top: 1px;
     }
 
     .remove-button {
-      margin-left: 20px;
+      margin-left: 6px;
+      margin-right: 6px;
       margin-top: -2px;
-      margin-right: 3px;
+    }
+  }
+}
+
+.card-info-details-line-comment {
+  margin-top: 15px;
+
+  .line-comment {
+    display: flex;
+    margin-right: 5px;
+    margin-bottom: 15px;
+    border: $border-blue;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 15px;
+
+    &__text {
+      font-size: 14px;
+      min-width: 260px;
+      width: 100%;
+
+      .ant-input-textarea-show-count::after {
+        font-size: 12px;
+      }
+    }
+
+    &__edit-btn {
+      position: relative;
+      margin-left: 2px;
+      width: 50px;
+
+      .ant-btn {
+        width: 50px;
+        height: 54px;
+        line-height: 16px;
+
+        .anticon {
+          height: 14px;
+          font-size: 16px;
+        }
+        span {
+          font-size: 14px;
+
+          svg {
+            color: white;
+            width: 16px;
+            height: 16px;
+
+            path {
+              color: white;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -199,7 +251,6 @@
     }
   }
 }
-
 
 .input-num {
   display: flex;
@@ -291,40 +342,49 @@
 
 .table-head {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   border: $border-blue;
+  margin-top: -1px;
   height: 42px;
   line-height: 42px;
-  margin-top: 1px;
 
   &__item {
     border-left: $border-blue;
+
+    min-height: 1px;
 
     &--empty {
       border-left: none;
     }
 
     &--first {
-      width: 321px;
+      width: 320px;
       padding-left: 75px;
       border-left: none;
+      flex: none;
     }
 
     &--second {
       width: 248px;
-      padding-left: 60px;
+      text-align: center;
     }
 
     &--third {
-      width: 299px;
-      padding-left: 60px;
+      width: 165px;
+      min-width: 130px;
+      display: flex;
+      justify-content: center;
     }
 
     &--fourth {
-      width: 149px;
+      width: 216px;
+      min-width: 216px;
     }
 
     &--fifth {
-      width: 149px;
+      width: 216px;
+      min-width: 216px;
     }
   }
 }
@@ -343,29 +403,35 @@
 
   &__col {
     border-left: $border-blue;
+    min-height: 1px;
 
     &--first {
-      width: 321px;
+      width: 320px;
       padding-left: 75px;
       border-left: none;
+      flex: none;
     }
 
     &--second {
       width: 248px;
-      padding-left: 60px;
+      text-align: center;
     }
 
     &--third {
-      width: 299px;
-      padding-left: 107px;
+      width: 165px;
+      min-width: 130px;
+      display: flex;
+      justify-content: center;
     }
 
     &--fourth {
-      width: 149px;
+      width: 216px;
+      min-width: 216px;
     }
 
     &--fifth {
-      width: 149px;
+      width: 216px;
+      min-width: 216px;
     }
   }
 
@@ -410,29 +476,35 @@
   &__col {
     border-left: $border-blue;
     height: 100%;
+    min-height: 1px;
 
     &--first {
-      width: 321px;
+      width: 320px;
       padding-left: 75px;
       border-left: none;
+      flex: none;
     }
 
     &--second {
       width: 248px;
-      padding-left: 60px;
+      text-align: center;
     }
 
     &--third {
-      width: 299px;
-      padding-left: 107px;
+      width: 165px;
+      min-width: 130px;
+      display: flex;
+      justify-content: center;
     }
 
     &--fourth {
-      width: 149px;
+      width: 216px;
+      min-width: 216px;
     }
 
     &--fifth {
-      width: 149px;
+      width: 216px;
+      min-width: 216px;
     }
   }
 

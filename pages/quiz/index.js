@@ -151,9 +151,9 @@ export default function Quiz({questions: questionsProp, views}) {
                                     <Button type="primary" icon={<ArrowLeftOutlined/>}>Назад</Button>
                                 </div>
                             )}
-                            {(currentQuestionValue && !(currentQuestionIndex + 1 === questions.length)) && (
-                                <div onClick={handleNextQuestion} className="button quest-btn quest-btn--forward">
-                                    <Button type="primary">Далее<ArrowRightOutlined/></Button>
+                            {(!(currentQuestionIndex + 1 === questions.length)) && (
+                                <div className="button quest-btn quest-btn--forward">
+                                    <Button onClick={handleNextQuestion} type="primary" disabled={!currentQuestionValue}>Далее<ArrowRightOutlined/></Button>
                                 </div>
                             )}
                             {(currentQuestionValue && (currentQuestionIndex + 1 === questions.length)) && (

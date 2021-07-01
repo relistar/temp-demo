@@ -340,7 +340,7 @@
   .manual {
 
     .card-info-details {
-      padding: 23px 16px 0 19px;
+      padding: 23px 18px 0 19px;
       border: none;
     }
 
@@ -384,7 +384,7 @@
 
   .card-info-details {
     width: 100%;
-    padding: 30px 0 33px 19px;
+    padding: 30px 18px 33px 19px;
 
     border: $border-blue;
   }
@@ -526,11 +526,10 @@
 
     .left {
       border-top: $border-blue;
-      border-right: $border-blue;
       position: absolute;
-      bottom: 0;
+      bottom: 52px;
       left: 0;
-      width: 51%;
+      width: 100%;
       height: 51px;
 
       button {
@@ -541,7 +540,7 @@
     .right {
       border-top: $border-blue;
       position: absolute;
-      width: 49%;
+      width: 100%;
       bottom: 0;
       right: 0;
       height: 51px;
@@ -849,30 +848,7 @@
     }
 
     .card-info-details {
-      padding: 34px 0 0 14px;
-
-      &-line {
-
-        &__controls {
-          margin-right: 0;
-
-          .remove-button {
-            margin-left: 0;
-            margin-right: 17px;
-
-            button {
-              span {
-                svg {
-                  width: 13px;
-                  height: 13px;
-                  margin: 0 0px 1px 14px;
-                }
-              }
-            }
-
-          }
-        }
-      }
+      padding: 34px 18px 0 14px;
     }
 
     .card-info-details-submitter {
@@ -1266,7 +1242,7 @@
     padding-bottom: 0 !important;
 
     .card-info-details {
-      padding: 34px 0 0 14px;
+      padding: 34px 18px 0 14px;
 
       &-line {
 
@@ -1274,8 +1250,8 @@
           margin-right: 0;
 
           .remove-button {
-            margin-left: 0;
-            margin-right: 17px;
+            margin-left: 6px;
+            margin-right: 6px;
 
             button {
               span {
@@ -1500,6 +1476,16 @@
       position: relative;
     }
 
+    .left {
+      width: 50%;
+      bottom: 0;
+      border-right: $border-blue;
+    }
+
+    .right {
+      width: 50%;
+    }
+
     &::before {
       position: absolute;
       content: "";
@@ -1523,7 +1509,7 @@
 
     .card-info-details {
       position: relative;
-      padding: 34px 0 12px 18px;
+      padding: 34px 18px 12px 18px;
       border: $border-blue;
 
       &::after {
@@ -1542,15 +1528,14 @@
           margin-right: 0;
 
           .remove-button {
-            margin-left: 0;
-            margin-right: 0;
+            margin-left: 6px;
+            margin-right: 6px;
 
             button {
               span {
                 svg {
                   width: 13px;
                   height: 13px;
-                  margin: 0 0px 1px 14px;
                 }
               }
             }
@@ -1693,6 +1678,31 @@
     &--fourth {
       width: 18px;
     }
+  }
+
+  .nd-actions {
+    display: flex;
+    flex-wrap: wrap;
+
+    .left {
+      width: 100%;
+      border-right: none;
+      position: relative;
+
+      &::after {
+        position: absolute;
+        content: "";
+        width: 20px;
+        border-bottom: 1px solid #DCE8FF;
+        bottom: 50px;
+        right: -20px;
+      }
+    }
+
+    .right {
+      width: 100%;
+    }
+
   }
 }
 
