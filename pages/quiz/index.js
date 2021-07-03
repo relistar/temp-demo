@@ -8,8 +8,10 @@ import {applySession} from "next-iron-session";
 import {options} from "../../session";
 import {withAuthServerSideProps} from "../../session/withAuth";
 import MainLayout from "../../components/MainLayout";
+import {useRouter} from "next/router";
 
 export default function Quiz({questions: questionsProp, views}) {
+    const router = useRouter()
     const [questions, setQuestions] = useState(questionsProp)
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [currentQuestion, setCurrentQuestion] = useState(getQuestion(0))
