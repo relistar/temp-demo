@@ -109,6 +109,10 @@
   min-height: 95px;
   border-bottom: $border-blue;
 
+  &--num {
+    min-height: 125px;
+  }
+
   &::before {
     position: absolute;
     content: '';
@@ -149,6 +153,12 @@
     &:nth-child(2n) {
       padding: 0 0 0 103px;
     }
+  }
+
+  .ant-checkbox-group {
+    width: 100%;
+    margin-left: 48px;
+    margin-top: 10px;
   }
 }
 
