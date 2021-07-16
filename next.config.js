@@ -68,7 +68,7 @@ module.exports = withPWA({
                 }
             }
         },
-        NEXT_PUBLIC_VERCEL: true
+        NEXT_PUBLIC_VERCEL: false
     },
     pwa: {
         dest: 'public',
