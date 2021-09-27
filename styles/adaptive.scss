@@ -84,6 +84,14 @@
     }
   }
 
+  .faq-title {
+    padding: 25px 28px 25px 28px;
+  }
+
+  .faq-info {
+    padding: 25px 28px 25px 28px;
+  }
+
   .header {
     height: 73px;
 
@@ -621,6 +629,11 @@
     }
   }
 
+
+  .dragger-box-text__second {
+    display: none;
+  }
+
   .constructor-cards {
     flex-wrap: wrap;
   }
@@ -710,6 +723,14 @@
         }
       }
     }
+  }
+
+  .faq-title {
+    padding: 25px 18px 25px 18px;
+  }
+
+  .faq-info {
+    padding: 25px 18px 25px 18px;
   }
 
   .footer-wrap {
@@ -1596,6 +1617,7 @@
       &--second {
       }
     }
+
     .ant-checkbox-group {
       width: 307px;
     }
@@ -1662,6 +1684,18 @@
   }
 
   .order-creation-sub-msg {
+    padding: 0 60px;
+  }
+
+  .track-form-wrap {
+    padding: 0 60px;
+  }
+
+  .track-result-wrap {
+    padding: 0 50px;
+  }
+
+  .track-result-header {
     padding: 0 60px;
   }
 
