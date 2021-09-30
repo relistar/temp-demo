@@ -33,6 +33,11 @@ export default function MyFooter() {
                                             <a href="#">Ручной подбор</a>
                                         </Link>
                                     </li>
+                                    <li className="footer-navigation__item">
+                                        <Link href="/faq">
+                                            <a href="#">Частые вопросы</a>
+                                        </Link>
+                                    </li>
                                 </ul>
                             </nav>
                         </div>

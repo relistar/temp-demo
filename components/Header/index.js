@@ -173,6 +173,11 @@ export default function MyHeader(props) {
                                         <a href="#">Ручной подбор</a>
                                     </Link>
                                 </li>
+                                <li className="navigation__item navigation__item--active navigation__item--has-left-border">
+                                    <Link href="/faq">
+                                        <a href="#">Частые вопросы</a>
+                                    </Link>
+                                </li>
                             </ul>
                         </nav>
                         <div className="contacts">
