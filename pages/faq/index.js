@@ -1,8 +1,20 @@
-import React from "react"
+import React, {useState} from "react"
 import {ArrowDownOutlined, ArrowRightOutlined} from '@ant-design/icons'
 import MainLayout from "../../components/MainLayout";
+import {applySession} from "next-iron-session";
+import {options} from "../../session";
+import {BASE_API} from "../../bapi/manual";
+import {withAuthServerSideProps} from "../../session/withAuth";
 
-export default function FAQ() {
+export default function FAQ({questions}) {
+    const [selectedQuestion, setSelectedQuestion] = useState(null)
+
+    function handleToggleQuestion(id) {
+        if(selectedQuestion === id) {
+            id = null
+        }
+        setSelectedQuestion(id)
+    }
 
     return (
         <MainLayout title={"FAQ"}>
@@ -26,75 +38,51 @@ export default function FAQ() {
                     </div>
 
                     <div className="faq">
-                        <div className="faq-title">
-                            <div className="faq-title__text">Может ли физическое лицо оформить заказ в
-                                интернет-магазине?
-                            </div>
-                            <div className="faq-title__icon">
-                                <ArrowRightOutlined width={11}
-                                                    height={11}/>
-                            </div>
-                        </div>
-                        <div className="faq-title">
-                            <div className="faq-title__text">Может ли физическое лицо оформить заказ в
-                                интернет-магазине?
-                            </div>
-                            <div className="faq-title__icon faq-title__icon--active">
-                                <ArrowDownOutlined width={11}
-                                                    height={11}/>
-                            </div>
-                        </div>
-                        <div className="faq-info">
-                            -  Нет, без входа в свою учетную запись оформление заказа невозможно. Без регистрации Вы можете приобрести товар через своего личного менеджера. Однако, мы рекомендуем Вам зарегистрироваться в интернет-магазине для того, чтобы получить доступ к расширенному функционалу. Например, после регистрации Вы сможете видеть в режиме реального времени свою индивидуальную цену на каждую позицию, историю заказов в личном кабинете, а также иметь возможность самостоятельно распечатать универсальный передаточный документ или воспользоваться сервисом «Акт сверки».
-                        </div>
-                        <div className="faq-title">
-                            <div className="faq-title__text">Может ли физическое лицо оформить заказ в
-                                интернет-магазине?
-                            </div>
-                            <div className="faq-title__icon">
-                                <ArrowRightOutlined width={11}
-                                                    height={11}/>
-                            </div>
-                        </div>
-                        <div className="faq-title">
-                            <div className="faq-title__text">Может ли физическое лицо оформить заказ в
-                                интернет-магазине?
-                            </div>
-                            <div className="faq-title__icon">
-                                <ArrowRightOutlined width={11}
-                                                    height={11}/>
-                            </div>
-                        </div>
-                        <div className="faq-title">
-                            <div className="faq-title__text">Может ли физическое лицо оформить заказ в
-                                интернет-магазине?
-                            </div>
-                            <div className="faq-title__icon">
-                                <ArrowRightOutlined width={11}
-                                                    height={11}/>
-                            </div>
-                        </div>
-                        <div className="faq-title">
-                            <div className="faq-title__text">Может ли физическое лицо оформить заказ в
-                                интернет-магазине?
-                            </div>
-                            <div className="faq-title__icon">
-                                <ArrowRightOutlined width={11}
-                                                    height={11}/>
-                            </div>
-                        </div>
-                        <div className="faq-title">
-                            <div className="faq-title__text">Может ли физическое лицо оформить заказ в
-                                интернет-магазине?
-                            </div>
-                            <div className="faq-title__icon">
-                                <ArrowRightOutlined width={11}
-                                                    height={11}/>
-                            </div>
-                        </div>
+                        {questions.map(question => (
+                            <>
+                                <div className="faq-title" key={question.id}
+                                     onClick={() => handleToggleQuestion(question.id)}>
+                                    <div
+                                        className={'faq-title__text' + (selectedQuestion === question.id ? " faq-title__text--selected" : "")}>
+                                        {question.question}
+                                    </div>
+                                    <div className="faq-title__icon">
+                                        {selectedQuestion === question.id ? (
+                                            <ArrowDownOutlined
+                                                width={11}
+                                                height={11}/>
+                                        ) : (
+                                            <ArrowRightOutlined width={11}
+                                                                height={11}/>
+                                        )}
+                                    </div>
+                                </div>
+                                {selectedQuestion === question.id && (
+                                    <div className="faq-info" dangerouslySetInnerHTML={{__html: question.answer}}/>
+                                )}
+                            </>
+                        ))}
                     </div>
                 </div>
             </section>
         </MainLayout>
     )
 }
+
+async function getFaqServerSideProps({req, res, params}) {
+    await applySession(req, res, options)
+
+    const token = req.session.get("token");
+
+    let questions = await BASE_API.getQuestions();
+
+    console.log(questions.data)
+
+    return {
+        props: {
+            questions: questions.data
+        }
+    }
+}
+
+export const getServerSideProps = withAuthServerSideProps(getFaqServerSideProps);

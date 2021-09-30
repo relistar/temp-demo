@@ -381,6 +381,10 @@ ul, li {
 
 .track-form {
   width: 100%;
+
+  .ant-input {
+    height: 55px;
+  }
 }
 
 .track-button {
@@ -474,10 +478,17 @@ ul, li {
   padding: 25px 48px 25px 48px;
   border: 1px solid #DCE8FF;
   border-bottom: none;
+  cursor: pointer;
 
   &__text {
     margin-right: 20px;
+
+    &--selected {
+      color: #2F54EB;
+    }
   }
+
+
 
   &__icon {
 
@@ -498,6 +509,27 @@ ul, li {
   border-bottom: none;
 
   color: rgba(0, 0, 0, 0.4);
+
+  p {
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 16px;
+  }
+
+  ul {
+    padding-left: 40px;
+    li {
+      color: rgba(0, 0, 0, 0.5);
+      list-style: disc;
+    }
+  }
+
+  a {
+    color: #2F54EB;
+  }
+
+  img {
+    width: 100%;
+  }
 }
 
 .footer-wrap {
@@ -505,6 +537,13 @@ ul, li {
   border-top: 8px solid #2F54EB;
   padding: 47px 0;
   height: 190px;
+}
+
+.track-error {
+  font-size: 14px;
+  margin-bottom: 10px;
+  margin-top: -10px;
+  color: #ff4d4f;
 }
 
 .footer {

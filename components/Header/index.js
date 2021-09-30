@@ -1,16 +1,22 @@
 import React, {useState} from 'react'
 import Link from "next/link"
-import {Button, Checkbox, Drawer, Form, Input, Modal} from 'antd'
+import {Button, Checkbox, Drawer, Form, Input, Modal, Upload} from 'antd'
 import {AddIcon, CloseIcon, TrackIcon} from "../lib/icon"
 import {useRouter} from 'next/router'
-import Dragger from "antd/es/upload/Dragger";
-import {InboxOutlined} from "@ant-design/icons";
+import {API} from "../../bapi/manual";
+import format from 'date-fns/format'
+import {dateFormat} from "../constants";
+
+const {Dragger} = Upload;
 
 export default function MyHeader(props) {
     const [burgerOpened, setBurgerOpened] = useState(false)
     const [isTrackFormModalOpened, setIsTrackFormModalOpened] = React.useState(false)
     const [isTrackResultModalOpened, setIsTrackResultFormModalOpened] = React.useState(false)
     const [isOrderModalOpened, setIsOrderModalOpened] = React.useState(false)
+    const [trackError, setTrackError] = useState(null)
+    const [trackData, setTrackData] = useState(null)
+
 
     const {pathname} = useRouter()
 
@@ -60,6 +66,24 @@ export default function MyHeader(props) {
         setIsOrderModalOpened(true)
     }
 
+    function handleTrackFormSubmit(values) {
+        console.log(values)
+        API.trackOrder(values).then(({data}) => {
+            console.log(data)
+            if (data.hasError) {
+                setTrackError(data.data)
+            } else {
+                setTrackError(null)
+                setTrackData(data.data)
+                setIsTrackFormModalOpened(false)
+                setIsTrackResultFormModalOpened(true)
+            }
+        }).catch(res => {
+            console.log(res)
+
+        })
+    }
+
     const titleBlock = (
         <div className="burger-menu-title">
             <div className="burger-menu-title__logo">
@@ -75,7 +99,9 @@ export default function MyHeader(props) {
         <header className={'header d-xss-none'}>
             <div className="container">
                 <div className="preheader d-lg-none">
-                    <div className="preheader__desc" onClick={handleOrderFormModalOpen}>Сборка и производство электрощитов</div>
+                    <div className="preheader__desc" onClick={handleOrderFormModalOpen}>Сборка и производство
+                        электрощитов
+                    </div>
                     <div className="preheader__contacts">
                         <div className="preheader__track" onClick={handleTrackFormModalOpen}>
                             <div className="preheader__track-icon">
@@ -177,19 +203,25 @@ export default function MyHeader(props) {
                             <Form
                                 name="normal_login"
                                 className="track-form"
-                                onFinish={() => {
-                                }}
+                                onFinish={handleTrackFormSubmit}
                                 size="large"
                             >
                                 <Form.Item
-                                    name="username"
-                                    rules={[]}
+                                    name="orderNumber"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: '',
+                                        }
+                                    ]}
                                 >
                                     <Input placeholder="Номер заказа"/>
                                 </Form.Item>
+                                {trackError && (<div className={"track-error"}>{trackError.detail}</div>)}
+
                                 <Form.Item>
                                     <div className="button">
-                                        <Button type="primary" htmlType="submit" className="login-form-button" onClick={handleTrackResultFormModalOpen}>
+                                        <Button type="primary" htmlType="submit" className="login-form-button">
                                             Проверить
                                         </Button>
                                     </div>
@@ -199,73 +231,61 @@ export default function MyHeader(props) {
                     </div>
                 </Modal>
 
-                <Modal
-                    width={572}
-                    visible={isTrackResultModalOpened}
-                    maskClosable
-                    closable
-                    onCancel={handleTrackResultFormModalCancel}
-                    onOk={handleTrackResultFormModalOk}
-                    title={[
-                        <div className="modal-title"/>
-                    ]}
-                    footer={[
-                        <div className="modal-footer-empty-block">
-                            <div className="modal-footer-empty modal-footer-empty--first"/>
-                        </div>
-                    ]}
-                    closeIcon={<CloseIcon/>}
-                >
-                    <>
-                        <div className="track-result-header">
-                            <div className="track-result-header__order">Заказ №92987456</div>
-                            <div className="track-result-header__order-date">от 12.06.2021</div>
-                        </div>
-
-                        <div className="modal-body">
-                            <div className="track-result-wrap">
-                                <Form
-                                    name="normal_login"
-                                    className="track-history"
-                                    onFinish={() => {
-                                    }}
-                                    size="large"
-                                >
-                                    <div className="track-history-line">
-                                        <div className="track-history-line__title">Выставлен счет и получена
-                                            предоплата
-                                        </div>
-                                        <div className="track-history-line__date">12.06.2021</div>
-                                    </div>
-                                    <div className="track-history-line">
-                                        <div className="track-history-line__title">Закупка комплектующих</div>
-                                        <div className="track-history-line__date">14.06.2021</div>
-                                    </div>
-                                    <div className="track-history-line">
-                                        <div className="track-history-line__title">Сборка</div>
-                                        <div className="track-history-line__date">16.06.2021</div>
-                                    </div>
-                                    <div className="track-history-line">
-                                        <div className="track-history-line__title">Упаковка и доставка до терминала ТК
-                                        </div>
-                                        <div className="track-history-line__date">16.06.2021</div>
-                                    </div>
-                                    <div className="track-history-line">
-                                        <div className="track-history-line__title">Отправлено ТК</div>
-                                        <div className="track-history-line__date">18.06.2021</div>
-                                    </div>
-                                    <Form.Item>
-                                        <div className="button track-button">
-                                            <Button type="primary" htmlType="submit" className="login-form-button">
-                                                Закрыть трекинг
-                                            </Button>
-                                        </div>
-                                    </Form.Item>
-                                </Form>
+                {trackData && (
+                    <Modal
+                        width={572}
+                        visible={isTrackResultModalOpened}
+                        maskClosable
+                        closable
+                        onCancel={handleTrackResultFormModalCancel}
+                        onOk={handleTrackResultFormModalOk}
+                        title={[
+                            <div className="modal-title"/>
+                        ]}
+                        footer={[
+                            <div className="modal-footer-empty-block">
+                                <div className="modal-footer-empty modal-footer-empty--first"/>
                             </div>
-                        </div>
-                    </>
-                </Modal>
+                        ]}
+                        closeIcon={<CloseIcon/>}
+                    >
+                        <>
+                            <div className="track-result-header">
+                                <div className="track-result-header__order">Заказ №{trackData.header.orderId}</div>
+                                <div
+                                    className="track-result-header__order-date">от {format(new Date(trackData.header.creationDate), dateFormat)}</div>
+                            </div>
+
+                            <div className="modal-body">
+                                <div className="track-result-wrap">
+                                    <Form
+                                        name="normal_login"
+                                        className="track-history"
+                                        onFinish={() => {
+                                        }}
+                                        size="large"
+                                    >
+                                        {trackData.history.map(line => (
+                                            <div className="track-history-line" key={line.title}>
+                                                <div className="track-history-line__title">{line.title}</div>
+                                                <div
+                                                    className="track-history-line__date">{format(new Date(line.date), dateFormat)}</div>
+                                            </div>
+                                        ))}
+                                        <Form.Item>
+                                            <div className="button track-button">
+                                                <Button type="primary" htmlType="submit" className="login-form-button"
+                                                        onClick={() => handleTrackResultFormModalOk()}>
+                                                    Закрыть трекинг
+                                                </Button>
+                                            </div>
+                                        </Form.Item>
+                                    </Form>
+                                </div>
+                            </div>
+                        </>
+                    </Modal>
+                )}
 
                 <Modal
                     width={572}
@@ -324,23 +344,23 @@ export default function MyHeader(props) {
                                         <Input className="order-input" placeholder="e-mail"/>
                                     </Form.Item>
                                     <Dragger {...props}>
-                                       <div className="dragger-box">
-                                           <div className="dragger-box-icon"><AddIcon/></div>
-                                           <div className="dragger-box-text">
-                                               <span className="dragger-box-text__first">Выберите файл</span>
-                                               <div className="dragger-box-text__second">или перетащите его сюда</div>
-                                           </div>
-                                       </div>
+                                        <div className="dragger-box">
+                                            <div className="dragger-box-icon"><AddIcon/></div>
+                                            <div className="dragger-box-text">
+                                                <span className="dragger-box-text__first">Выберите файл</span>
+                                                <div className="dragger-box-text__second">или перетащите его сюда</div>
+                                            </div>
+                                        </div>
                                     </Dragger>
                                     <Form.Item
                                         className="order-input-wrap-checkbox"
                                         name="agreement"
                                         valuePropName="checked"
-                                        rules={[
-                                        ]}
+                                        rules={[]}
                                     >
                                         <Checkbox>
-                                            <span className="agreement-box">Нажимая на кнопку, вы соглашаетесь с <a className="agreement-box__link" href="#">условиями обработки персональных данных.</a></span>
+                                            <span className="agreement-box">Нажимая на кнопку, вы соглашаетесь с <a
+                                                className="agreement-box__link" href="#">условиями обработки персональных данных.</a></span>
                                         </Checkbox>
                                     </Form.Item>
                                     <Form.Item>

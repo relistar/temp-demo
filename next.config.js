@@ -6,7 +6,8 @@ module.exports = withPWA({
             development: {
                 api: {
                     root: "http://localhost:3000/api/v1/",
-                    base: "https://api.dev-tadoit.ru/api/v1/"
+                    base: "https://api.dev-tadoit.ru/api/v1/",
+                    cms: 'https://temp-strapi.herokuapp.com/'
                 },
                 sessionCookieConfig: {
                     cookieName: 'sc',
@@ -22,7 +23,8 @@ module.exports = withPWA({
             docker: {
                 api: {
                     root: "http://localhost:3000/api/v1/",
-                    base: "https://api.dev-tadoit.ru/api/v1/"
+                    base: "https://api.dev-tadoit.ru/api/v1/",
+                    cms: 'https://temp-strapi.herokuapp.com/'
                 },
                 sessionCookieConfig: {
                     cookieName: 'sc',
@@ -38,7 +40,8 @@ module.exports = withPWA({
             production: {
                 api: {
                     root: "https://dev-tadoit.ru/api/v1/",
-                    base: "https://api.dev-tadoit.ru/api/v1/"
+                    base: "https://api.dev-tadoit.ru/api/v1/",
+                    cms: 'https://temp-strapi.herokuapp.com/'
                 },
                 sessionCookieConfig: {
                     cookieName: 'sc',
@@ -54,7 +57,8 @@ module.exports = withPWA({
             vercel: {
                 api: {
                     root: "https://temp-demo-one.vercel.app/api/v1/",
-                    base: "https://api.dev-tadoit.ru/api/v1/"
+                    base: "https://api.dev-tadoit.ru/api/v1/",
+                    cms: 'https://temp-strapi.herokuapp.com/'
                 },
                 sessionCookieConfig: {
                     cookieName: 'sc',
