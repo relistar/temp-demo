@@ -6,6 +6,16 @@ const currentEnvConfig = getEnvConfig();
 
 const API_BASE_URL = currentEnvConfig.api.base
 const API_ROOT = currentEnvConfig.api.root
+const CMS_API_ROOT = currentEnvConfig.api.cms
+
+const CMSJsonApi = axios.create({
+    baseURL: CMS_API_ROOT,
+    timeout: 100000,
+    headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+})
 
 const api = axios.create({
     baseURL: API_BASE_URL,
@@ -86,6 +96,12 @@ export const BASE_API = {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         })
+    },
+    getQuestions() {
+        return CMSJsonApi.get('/questions')
+    },
+    trackOrder: (payload, token) => {
+        return api.get(`/order_headers/order/state/${payload.orderNumber}/`, buildAuthHeader(token))
     }
 }
 
@@ -120,5 +136,8 @@ export const API = {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         })
+    },
+    trackOrder: (payload) => {
+        return rootApi.get(`/order_headers/order/state/${payload.orderNumber}`)
     }
 }

@@ -11,5 +11,6 @@ export function getEnvConfig() {
     } else if (vercel) {
         currentEnvConfig = config['vercel']
     }
+
     return currentEnvConfig;
 }
