@@ -72,10 +72,11 @@ module.exports = withPWA({
                 }
             }
         },
-        NEXT_PUBLIC_VERCEL: true
+        NEXT_PUBLIC_VERCEL: false
     },
     pwa: {
         dest: 'public',
-        sw: 'service-worker.js',        disable: process.env.NODE_ENV === 'development'
+        sw: 'service-worker.js',
+        disable: process.env.NODE_ENV === 'development'
     }
 })

@@ -1,0 +1,164 @@
+.listing {
+  display: flex;
+
+  border: 1px solid #DCE8FF;
+}
+
+.listing-filters {
+  width: 321px;
+
+  border-right: 1px solid #DCE8FF;
+
+  &-mobile {
+    display: none;
+  }
+
+  &-heading {
+    height: 87px;
+    border-bottom: 1px solid #DCE8FF;
+    width: 100%;
+
+    position: relative;
+
+    &__text {
+      font-size: 23px;
+      font-weight: bold;
+      position: absolute;
+      bottom: 10px;
+      left: 48px;
+    }
+  }
+
+  &__body {
+    width: 100%;
+  }
+}
+
+.listing-items {
+  width: calc(100% - 321px);
+
+  &-heading {
+    height: 87px;
+    border-bottom: 1px solid #DCE8FF;
+    width: 100%;
+
+    position: relative;
+
+    &__text {
+      font-size: 23px;
+      font-weight: bold;
+      position: absolute;
+      bottom: 10px;
+      left: 75px;
+    }
+  }
+
+  &-body {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 39px 49px 39px 75px;
+
+  }
+}
+
+.listing-card {
+  border: 1px solid #DCE8FF;
+
+  width: 223px;
+  height: 416px;
+
+  margin-bottom: 25px;
+
+  &-info {
+    padding: 0 17px;
+    margin-top: -25px;
+  }
+
+  &-top {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    justify-items: center;
+
+    padding: 0 10px;
+    position: relative;
+
+
+    &__action {
+      z-index: 2;
+      width: 25px;
+      height: 25px;
+      background: rgba(0, 0, 0, 0.2);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 1px;
+
+      svg path {
+        color: white;
+      }
+    }
+  }
+
+  &__image {
+    margin-bottom: 22px;
+
+    img {
+      margin: 0 auto;
+      display: block;
+
+      width: 149px;
+      height: 142px;
+    }
+  }
+
+  &__brand {
+    font-size: 12px;
+    font-weight: bold;
+    color: #00000033;
+  }
+
+  &__name {
+    margin-bottom: 2px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  &__dimensions {
+    margin-bottom: 4px;
+    font-size: 12px;
+    color: #00000033;
+  }
+
+  &__description {
+    margin-bottom: 4px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  &-bottom {
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2F54EB;
+  }
+
+  &__availability {
+    font-size: 12px;
+    color: #55B02A;
+  }
+}

@@ -29,7 +29,6 @@ const AddSvg = () => (
     </svg>
 )
 
-
 export const HandClickIcon = props => <Icon component={HandClickSvg} {...props} />
 export const CloseIcon = props => <Icon component={CloseSvg} {...props} />
 export const TrackIcon = props => <Icon component={TrackSvg} {...props} />
