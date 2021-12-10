@@ -18,6 +18,8 @@
     border-bottom: 1px solid #DCE8FF;
     width: 100%;
 
+    margin-bottom: 42px;
+
     position: relative;
 
     &__text {
@@ -160,5 +162,135 @@
   &__availability {
     font-size: 12px;
     color: #55B02A;
+  }
+}
+
+.filter-accordion {
+
+  &-item {
+    padding: 0 0 0 45px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+
+    &__text {
+      font-size: 20px;
+      margin-right: 20px;
+    }
+
+    &--active {
+      position: relative;
+      padding: 0 0 0 42px;
+      border-left: 3px solid #2F54EB;
+
+      .filter-accordion-item__text {
+        color: #2F54EB;
+      }
+    }
+  }
+
+}
+
+.filter-variants {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 13px;
+
+  padding-left: 47px;
+
+  .ant-checkbox-wrapper {
+    margin-bottom: 11px;
+
+    .ant-checkbox + span {
+      padding-left: 8px;
+      line-height: 22px;
+    }
+  }
+}
+
+.price-slider {
+  padding-right: 34px;
+
+  .ant-slider-step {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .ant-slider-track {
+    height: 1px;
+    background: #2F54EB;
+    border-radius: 0;
+  }
+
+  .ant-slider-handle {
+    background: #2F54EB;
+    border: none;
+    width: 11px;
+    height: 11px;
+  }
+
+  .ant-slider-rail {
+    background: none;
+  }
+
+  .ant-slider:hover .ant-slider-rail {
+    background: none;
+  }
+
+  .ant-slider {
+    margin: 10px 0 10px 4px;
+  }
+
+  &-manual {
+    display: flex;
+
+    .ant-input {
+      border: 1px solid #2F54EB;
+      color: #2F54EB;
+      font-weight: bold;
+      height: 35px;
+
+      padding-left: 7px;
+      font-size: 13px;
+    }
+
+    &__from {
+      width: 90px;
+      margin-right: 12px;
+      min-width: 57px;
+    }
+
+    &__to {
+      width: 100%;
+      flex: 1;
+      min-width: 57px;
+    }
+  }
+}
+
+.filters-modal {
+  .ant-modal-footer {
+    display: none;
+  }
+
+  .ant-modal-body {
+    padding: 0 0 0 15px;
+
+    &::before {
+      width: 16px;
+    }
+  }
+
+  .filters-modal-body {
+    padding-left: 0;
+  }
+
+  .listing-filters-mobile {
+    padding-left: 23px;
+  }
+
+  .filter-accordion {
+    padding-top: 10px;
+    padding-bottom: 20px;
   }
 }

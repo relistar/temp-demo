@@ -127,6 +127,8 @@
       border: none;
       height: 75px;
 
+      margin-bottom: 4px;
+
       &__text {
         font-size: 16px;
         bottom: 19px;
@@ -197,6 +199,33 @@
 
     &__price {
       font-size: 20px;
+    }
+  }
+
+  .filter-accordion-item {
+    padding: 0 0 0 22px;
+
+    &--active {
+      padding: 0 0 0 19px;
+    }
+  }
+
+  .filter-variants {
+    padding-left: 22px;
+
+    .price-slider {
+      padding-right: 21px;
+
+
+      &-manual {
+        &__from {
+          width: 57px;
+        }
+
+        &__to {
+          width: 106px;
+        }
+      }
     }
   }
 
@@ -1045,6 +1074,7 @@
 
     &--no-p-right {
       width: 100% !important;
+      overflow: hidden;
     }
   }
 
@@ -1680,9 +1710,18 @@
 
   .listing-filters-mobile {
     width: 100%;
-    display: block;
+    display: flex;
+    align-items: center;
     height: 70px;
     border-bottom: 1px solid #DCE8FF;
+    padding-left: 20px;
+
+    &__text {
+      font-size: 20px;
+      text-decoration: underline;
+      color: #2F54EB;
+      margin-right: 12px;
+    }
   }
 
   .listing-items {
@@ -1771,10 +1810,11 @@
 
 }
 
-@media screen and (max-width: 698px) {
+@media screen and (max-width: 699px) {
   .listing-items-body {
     display: flex;
     justify-content: center;
+    padding-left: 0;
   }
 }
 

@@ -1,6 +1,12 @@
 import React, {useEffect, useState} from "react"
-import {Button, Checkbox, Input} from 'antd'
-import {ArrowLeftOutlined, ArrowRightOutlined, FileTextOutlined, SaveOutlined} from '@ant-design/icons'
+import {Button, Checkbox, Input, Modal, Slider} from 'antd'
+import {
+    ArrowDownOutlined,
+    ArrowLeftOutlined,
+    ArrowRightOutlined, CheckCircleOutlined,
+    FileTextOutlined,
+    SaveOutlined
+} from '@ant-design/icons'
 import {API, BASE_API} from "../../bapi/manual";
 import {Radio} from 'antd';
 import {fitPageHeaderHeight} from "../../native/fitHeader";
@@ -9,6 +15,7 @@ import {options} from "../../session";
 import {withAuthServerSideProps} from "../../session/withAuth";
 import MainLayout from "../../components/MainLayout";
 import {useRouter} from "next/router";
+import {CloseIcon, FilterIcon} from "../../components/lib/icon";
 
 export default function Listing({}) {
 
@@ -34,8 +41,11 @@ export default function Listing({}) {
                     </div>
                     <div className="listing">
                         <div className="listing-filters-mobile">
-                            <div className="listing-filters__text">
+                            <div className="listing-filters-mobile__text">
                                 Фильтры
+                            </div>
+                            <div className="listing-filters-mobile__icon">
+                                <FilterIcon/>
                             </div>
                         </div>
                         <div className="listing-filters">
@@ -45,7 +55,47 @@ export default function Listing({}) {
                                 </div>
                             </div>
                             <div className="listing-filters__body">
-
+                                <ul className="filter-accordion">
+                                    <li className="filter-accordion-item filter-accordion-item--active">
+                                        <span className="filter-accordion-item__text">Цвет</span>
+                                        <div className="filter-accordion-item__icon"><ArrowDownOutlined/></div>
+                                    </li>
+                                    <div className="filter-variants">
+                                        <Checkbox>Белый</Checkbox>
+                                        <Checkbox>Черный</Checkbox>
+                                        <Checkbox>Серый</Checkbox>
+                                        <Checkbox>Темно-серый</Checkbox>
+                                    </div>
+                                    <li className="filter-accordion-item">
+                                        <span className="filter-accordion-item__text">Размеры</span>
+                                        <div className="filter-accordion-item__icon"><ArrowRightOutlined/></div>
+                                    </li>
+                                    <li className="filter-accordion-item">
+                                        <span className="filter-accordion-item__text">Бренд</span>
+                                        <div className="filter-accordion-item__icon"><ArrowRightOutlined/></div>
+                                    </li>
+                                    <li className="filter-accordion-item">
+                                        <span className="filter-accordion-item__text">Материал</span>
+                                        <div className="filter-accordion-item__icon"><ArrowRightOutlined/></div>
+                                    </li>
+                                    <li className="filter-accordion-item filter-accordion-item--active">
+                                        <span className="filter-accordion-item__text">Цена</span>
+                                        <div className="filter-accordion-item__icon"><ArrowDownOutlined/></div>
+                                    </li>
+                                    <div className="filter-variants">
+                                        <div className="price-slider">
+                                            <Slider range defaultValue={[0, 34]} min={0} max={50}/>
+                                            <div className="price-slider-manual">
+                                                <div className="price-slider-manual__from">
+                                                    <Input value={"129 ₽"}/>
+                                                </div>
+                                                <div className="price-slider-manual__to">
+                                                    <Input value={"22 000 ₽"}/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ul>
                             </div>
                         </div>
                         <div className="listing-items">
@@ -103,6 +153,76 @@ export default function Listing({}) {
                     </div>
                 </div>
             </section>
+
+            <Modal
+                className={"filters-modal"}
+                width={434}
+                visible={false}
+                maskClosable
+                closable
+                onCancel={()=>{}}
+                onOk={()=>{}}
+                title={[
+                    <div className="modal-title"/>
+                ]}
+                footer={[
+                    <div className="filters-modal-footer"/>
+                ]}
+                closeIcon={<CloseIcon/>}
+            >
+                <div className="filters-modal-body">
+                    <div className="listing-filters-mobile">
+                        <div className="listing-filters-mobile__text">
+                            Фильтры
+                        </div>
+                        <div className="listing-filters-mobile__icon">
+                            <FilterIcon/>
+                        </div>
+                    </div>
+
+                    <ul className="filter-accordion">
+                        <li className="filter-accordion-item filter-accordion-item--active">
+                            <span className="filter-accordion-item__text">Цвет</span>
+                            <div className="filter-accordion-item__icon"><ArrowDownOutlined/></div>
+                        </li>
+                        <div className="filter-variants">
+                            <Checkbox>Белый</Checkbox>
+                            <Checkbox>Черный</Checkbox>
+                            <Checkbox>Серый</Checkbox>
+                            <Checkbox>Темно-серый</Checkbox>
+                        </div>
+                        <li className="filter-accordion-item">
+                            <span className="filter-accordion-item__text">Размеры</span>
+                            <div className="filter-accordion-item__icon"><ArrowRightOutlined/></div>
+                        </li>
+                        <li className="filter-accordion-item">
+                            <span className="filter-accordion-item__text">Бренд</span>
+                            <div className="filter-accordion-item__icon"><ArrowRightOutlined/></div>
+                        </li>
+                        <li className="filter-accordion-item">
+                            <span className="filter-accordion-item__text">Материал</span>
+                            <div className="filter-accordion-item__icon"><ArrowRightOutlined/></div>
+                        </li>
+                        <li className="filter-accordion-item filter-accordion-item--active">
+                            <span className="filter-accordion-item__text">Цена</span>
+                            <div className="filter-accordion-item__icon"><ArrowDownOutlined/></div>
+                        </li>
+                        <div className="filter-variants">
+                            <div className="price-slider">
+                                <Slider range defaultValue={[0, 34]} min={0} max={50}/>
+                                <div className="price-slider-manual">
+                                    <div className="price-slider-manual__from">
+                                        <Input value={"129 ₽"}/>
+                                    </div>
+                                    <div className="price-slider-manual__to">
+                                        <Input value={"22 000 ₽"}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </Modal>
         </MainLayout>
     )
 }
