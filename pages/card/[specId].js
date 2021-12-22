@@ -157,7 +157,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                             <svg width="274" height="124" viewBox="0 0 275 124" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path d="M274 0C274 67.931 212.887 123 137.5 123C62.1131 123 1 67.931 1 0"
-                                      stroke="#DCE8FF"/>
+                                      stroke="#b4e1fa"/>
                             </svg>
                         </div>
                         <div className="empty empty--fourth"/>
@@ -238,7 +238,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                             <svg width="274" height="124" viewBox="0 0 275 124" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path d="M274 0C274 67.931 212.887 123 137.5 123C62.1131 123 1 67.931 1 0"
-                                      stroke="#DCE8FF"/>
+                                      stroke="#b4e1fa"/>
                             </svg>
                         </div>
                         <div className="empty empty--fourth"/>
@@ -271,7 +271,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                                     <svg width="274" height="124" viewBox="0 0 275 124" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path d="M274 0C274 67.931 212.887 123 137.5 123C62.1131 123 1 67.931 1 0"
-                                              stroke="#DCE8FF"/>
+                                              stroke="#b4e1fa"/>
                                     </svg>
                                 </div>
                                 <div className="empty empty--fourth"/>
@@ -288,7 +288,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                                          fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M0.999998 76C0.999994 34.5787 38.3842 1.00001 84.5 1.00001C130.616 1 168 34.5786 168 76"
-                                            stroke="#DCE8FF"/>
+                                            stroke="#b4e1fa"/>
                                     </svg>
                                 </div>
                             </div>
@@ -342,6 +342,10 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                                         </div>
                                     ))}
                                 </div>
+                                
+                                {specDetails.length && (
+                                    <div className="test-aware"> *** Расчет стоимости электрощита не является офертой и является ориентировочным</div>
+                                )}
                                 <div className="empty-table-lines">
                                     <div className="empty-table-lines__item">
                                         <div
@@ -401,7 +405,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                                             </div>
                                         </div>
                                     </div>
-                                ))}
+                                ))}                            
                             </div>
                             <div className="page-header page-header--card hidden d-lg-flex">
                                 <div className="empty empty--first bg-diag-line"/>
@@ -410,7 +414,7 @@ export default function Card({specificationProp, specificationDetailsProp}) {
                                     <svg width="274" height="124" viewBox="0 0 275 124" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path d="M274 0C274 67.931 212.887 123 137.5 123C62.1131 123 1 67.931 1 0"
-                                              stroke="#DCE8FF"/>
+                                              stroke="#b4e1fa"/>
                                     </svg>
                                 </div>
                                 <div className="empty empty--fourth"/>

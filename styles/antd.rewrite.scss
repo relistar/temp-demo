@@ -17,7 +17,7 @@ h1.ant-typography, .ant-typography h1 {
 }
 
 .ant-checkbox-checked .ant-checkbox-inner::after {
-  border: 2px solid #061178;
+  border: 2px solid #103e7a;
   position: absolute;
   display: table;
   border-top: 0;
@@ -76,15 +76,15 @@ h1.ant-typography, .ant-typography h1 {
 
 .ant-input-number {
   width: 39px;
-  border: 1px solid #F0F5FF;
+  border: 1px solid #b4e1fa;
 }
 
 .ant-input-number:hover {
-  border: 1px solid #F0F5FF;
+  border: 1px solid #b4e1fa;
 }
 
 .ant-input-number:focus {
-  border: 1px solid #F0F5FF;
+  border: 1px solid #b4e1fa;
   box-shadow: none;
 }
 
@@ -103,14 +103,14 @@ h1.ant-typography, .ant-typography h1 {
 
 .ant-btn-primary:hover, .ant-btn-primary:focus {
   color: #fff;
-  background: #488FF7;
-  border-color: #488FF7;
+  background: #0071b5;
+  border-color: #0071b5;
 }
 
 .ant-radio-wrapper {
   span {
     font-size: 20px;
-    color: #2F54EB;
+    color: #103e7a;
   }
 }
 
@@ -126,7 +126,7 @@ h1.ant-typography, .ant-typography h1 {
     height: 22px;
 
     &::after {
-      background-color: #061178;
+      background-color: #103e7a;
       border-radius: 0;
       width: 16px;
       height: 16px;
@@ -152,5 +152,5 @@ h1.ant-typography, .ant-typography h1 {
 }
 
 .faq-title__icon .anticon-arrow-down  svg {
-  fill: #2F54EB;
+  fill: #103e7a;
 }

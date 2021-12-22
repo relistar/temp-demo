@@ -1903,6 +1903,13 @@ debug@2:
   dependencies:
     ms "2.0.0"
 
+debug@^4.0.0:
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.3.tgz#04266e0b70a98d4462e6e288e38259213332b664"
+  integrity sha512-/zxw5+vh1Tfv+4Qn7a5nsbcJKPaSvCDhojn6FEl9vupwK2VCSDtEiEtqr8DFtzYFOdz63LBkxec7DYuc2jon6Q==
+  dependencies:
+    ms "2.1.2"
+
 debug@^4.1.0, debug@^4.1.1, debug@^4.3.1:
   version "4.3.1"
   resolved "https://registry.npmjs.org/debug/-/debug-4.3.1.tgz"
@@ -2821,6 +2828,14 @@ next-pwa@^5.2.21:
     workbox-webpack-plugin "^6.1.5"
     workbox-window "^6.1.5"
 
+next-ym@^2.3.5:
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/next-ym/-/next-ym-2.3.5.tgz#329d5bf707e8bee39169fbc58b4c7127007f1cdb"
+  integrity sha512-wkZE5BqvvCbdoDE3B1qMY5M3ja/o0viBagXHiht+ujhijzr8JEoxenE7Snpd/nFcj8Jd2FH0T2Hs2P5pmycfEg==
+  dependencies:
+    debug "^4.0.0"
+    react-ym "^0.0.7"
+
 next@10.2.0:
   version "10.2.0"
   resolved "https://registry.npmjs.org/next/-/next-10.2.0.tgz"
@@ -3620,6 +3635,16 @@ react-refresh@0.8.3:
   version "0.8.3"
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.8.3.tgz"
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
+
+react-yandex-metrika@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/react-yandex-metrika/-/react-yandex-metrika-2.6.0.tgz#9c935c8c7ea5505e34391b9b3e86deb6d50053c9"
+  integrity sha512-8K4wExsNZtY3DTxh1G8a+zWH9Pg8fw23MJcoJ4I/562qrHRnh7L5nteq3lnNL58dnNQbuuHIRoGgMjIo+r1GjA==
+
+react-ym@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/react-ym/-/react-ym-0.0.7.tgz#496c9ea5f6644b40bc264b38d72d6501a9687e93"
+  integrity sha1-SWyepfZkS0C8Jks41y1lAalofpM=
 
 react@17.0.2:
   version "17.0.2"

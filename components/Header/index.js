@@ -87,7 +87,7 @@ export default function MyHeader(props) {
     const titleBlock = (
         <div className="burger-menu-title">
             <div className="burger-menu-title__logo">
-                <img src="/img/logo.png" width={66} height={16}/>
+                <img src="/img/logo.svg" width={66} height={16}/>
             </div>
             <div className="burger-menu-title__desc">
                 Сборка и производство электрощитов
@@ -99,16 +99,16 @@ export default function MyHeader(props) {
         <header className={'header d-xss-none'}>
             <div className="container">
                 <div className="preheader d-lg-none">
-                    <div className="preheader__desc" onClick={handleOrderFormModalOpen}>Сборка и производство
+                    <div className="preheader__desc">Сборка и производство
                         электрощитов
                     </div>
                     <div className="preheader__contacts">
-                        <div className="preheader__track" onClick={handleTrackFormModalOpen}>
+                        {/* <div className="preheader__track" onClick={handleTrackFormModalOpen}>
                             <div className="preheader__track-icon">
                                 <TrackIcon/>
                             </div>
                             <a className="preheader__track-link" href="javascript:void(0)">Проверить статус заказа</a>
-                        </div>
+                        </div> */}
                         <a className="preheader__contact" href="tel:+79040770777">+7(904) 077-07-77</a>
                         <a className="preheader__contact" href="tel:+79040770777">+7(904) 077-07-77</a>
                     </div>
@@ -117,7 +117,7 @@ export default function MyHeader(props) {
                     <div className="logo">
                         <Link href="/">
                             <a href="/">
-                                <img src="/img/logo.png" width={66} height={16}/>
+                                <img src="/img/logo.svg" width={66} height={16}/>
                             </a>
                         </Link>
                     </div>

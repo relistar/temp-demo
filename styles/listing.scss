@@ -1,13 +1,13 @@
 .listing {
   display: flex;
 
-  border: 1px solid #DCE8FF;
+  border: 1px solid #b4e1fa;
 }
 
 .listing-filters {
   width: 321px;
 
-  border-right: 1px solid #DCE8FF;
+  border-right: 1px solid #b4e1fa;
 
   &-mobile {
     display: none;
@@ -15,7 +15,7 @@
 
   &-heading {
     height: 87px;
-    border-bottom: 1px solid #DCE8FF;
+    border-bottom: 1px solid #b4e1fa;
     width: 100%;
 
     margin-bottom: 42px;
@@ -41,7 +41,7 @@
 
   &-heading {
     height: 87px;
-    border-bottom: 1px solid #DCE8FF;
+    border-bottom: 1px solid #b4e1fa;
     width: 100%;
 
     position: relative;
@@ -67,7 +67,7 @@
 }
 
 .listing-card {
-  border: 1px solid #DCE8FF;
+  border: 1px solid #b4e1fa;
 
   width: 223px;
   height: 416px;
@@ -156,7 +156,7 @@
   &__price {
     font-size: 22px;
     font-weight: bold;
-    color: #2F54EB;
+    color: #103e7a;
   }
 
   &__availability {
@@ -181,10 +181,10 @@
     &--active {
       position: relative;
       padding: 0 0 0 42px;
-      border-left: 3px solid #2F54EB;
+      border-left: 3px solid #103e7a;
 
       .filter-accordion-item__text {
-        color: #2F54EB;
+        color: #103e7a;
       }
     }
   }
@@ -218,12 +218,12 @@
 
   .ant-slider-track {
     height: 1px;
-    background: #2F54EB;
+    background: #103e7a;
     border-radius: 0;
   }
 
   .ant-slider-handle {
-    background: #2F54EB;
+    background: #103e7a;
     border: none;
     width: 11px;
     height: 11px;
@@ -245,8 +245,8 @@
     display: flex;
 
     .ant-input {
-      border: 1px solid #2F54EB;
-      color: #2F54EB;
+      border: 1px solid #103e7a;
+      color: #103e7a;
       font-weight: bold;
       height: 35px;
 

@@ -31,7 +31,7 @@ export default function FAQ({questions}) {
                             <svg width="274" height="124" viewBox="0 0 275 124" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path d="M274 0C274 67.931 212.887 123 137.5 123C62.1131 123 1 67.931 1 0"
-                                      stroke="#DCE8FF"/>
+                                      stroke="#b4e1fa"/>
                             </svg>
                         </div>
                         <div className="empty empty--fourth"/>

@@ -27,7 +27,7 @@
       position: absolute;
       content: "";
       display: block;
-      background: #2F54EB;
+      background: #103e7a;
       width: 3px;
       height: 25px;
       left: -49px;
@@ -37,13 +37,13 @@
     .categories-item {
 
       &__text {
-        color: #2F54EB;
+        color: #103e7a;
       }
 
       &__icon {
         svg {
           path {
-            color: #2F54EB;
+            color: #103e7a;
           }
         }
       }
@@ -88,7 +88,6 @@
       position: absolute;
       content: "";
       display: block;
-      background: rgba(0, 0, 0, 0.4);
       width: 3px;
       height: 25px;
       left: -49px;
@@ -195,7 +194,7 @@
   font-weight: 300;
   font-size: 16px;
   line-height: 178.69%;
-  color: #2F54EB;
+  color: #103e7a;
   text-align: center;
   padding: 0 7px;
   margin-right: 19px;
@@ -204,19 +203,20 @@
     font-style: normal;
     font-size: 16px;
     line-height: 178.69%;
-    background-color: #f0f5ff;
+    background-color: #b4e1fa;
     cursor: pointer;
     position: relative;
   }
 
   &--selected {/*
-    border-bottom: 2px solid #2F54EB;*/
+    border-bottom: 2px solid #103e7a;*/
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
     line-height: 178.69%;
-    color: #2F54EB;
+    color: #103e7a;
     position: relative;
+  
 
     &:after {
       content: "";
@@ -225,7 +225,7 @@
       height: 2px;
       bottom: -2px;
       left: 0;
-      background-color: #2F54EB;
+      background-color: #103e7a;
       display: block;
     }
 
@@ -237,7 +237,7 @@
         height: 2px;
         bottom: -2px;
         left: 0;
-        background-color: #2F54EB;
+        background-color: #103e7a;
         display: block;
       }
     }

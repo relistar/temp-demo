@@ -44,7 +44,7 @@ export default function MyFooter() {
                     </div>
                     <div className="footer__contacts">
                         <div className="footer__col--third footer__col footer__col--first footer__col--j-start">
-                            <a className="email" href="mailto:info@mail.ru">info@mail.ru</a>
+                            <a className="email" href="mailto: info@temppro.ru"> info@temppro.ru</a>
                             <div className="intervals">
                                 c 9 до 18:00 <br/>
                                 без выходных
@@ -54,7 +54,7 @@ export default function MyFooter() {
 
                             <a className="footer__phone" href="tel:+79040770777">+7(904) 077-07-77</a>
                             <a className="footer__phone" href="tel:+79040770777">+7(904) 077-07-77</a>
-                            <a className="footer__callback" href="#">Заказать обратный звонок</a>
+                            <a className="footer__callback" href="#"/>
                         </div>
                     </div>
                 </div>
