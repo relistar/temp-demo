@@ -109,8 +109,8 @@ export default function MyHeader(props) {
                             </div>
                             <a className="preheader__track-link" href="javascript:void(0)">Проверить статус заказа</a>
                         </div> */}
-                        <a className="preheader__contact" href="tel:+78001016952">+7(800) 101-69-52</a>
-                        <a className="preheader__contact" href="tel:+78001016952">+7(800) 101-69-52</a>
+                        <a className="preheader__contact" href="tel:88001016952">8(800) 101-69-52</a>
+                        <a className="preheader__contact" href="tel:88001016952">8(800) 101-69-52</a>
                     </div>
                 </div>
                 <div className="header__main">
@@ -139,9 +139,9 @@ export default function MyHeader(props) {
                     <div className="header-right d-lg-flex">
                         <div className="contacts-wrap d-md-none">
                             <div className="contacts">
-                                <a className="contacts__item" href="tel:+78001016952">+7(800) 101-69-52</a>
+                                <a className="contacts__item" href="tel:88001016952">8(800) 101-69-52</a>
                                 <a className="contacts__item contacts__item--border contacts__item--margin"
-                                   href="tel:+78001016952">+7(800) 101-69-52</a>
+                                   href="tel:88001016952">8(800) 101-69-52</a>
                             </div>
                         </div>
                         <div className="burger-wrap d-lg-block">
@@ -181,8 +181,8 @@ export default function MyHeader(props) {
                             </ul>
                         </nav>
                         <div className="contacts">
-                            <a className="contacts__item" href="tel:+78001016952">+7(800) 101-69-52</a>
-                            <a className="contacts__item" href="+78001016952">+7(800) 101-69-52</a>
+                            <a className="contacts__item" href="tel:88001016952">8(800) 101-69-52</a>
+                            <a className="contacts__item" href="88001016952">8(800) 101-69-52</a>
                         </div>
                     </div>
                 </Drawer>

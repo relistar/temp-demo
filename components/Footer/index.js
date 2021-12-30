@@ -52,8 +52,8 @@ export default function MyFooter() {
                         </div>
                         <div className="footer__col footer__col--second">
 
-                            <a className="footer__phone" href="tel:+78001016952">+7(800) 101-69-52</a>
-                            <a className="footer__phone" href="tel:+78001016952">+7(800) 101-69-52</a>
+                            <a className="footer__phone" href="tel:88001016952">8(800) 101-69-52</a>
+                            <a className="footer__phone" href="tel:88001016952">8(800) 101-69-52</a>
                             <a className="footer__callback" href="#"/>
                         </div>
                     </div>
